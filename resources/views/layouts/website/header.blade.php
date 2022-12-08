@@ -1,4 +1,5 @@
-<header class="header header-5">
+<header class="header header-5" style="background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); 
+@if(!Route::is('home')) background: linear-gradient(rgba(0,0,0,0.60),rgba(0,0,0,0.60)); @endif">
     <div class="header-middle sticky-header">
         <div class="container-fluid">
             <div class="header-left">
@@ -130,7 +131,7 @@
                                 </li>
                                 <li><a href="login.html">Login</a></li>
                                 <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="404.html">Error 404</a></li>
+                                <li><a href="{{ route('error-404') }}">Error 404</a></li>
                                 <li><a href="coming-soon.html">Coming Soon</a></li>
                             </ul>
                         </li>

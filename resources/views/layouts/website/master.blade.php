@@ -38,6 +38,8 @@
     @include('layouts.website.header')
 
     @yield('content')
+    
+    @include('layouts.website.scrollToUp')
 
     @include('layouts.website.footer')
 

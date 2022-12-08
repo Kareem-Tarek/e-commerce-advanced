@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ErrorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::group([], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });
 
+Route::get('/error-404', [ErrorsController::class, 'index'])->name('error-404');
 
 //-------------------------------------- END Website Routes --------------------------------------//
 
