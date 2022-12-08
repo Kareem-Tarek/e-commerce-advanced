@@ -1,0 +1,15 @@
+﻿/*------------------------------------------------- STAT HEADER -------------------------------------------------*/ 
+@media only screen and (max-width:425px) { /* it means max-width is <= 425px */
+    #account-mobile-overlay{
+        display: none;
+    }
+}
+
+@media only screen and (min-width:992px) { /* it means min-width is >= 992px */
+    #account-mobile-overlay{
+        display: none;
+    }
+}
+
+
+/*------------------------------------------------- END HEADER -------------------------------------------------*/ 
