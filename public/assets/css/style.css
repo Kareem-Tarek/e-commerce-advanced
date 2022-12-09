@@ -2737,7 +2737,7 @@ p {
     top: 0;
     z-index: 1040;
     background-color: transparent;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 .header-5 .header-middle {
     border-bottom: none;

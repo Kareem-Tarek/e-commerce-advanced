@@ -1,7 +1,7 @@
 <header class="header header-5"
 style="
 @if(!Route::is('home')) 
-    background: linear-gradient(rgba(0,0,0,0.60),rgba(0,0,0,0.60)); 
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)); 
 @elseif(Route::is('home')) 
     background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); 
 @endif"
@@ -394,4 +394,5 @@ style="
             </div><!-- End .header-right -->
         </div><!-- End .container-fluid -->
     </div><!-- End .header-middle -->
+    @include('layouts.website.register-now')
 </header><!-- End .header -->

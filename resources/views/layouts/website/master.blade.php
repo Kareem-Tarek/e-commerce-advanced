@@ -38,7 +38,7 @@
 <body>
     @include('layouts.website.header')
 
-    @include('layouts.website.register-now')
+    {{-- @include('layouts.website.register-now') --}}
 
     @yield('content')
     
