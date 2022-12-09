@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'user_type' => $data['user_type'],
             'phone'     => $data['phone'],
             'avatar'    => $avatar, //the correct method for avatar
-            //'avatar'    => '/assets/images/avatars/'.$data['avatar'], //the wrong method for avatar
+            // 'avatar'    => '/assets/images/avatars/'.$data['avatar'], //the wrong method for avatar
         ]);
     }
 }
