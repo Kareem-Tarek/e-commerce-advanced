@@ -2731,13 +2731,14 @@ p {
     padding-left: 1.4rem;
 }
 }.header-5 {
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;
     z-index: 1040;
     background-color: transparent;
-    /* margin-top: 1rem; */
+    margin-top: 1rem;
 }
 .header-5 .header-middle {
     border-bottom: none;
