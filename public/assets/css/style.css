@@ -470,12 +470,12 @@ h4, .h4 {
     margin-left: 2.6rem;
 }
 @media screen and (min-width: 1200px) {
-    .header-top .container-fluid: after {
+    .header-top .container-fluid:after {
     left: 30px;
     right: 30px;
 }
 }@media screen and (min-width: 1600px) {
-    .header-top .container-fluid: after {
+    .header-top .container-fluid:after {
     left: 70px;
     right: 70px;
 }
@@ -1286,7 +1286,7 @@ h4, .h4 {
     max-width: 50px;
 }
 }@media screen and (max-width: 991px) {
-    .top-menu: not(.top-link-menu) {
+    .top-menu:not(.top-link-menu) {
     display: flex;
     align-items: center;
     align-self: stretch;
@@ -1907,7 +1907,7 @@ h4, .h4 {
     width: 694px;
 }
 @media screen and (min-width: 1200px) {
-    .menu-vertical .megamenu: not(.megamenu-sm):not(.megamenu-md) {
+    .menu-vertical .megamenu:not(.megamenu-sm):not(.megamenu-md) {
     width: 893px;
     min-height: 100%}
 }.menu-vertical .megamenu>ul, .menu-vertical .megamenu div>ul {
@@ -2503,7 +2503,7 @@ p {
     color: #fff;
 }
 @media screen and (max-width: 991px) {
-    .header-2 .header-search-visible .header-search-wrapper: before {
+    .header-2 .header-search-visible .header-search-wrapper:before {
     border-bottom-color: #dadada;
 }
 }@media screen and (max-width: 991px) {
@@ -2605,7 +2605,7 @@ p {
     padding-left: 1.4rem;
 }
 }@media screen and (max-width: 1119px) {
-    .header-intro-clearance .header-bottom .container: :before, .header-intro-clearance .header-bottom .container::after {
+    .header-intro-clearance .header-bottom .container:before, .header-intro-clearance .header-bottom .container::after {
     visibility: hidden;
 }
 }@media screen and (max-width: 1100px) {
@@ -2723,7 +2723,7 @@ p {
     margin-right: 15rem;
 }
 }@media screen and (max-width: 991px) {
-    .header-4 .header-search-visible .header-search-wrapper: before {
+    .header-4 .header-search-visible .header-search-wrapper:before {
     border-bottom-color: #c96;
 }
 }@media screen and (max-width: 575px) {
@@ -3195,11 +3195,11 @@ p {
     margin-top: 0;
 }
 @media screen and (min-width: 992px) {
-    .header-8 .header-top .top-menu a: hover, .header-8 .header-top .top-menu a:focus {
+    .header-8 .header-top .top-menu a:hover, .header-8 .header-top .top-menu a:focus {
     color: #fff;
 }
 }@media screen and (max-width: 991px) {
-    .header-8 .top-menu ul a: not(:hover):not(:focus) {
+    .header-8 .top-menu ul a:not(:hover):not(:focus) {
     color: #666;
 }
 .header-8 .top-menu:not(.top-link-menu) ul {
@@ -3405,7 +3405,7 @@ p {
     margin-top: 1.6rem;
 }
 @media screen and (max-width: 991px) {
-    .header-10 .header-search-visible .header-search-wrapper: before {
+    .header-10 .header-search-visible .header-search-wrapper:before {
     border-bottom-color: #dadada;
 }
 .header-10 .top-menu:not(.top-link-menu) ul {
@@ -3480,7 +3480,7 @@ p {
     margin-left: 1.4rem;
 }
 }@media screen and (min-width: 1200px) {
-    .header-11 .menu>li: not(:last-child) {
+    .header-11 .menu>li:not(:last-child) {
     margin-right: 3rem;
 }
 }.header-12 .logo {
@@ -3704,7 +3704,7 @@ p {
     max-width: 832px;
 }
 }@media screen and (max-width: 991px) {
-    .header-12 .header-search-visible .header-search-wrapper: before {
+    .header-12 .header-search-visible .header-search-wrapper:before {
     border-bottom-color: #dadada;
 }
 }@media screen and (min-width: 1200px) {
@@ -3856,7 +3856,7 @@ p {
     right: auto;
 }
 @media screen and (max-width: 991px) {
-    .header-13 .header-search-visible .header-search-wrapper: before {
+    .header-13 .header-search-visible .header-search-wrapper:before {
     border-bottom-color: #dadada;
 }
 }@media screen and (min-width: 992px) {
@@ -4158,7 +4158,7 @@ p {
     background-color: #dadada;
 }
 @media screen and (max-width: 991px) {
-    .header-14 .header-search-visible .header-search-wrapper: before {
+    .header-14 .header-search-visible .header-search-wrapper:before {
     border-bottom-color: #dadada;
 }
 .header-14 .header-middle-right {
@@ -4201,7 +4201,7 @@ p {
     display: block;
 }
 }@media screen and (max-width: 1700px) {
-    .header-14 .header-bottom .container: :after, .header-14 .header-bottom .container-fluid::after {
+    .header-14 .header-bottom .container:after, .header-14 .header-bottom .container-fluid::after {
     right: 22%}
 }@media screen and (max-width: 1200px) {
     .header-14 .header-bottom .header-right {
@@ -4358,17 +4358,17 @@ p {
     margin-right: 0;
 }
 }@media screen and (min-width: 1200px) {
-    .footer-bottom .container-fluid: before {
+    .footer-bottom .container-fluid:before {
     left: 30px;
     right: 30px;
 }
 }@media screen and (min-width: 1600px) {
-    .footer-bottom .container-fluid: before {
+    .footer-bottom .container-fluid:before {
     left: 70px;
     right: 70px;
 }
 }@media screen and (min-width: 992px) and (max-width: 1200px) {
-    .footer .widget-about .social-icon: not(:last-child) {
+    .footer .widget-about .social-icon:not(:last-child) {
     margin-right: .4rem;
 }
 }.footer-dark {
@@ -4518,7 +4518,7 @@ p {
     margin-bottom: 0;
 }
 }@media screen and (max-width: 575px) {
-    .widget-about-info .col-sm-6: not(:last-child) {
+    .widget-about-info .col-sm-6:not(:last-child) {
     margin-bottom: 1rem;
 }
 }.page-header {
@@ -4818,7 +4818,7 @@ p {
     margin-bottom: 0;
 }
 }@media screen and (min-width: 1200px) {
-    .icon-boxes-separator [class*="col-"]+[class*="col-"]: before {
+    .icon-boxes-separator [class*="col-"]+[class*="col-"]:before {
     content: '';
     display: block;
     width: .1rem;
@@ -6969,7 +6969,7 @@ p {
     margin-right: 0;
 }
 }@media screen and (max-width: 1200px) {
-    .product.product-9: hover .product-body, .product.product-9:hover .product-action {
+    .product.product-9:hover .product-body, .product.product-9:hover .product-action {
     transform: translateY(-60%);
 }
 }@media screen and (max-width: 991px) {
@@ -8518,7 +8518,7 @@ small.form-text {
 .slider-container-1:before, .intro-slider-1 .slide-image:before {
     padding-top: 56.5384615385%}
 @media screen and (max-width: 479px) {
-    .slider-container-1: before, .intro-slider-1 .slide-image:before {
+    .slider-container-1:before, .intro-slider-1 .slide-image:before {
     padding-top: 83.3333333333%}
 }.slider-container-ratio .intro-slider, .slide-image>picture, .slide-image>img {
     position: absolute;
@@ -11954,7 +11954,7 @@ to {
     margin-bottom: .6rem;
 }
 @media screen and (min-width: 576px) {
-    .form-choice .col-sm-6: not(:last-child) {
+    .form-choice .col-sm-6:not(:last-child) {
     margin-bottom: 0;
 }
 .form-tab .form-footer .btn {
