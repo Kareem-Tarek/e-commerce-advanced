@@ -5,11 +5,18 @@
     }
 }
 
+
+/* it means min-width is >= 992px */
+@media only screen and (min-width:425px) and (max-width:992px) { 
+    .header{
+        /* background: linear-gradient(rgba(201, 0, 0, 0.7),rgba(255, 0, 0, 0.7));  */
+    }
+}
+
+
 @media only screen and (min-width:992px) { /* it means min-width is >= 992px */
     #account-mobile-overlay{
         display: none;
     }
 }
-
-
 /*------------------------------------------------- END HEADER -------------------------------------------------*/ 

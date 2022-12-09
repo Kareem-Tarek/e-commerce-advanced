@@ -16,7 +16,7 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav --> --}}
-        	<div class="error-content text-center" style="background-image: url(assets/images/backgrounds/error-bg.jpg)">
+        	<div class="error-content text-center" style="background-image: url(assets/images/backgrounds/error-bg.jpg);">
                 <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                     <div class="container">
                         <ol class="breadcrumb">
@@ -29,7 +29,7 @@
             	<div class="container">
             		<h1 class="error-title">Error 404</h1><!-- End .error-title -->
             		<p>We are sorry, the page you've requested is not available.</p>
-            		<a href="{{ url()->previous() }}" class="btn btn-outline-primary-2 btn-minwidth-lg">
+            		<a href="{{ url()->previous() }}" class="btn btn-outline-primary-2 btn-minwidth-md">
             			<span>BACK TO PREVIOUS</span>
             			<i class="icon-long-arrow-right"></i>
             		</a>
@@ -37,7 +37,7 @@
         	</div><!-- End .error-content text-center -->
         </main><!-- End .main -->
     </div><!-- End .page-wrapper -->
-    
+
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 

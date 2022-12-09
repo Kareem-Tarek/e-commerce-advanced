@@ -1,5 +1,11 @@
-<header class="header header-5" style="background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); 
-@if(!Route::is('home')) background: linear-gradient(rgba(0,0,0,0.60),rgba(0,0,0,0.60)); @endif">
+<header class="header header-5"
+style="
+@if(!Route::is('home')) 
+    background: linear-gradient(rgba(0,0,0,0.60),rgba(0,0,0,0.60)); 
+@elseif(Route::is('home')) 
+    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); 
+@endif"
+>
     <div class="header-middle sticky-header">
         <div class="container-fluid">
             <div class="header-left">
@@ -15,7 +21,7 @@
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
-                            <a href="index.html" class="">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li>
                             <a href="category.html" class="sf-with-ul">Shop</a>
