@@ -6,8 +6,7 @@
 }
 
 
-/* it means min-width is >= 992px */
-@media only screen and (max-width:991px) { 
+@media only screen and (max-width:991px) { /* it means max-width is <= 991px */
     .header{
         background: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0)) !important;
     }

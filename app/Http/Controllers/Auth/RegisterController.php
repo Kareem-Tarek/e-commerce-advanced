@@ -50,9 +50,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'      => ['nullable', 'string', 'max:255'],
+            'username'  => ['required', 'string', 'max:255', 'unique:users'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'user_type' => ['required', 'in:supplier,customer'],
+            'phone'     => ['nullable','string', 'min:11', 'max:11', 'unique:users'],
+            'avatar'    => ['nullable'],
         ]);
     }
 
@@ -64,10 +68,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $avatar = $data['avatar'];
+        if($avatar == null){
+            $avatar = null;
+        }
+        else{
+            $avatar = '/assets/images/avatars/'.$avatar;
+        }
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name'      => $data['name'],
+            'username'  => $data['username'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']), //the correct method for password. Hashed password in the DB! (by using "Hash")
+            // 'password' => $data['password'], //the wrong method for password. NOT Hashed password in the DB!
+            'user_type' => $data['user_type'],
+            'phone'     => $data['phone'],
+            'avatar'    => $avatar, //the correct method for avatar
+            //'avatar'    => '/assets/images/'.$data['avatar'], //the wrong method for avatar
         ]);
     }
 }

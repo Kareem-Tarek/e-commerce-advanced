@@ -15,7 +15,7 @@ style="
                 </button>
 
                 <a href="{{ route('home') }}" class="logo">
-                    <img src="/assets/images/demos/demo-15/logo.png" alt="Molla Logo" width="105" height="25">
+                    <img src="/assets/images/logos/Anywhere-Anytime(2).png" alt="AA Logo" width="110" height="25">
                 </a>
 
                 <nav class="main-nav">
@@ -204,7 +204,10 @@ style="
                         </li>
                         <li>
                             @if(auth()->user())
-                                <a href="javascript:void(0);" style="color: rgb(206, 191, 123);">{{ auth()->user()->username ?? auth()->user()->name }} ({{ auth()->user()->user_type }})</a>
+                                <a href="javascript:void(0);" style="color: rgb(206, 191, 123); display: inline-flex;">
+                                    <img src="{{ auth()->user()->avatar ?? '/assets/images/avatars/no-avatar.png' }}" width="40" style="border-radius: 1px;">
+                                    <span style="padding: 8px 0px 0px 2px;">{{ auth()->user()->name ?? auth()->user()->username }} ({{ auth()->user()->user_type }})</span>
+                                </a>
                                 <ul>
                                     <li><a href="javascript:void(0);">Profile Management</a></li>
                                     @if(auth()->user()->user_type == "customer")
@@ -271,7 +274,7 @@ style="
                 <div id="account-mobile-overlay">
                     {{-- <ul>
                         <li>
-                            <a href="javascript:void(0);" style="color: rgb(206, 191, 123);">{{ auth()->user()->username ?? auth()->user()->name }} ({{ ucfirst(auth()->user()->user_type) }})</a>
+                            <a href="javascript:void(0);" style="color: rgb(206, 191, 123);">{{ auth()->user()->name ?? auth()->user()->username }} ({{ ucfirst(auth()->user()->user_type) }})</a>
                             <ul>
                                 <li><a href="javascript:void(0);">xxx</a></li>
                                 <li><a href="javascript:void(0);">yyy</a></li>
@@ -282,7 +285,7 @@ style="
                     @if(auth()->user())
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: rgb(206, 191, 123); cursor: pointer;">
-                                {{ auth()->user()->username ?? auth()->user()->name }} ({{ ucfirst(auth()->user()->user_type) }})
+                                {{ auth()->user()->name ?? auth()->user()->username }} ({{ ucfirst(auth()->user()->user_type) }})
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="javascript:void(0);" onMouseOver="this.style.color='#CC9966'" onMouseOut="this.style.color='inherit'">Profile Management</a>

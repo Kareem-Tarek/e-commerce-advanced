@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div class="widget widget-about">
-                        <img src="/assets/images/demos/demo-15/logo-footer.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                        <img src="/assets/images/logos/Anywhere-Anytime(1).png" class="footer-logo" alt="AA Logo" width="180" height="15">
                         <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. </p>
                         
                         <div class="widget-about-info">
@@ -29,11 +29,11 @@
                         <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="about.html">About Molla</a></li>
-                            <li><a href="#">How to shop on Molla</a></li>
+                            <li><a href="about.html">About AA</a></li>
+                            <li><a href="#">How to shop on AA</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="login.html">Log in</a></li>
+                            <li><a href="{{ route('login') }}">Log in</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-4 col-lg-2 -->
@@ -58,7 +58,7 @@
                         <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="#">Sign In</a></li>
+                            <li><a href="{{ route('login') }}">Sign In</a></li>
                             <li><a href="cart.html">View Cart</a></li>
                             <li><a href="#">My Wishlist</a></li>
                             <li><a href="#">Track My Order</a></li>
@@ -89,7 +89,7 @@
 
     <div class="footer-bottom">
         <div class="container-fluid">
-            <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+            <p class="footer-copyright">Copyright © 2019 AA Store. All Rights Reserved.</p><!-- End .footer-copyright -->
 
             <div class="social-icons social-icons-color">
                 <span class="social-label">Social Media</span>
