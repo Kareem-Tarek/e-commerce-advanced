@@ -14,15 +14,39 @@
       <div class="card-body">
         <h4 class="card-title">Products</h4>
         <p class="card-description">
+            <div class="d-flex mb-3">
+                <a href="{{ route('dashboard') }}">
+                    <i class="mdi mdi-home text-muted hover-cursor"></i>
+                </a>
+                <p class="text-muted mb-0 hover-cursor">
+                    &nbsp;/&nbsp;
+                    <a href="{{ route('all_products.index') }}" class="text-decoration-none">
+                        @if(auth()->user()->user_type == "supplier")
+                            All My Products
+                        @else
+                            All Products
+                        @endif
+                    </a>
+                    &nbsp;/&nbsp;
+                    @if(auth()->user()->user_type == "supplier")
+                        All My Products Varieties That Belongs To
+                    @else
+                        All Products Varieties That Belongs To
+                    @endif
+                    &nbsp;</p>
+                    &RightArrow;
+                    &nbsp;
+                "<p class="text-success fw-bold mb-0 hover-cursor">{{ $find_product->name }}</p>"
+            </div>
           {{-- Add class <code>.table-striped</code> --}}
             @if(auth()->user()->user_type == "supplier")
-                All My Products
+                All My Products ({{ $final_products_count }})
             @else
-                All Products
+                All Products ({{ $final_products_count }})
             @endif
         </p>
         <div class="table-responsive">
-          <table class="table table-striped table-bordered @if($final_products->count() == 0) d-none @endif">
+          <table class="table table-striped table-bordered border border-secondary @if($final_products_count == 0) d-none @endif">
             <thead>
               <tr>
                 <th class="fw-bold text-center">#</th>
@@ -34,8 +58,8 @@
                 <th class="text-center">Discount</th>
                 <th class="text-center">Price (EGP)</th>
                 <th class="text-center">Available Quantity</th>
-                {{-- <th class="text-center">Category</th>
-                <th class="text-center">Sub-category</th> --}}
+                <th class="text-center">Category</th>
+                <th class="text-center">Sub-category</th>
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
                 @if(auth()->user()->user_type == "admin")
@@ -56,22 +80,22 @@
 
                         <td>{{ $product->size }}</td>
 
-                        <td style="width: 15%;">
+                        <td class="text-center w-25">
                             {{ $product->color }}&nbsp;
                             <span style="background-color: {{ $product->color }}; color: {{ $product->color }}; border: 1px solid black;">
                                 ——
                             </span>
                         </td>
 
-                        <td class="text-center" style="width: 15%;">
+                        <td class="text-center w-25">
                             @if($product->productDetail->discount == 0)
                                 —
                             @else
                                 {{-- <span class="fw-bold text-light bg-dark p-1 rounded">
                                     {{ $product->productDetail->discount * 100}}%
                                 </span> --}}
-                                {{ $product->productDetail->discount * 100 }}%
-                                <div class="progress">
+                                <span class="fw-bold">{{ $product->productDetail->discount * 100 }}%</span>
+                                <div class="progress mt-2">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->productDetail->discount * 100 }}%" aria-valuenow="{{ $product->productDetail->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             @endif
@@ -87,12 +111,14 @@
                             @endif
                         </td>
 
-                        <td class="text-center w-25">
+                        <td class="text-center">
                             @if($product->available_quantity <= 4 && (auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"))
                                 <span class="text-danger">{{ $product->available_quantity }}</span>
                                 <hr>
-                                <a href="javascript:void(0);" class="px-2 py-1" style="background-color: rgb(247, 176, 54); color: black; border-radius: 20px;">
-                                    Inform supplier!
+                                <a href="javascript:void(0);" class="text-dark text-decoration-none">
+                                    <div class="bg-warning px-0 py-1 rounded">
+                                        Inform supplier!
+                                    </div>
                                 </a>
                             @elseif($product->available_quantity <= 4 && auth()->user()->user_type == "supplier")
                                 <span class="text-danger">{{ $product->available_quantity }}</span>
@@ -101,25 +127,25 @@
                             @endif
                         </td>
 
-                        {{-- <td>
-                            {{ $product->productDetail->p ?? '/' }}
+                        <td>
+                            {{ ucfirst($product->productDetail->subCategory->Category->name) }}
                         </td>
 
                         <td>
-                            {{ $product->productDetail->subCategory->name ?? '/' }}
-                        </td> --}}
+                            {{ ucfirst($product->productDetail->subCategory->name) }}
+                        </td>
 
                         <td>{{ $product->productDetail->brand_name }}</td>
                         
                         <td>{{ $product->productDetail->user_supplier->name }}</td>
 
                         @if(auth()->user()->user_type == "admin")
-                            <td class="text-center" style="width: 15%;">
+                            <td class="text-center">
                                 <a href="javascript:void(0);" class="btn btn-success btn-sm p-1 text-white">
-                                    <i class="fas fa-edit icon-sm" style="font-size: 100%;"></i> Edit
+                                    <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-danger btn-sm p-1 text-white">
-                                    <i class="fa-solid fa-trash" style="font-size: 100%;"></i> Delete
+                                    <i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete
                                 </a>
                             </td>
                         @endif

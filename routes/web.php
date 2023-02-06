@@ -1,7 +1,8 @@
 <?php
 //Start Dashboard Controllers
 use App\Http\Controllers\Dashboard\DashboardHomeController;
-use App\Http\Controllers\Dashboard\DashboardProductController;
+use App\Http\Controllers\Dashboard\DashboardProductDetailController;
+use App\Http\Controllers\Dashboard\DashboardFinalProductController;
 //End Dashboard Controllers
 
 //Start Website Controllers
@@ -58,7 +59,10 @@ Route::group([
         });
 
         /********************** Start products routes. **********************/
-        Route::resource('/products', DashboardProductController::class);
+        Route::resource('/products', DashboardFinalProductController::class)->except(['index']);
+        Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('products.index');
+
+        Route::get('/all-products', [DashboardProductDetailController::class, 'index'])->name('all_products.index');
         /********************** End products routes. **********************/
     });
 

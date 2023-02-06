@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  @yield('title')
+  <title>@yield('title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/assets/dashboard/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/assets/dashboard/vendors/base/vendor.bundle.base.css">
@@ -17,9 +17,8 @@
   <link rel="stylesheet" href="/assets/dashboard/css/style.css">
   <!-- endinject -->
   <!-- icon in the title -->
-  <link rel="shortcut icon" href="images/favicon.png" />
-  {{-- <link rel="icon" href="/assets/images/logos/Anywhere-Anytime(1).png" type="image/x-icon">
-  <link rel="shortcut icon" href="/assets/images/logos/Anywhere-Anytime(1).png" type="image/x-icon"> --}}
+  <link rel="icon" href="/assets/images/logos/Anywhere-Anytime(1).png" type="image/x-icon">
+  <link rel="shortcut icon" href="/assets/images/logos/Anywhere-Anytime(1).png" type="image/x-icon">
   <!-- font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Google font-->

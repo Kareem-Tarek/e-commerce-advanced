@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('cat_id');   // FK: (from categories table)
             //End FKs
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

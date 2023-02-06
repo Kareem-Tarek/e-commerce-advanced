@@ -4,26 +4,29 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use App\Models\ProductDetail;
+use App\Models\ProductDetail;
 use App\Models\FinalProduct;
 
-class DashboardProductController extends Controller
+class DashboardFinalProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_for_each_product($id)
     {
+        $find_product = ProductDetail::find($id);
+
         if(auth()->user()->user_type == 'supplier'){
-            //$products_details = ProductDetail::where('supplier_id', auth()->user()->id);
-            $final_products = FinalProduct::where('supplier_id', auth()->user()->id)->orderBy('created_at','asc')->paginate(30);
+            $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(4);
+            $final_products_count = $final_products->count();
         }
         else{
-            $final_products = FinalProduct::orderBy('created_at','asc')->paginate(30);
+            $final_products       = FinalProduct::where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(4);
+            $final_products_count = $final_products->count();
         }
-        return view('dashboard.products.index', compact('final_products'));
+        return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'find_product'));
     }
 
     /**

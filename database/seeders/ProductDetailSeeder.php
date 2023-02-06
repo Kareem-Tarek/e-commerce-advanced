@@ -20,8 +20,9 @@ class ProductDetailSeeder extends Seeder
             'name'          => "Sweat-shirt",
             'price'         => 350,
             'description'   => "xxxxxxxxxxxxxx",
-            'discount'      => 0.38,
+            'discount'      => 0.20,
             'brand_name'    => "polo",
+            'sub_cat_id'    => 1,
             'supplier_id'   => 5,
         ]);
 
@@ -29,8 +30,9 @@ class ProductDetailSeeder extends Seeder
             'name'          => "Long Dress",
             'price'         => 1000,
             'description'   => "xxxxxxxxxxxxxxx",
-            'discount'      => 0.10,
+            'discount'      => 0.38,
             'brand_name'    => "H&M",
+            'sub_cat_id'    => 5,
             'supplier_id'   => 4,
         ]);
 
@@ -40,6 +42,7 @@ class ProductDetailSeeder extends Seeder
             'description'   => "2 Colors: black and navy blue",
             'discount'      => 0.05,
             'brand_name'    => "zara",
+            'sub_cat_id'    => 1,
             'supplier_id'   => 6,
         ]);
 
@@ -49,6 +52,7 @@ class ProductDetailSeeder extends Seeder
             'description'   => "2 Colors: brown and baby blue",
             'discount'      => 0.20,
             'brand_name'    => "zara",
+            'sub_cat_id'    => 1,
             'supplier_id'   => 6,
         ]);
 
@@ -58,6 +62,7 @@ class ProductDetailSeeder extends Seeder
             'description'   => "xxxxxxxxxxxxx",
             'discount'      => 0.20,
             'brand_name'    => "zara",
+            'sub_cat_id'    => 3,
             'supplier_id'   => 5,
 
         ]);

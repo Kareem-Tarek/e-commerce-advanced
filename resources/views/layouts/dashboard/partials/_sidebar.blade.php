@@ -38,7 +38,7 @@
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('products.index') }}">All Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all_products.index') }}">All Products</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
                 </ul>
               </div>
@@ -54,7 +54,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create User</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Admnis</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Admins</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Moderators</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Suppliers</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Customers</a></li>
