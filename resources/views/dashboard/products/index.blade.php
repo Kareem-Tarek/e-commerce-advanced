@@ -26,7 +26,7 @@
             <thead>
               <tr>
                 <th class="fw-bold text-center">#</th>
-                <th class="text-center" style="background-color: rgb(129, 170, 247);">ID</th>
+                <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th>
                 <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
                 <th class="text-center">Size</th>
@@ -34,6 +34,8 @@
                 <th class="text-center">Discount</th>
                 <th class="text-center">Price (EGP)</th>
                 <th class="text-center">Available Quantity</th>
+                {{-- <th class="text-center">Category</th>
+                <th class="text-center">Sub-category</th> --}}
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
                 @if(auth()->user()->user_type == "admin")
@@ -78,6 +80,7 @@
                         <td>
                             @if($product->productDetail->discount > 0)
                                 <del class="text-danger">{{ $product->productDetail->price }}</del>
+                                &RightArrow;
                                 <span class="text-success fw-bold">{{ $product->productDetail->price - ($product->productDetail->price * $product->productDetail->discount) }}</span>
                             @else($product->productDetail->discount == 0)
                                 <span class="text-dark">{{ $product->productDetail->price }}</span>
@@ -97,6 +100,14 @@
                                 <span>{{ $product->available_quantity }}</span>
                             @endif
                         </td>
+
+                        {{-- <td>
+                            {{ $product->productDetail->p ?? '/' }}
+                        </td>
+
+                        <td>
+                            {{ $product->productDetail->subCategory->name ?? '/' }}
+                        </td> --}}
 
                         <td>{{ $product->productDetail->brand_name }}</td>
                         
