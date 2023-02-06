@@ -14,14 +14,31 @@
       <div class="card-body">
         <h4 class="card-title">Products</h4>
         <p class="card-description">
+            <div class="d-flex mb-3">
+                <a href="{{ route('dashboard') }}">
+                    <i class="mdi mdi-home text-muted hover-cursor"></i>
+                </a>
+                <p class="text-muted mb-0 hover-cursor">
+                    &nbsp;/&nbsp;
+                    <a href="javascript:void(0);" class="text-decoration-none">
+                        @if(auth()->user()->user_type == "supplier")
+                            All My Products
+                        @else
+                            All Products
+                        @endif
+                    </a>
+                </p>
+            </div>
           {{-- Add class <code>.table-striped</code> --}}
-            @if(auth()->user()->user_type == "supplier")
-                All My Products ({{ $products_details_count }})
-            @else
-                All Products ({{ $products_details_count }})
-            @endif
+            <span class="bg-secondary px-2 py-1 text-light rounded">
+                @if(auth()->user()->user_type == "supplier")
+                    Products ({{ $products_details_count }})
+                @else
+                    Products ({{ $products_details_count }})
+                @endif
+            </span>
         </p>
-        <div class="table-responsive">
+        <div class="table-responsive mt-2">
           <table class="table table-striped table-bordered border border-secondary @if($products_details_count == 0) d-none @endif">
             <thead>
               <tr>

@@ -33,17 +33,20 @@
                     @else
                         All Products Varieties That Belongs To
                     @endif
-                    &nbsp;</p>
+                    &nbsp;
+                </p>
                     &RightArrow;
                     &nbsp;
                 "<p class="text-success fw-bold mb-0 hover-cursor">{{ $find_product->name }}</p>"
             </div>
           {{-- Add class <code>.table-striped</code> --}}
-            @if(auth()->user()->user_type == "supplier")
-                All My Products ({{ $final_products_count }})
-            @else
-                All Products ({{ $final_products_count }})
-            @endif
+            <span class="bg-secondary px-2 py-1 text-light rounded">
+                @if(auth()->user()->user_type == "supplier")
+                    Products ({{ $final_products_count }})
+                @else
+                    Products ({{ $final_products_count }})
+                @endif
+            </span>
         </p>
         <div class="table-responsive">
           <table class="table table-striped table-bordered border border-secondary @if($final_products_count == 0) d-none @endif">
