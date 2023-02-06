@@ -5,12 +5,12 @@
 @endsection
 
 @section('content')
-<main class="main" style="padding-top: 7%;">
-    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+<main class="main" style="margin-top: 10%;">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0 mt-5">
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Company</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Register</li>
             </ol>
         </div><!-- End .container -->
@@ -74,18 +74,24 @@
                             <div class="form-choice">
                                 <p class="text-center">or sign in with</p>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <a href="#" class="btn btn-login">
+                                            <i class="fa-brands fa-github"></i>
+                                            Login With GitHub
+                                        </a>
+                                    </div><!-- End .col-4 -->
+                                    <div class="col-sm-4">
                                         <a href="#" class="btn btn-login btn-g">
                                             <i class="icon-google"></i>
                                             Login With Google
                                         </a>
-                                    </div><!-- End .col-6 -->
-                                    <div class="col-sm-6">
+                                    </div><!-- End .col-4 -->
+                                    <div class="col-sm-4">
                                         <a href="#" class="btn btn-login btn-f">
                                             <i class="icon-facebook-f"></i>
                                             Login With Facebook
                                         </a>
-                                    </div><!-- End .col-6 -->
+                                    </div><!-- End .col-4 -->
                                 </div><!-- End .row -->
                             </div><!-- End .form-choice -->
                         </div><!-- .End .tab-pane -->
@@ -183,18 +189,24 @@
                             <div class="form-choice">
                                 <p class="text-center">or sign in with</p>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <a href="javascript:void(0);" class="btn btn-login btn-g">
+                                    <div class="col-sm-4">
+                                        <a href="#" class="btn btn-login">
+                                            <i class="fa-brands fa-github"></i>
+                                            Login With GitHub
+                                        </a>
+                                    </div><!-- End .col-4 -->
+                                    <div class="col-sm-4">
+                                        <a href="#" class="btn btn-login btn-g">
                                             <i class="icon-google"></i>
                                             Login With Google
                                         </a>
-                                    </div><!-- End .col-6 -->
-                                    <div class="col-sm-6">
-                                        <a href="javascript:void(0);" class="btn btn-login  btn-f">
+                                    </div><!-- End .col-4 -->
+                                    <div class="col-sm-4">
+                                        <a href="#" class="btn btn-login btn-f">
                                             <i class="icon-facebook-f"></i>
                                             Login With Facebook
                                         </a>
-                                    </div><!-- End .col-6 -->
+                                    </div><!-- End .col-4 -->
                                 </div><!-- End .row -->
                             </div><!-- End .form-choice -->
                         </div><!-- .End .tab-pane -->

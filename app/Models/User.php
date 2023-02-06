@@ -20,6 +20,26 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
+    public function productDetail()
+    {
+        return $this->hasMany(ProductDetail::class);
+    }
+
+    public function subscription(): \Illuminate\Database\Eloquent\Relations\hasOne
+    {
+        return $this->hasOne(Subscription::class);
+    }
+
+    public function contactUs(): \Illuminate\Database\Eloquent\Relations\hasMany
+    {
+        return $this->hasMany(ContactUs::class);
+    }
+
+    public function cart(): \Illuminate\Database\Eloquent\Relations\hasOne
+    {
+        return $this->hasOne(Cart::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -116,29 +116,18 @@ style="
                             </div><!-- End .megamenu megamenu-sm -->
                         </li>
                         <li>
-                            <a href="#" class="sf-with-ul">Pages</a>
+                            <a href="javascript:void(0);" class="sf-with-ul">Company</a>
 
                             <ul>
                                 <li>
-                                    <a href="about.html" class="sf-with-ul">About</a>
-
-                                    <ul>
-                                        <li><a href="about.html">About 01</a></li>
-                                        <li><a href="about-2.html">About 02</a></li>
-                                    </ul>
+                                    <a href="{{ route('about-us') }}">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html" class="sf-with-ul">Contact</a>
-
-                                    <ul>
-                                        <li><a href="contact.html">Contact 01</a></li>
-                                        <li><a href="contact-2.html">Contact 02</a></li>
-                                    </ul>
+                                    <a href="{{ route('contact-us') }}">Contact Us</a>
                                 </li>
-                                <li><a href="login.html">Login</a></li>
                                 <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="{{ route('error-404') }}">Error 404</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
+                                <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
                             </ul>
                         </li>
                         <li>
@@ -215,9 +204,9 @@ style="
                                     @endif
                                     @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
                                         <li>
-                                            <a href="javascript:void(0);">Dashboard</a>
+                                            <a href="{{ route('dashboard') }}">Dashboard</a>
                                             <ul>
-                                                <li><a href="javascript:void(0);">Home</a></li>
+                                                <li><a href="{{ route('dashboard') }}">Home</a></li>
                                                 <li>
                                                     <a href="javascript:void(0);">Products</a>
                                                     <ul>
@@ -247,6 +236,14 @@ style="
                                                     </ul>
                                                 </li>
                                                 <li><a href="javascript:void(0);">Carts</a></li>
+                                            </ul>
+                                        </li>
+                                    @elseif(auth()->user()->user_type == "supplier")
+                                        <li>
+                                            <a href="{{ route('dashboard') }}">Dashboard</a>
+                                            <ul>
+                                                <li><a href="{{ route('dashboard') }}">Home</a></li>
+                                                <li><a href="{{ route('products.index') }}">My Products</a></li>
                                             </ul>
                                         </li>
                                     @endif
@@ -320,7 +317,7 @@ style="
                     <form action="#" method="GET">
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
+                            <input type="search" class="form-control" name="q" id="q" placeholder="Search for items or brands...">
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                         </div><!-- End .header-search-wrapper -->
                     </form>
@@ -333,7 +330,7 @@ style="
                 <div class="dropdown cart-dropdown">
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
-                        <span class="cart-count">2</span>
+                        <span class="cart-count">0</span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">

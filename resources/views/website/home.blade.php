@@ -13,7 +13,6 @@
                     <div class="container intro-content text-center">
                         <h3 class="intro-subtitle">Want to know what's hot?</h3><!-- End .h3 intro-subtitle -->
                         <h1 class="intro-title text-white">Checkout The Latest Looks!</h1><!-- End .intro-title -->
-
                         <a href="#scroll-to-content" class="btn btn-outline-primary-2 scroll-to">
                             <span>Start scrolling</span>
                             <i class="icon-long-arrow-down"></i>
@@ -593,7 +592,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h3 class="entry-title">
-                                <a href="single.html">Sed adipiscing ornare.</a>
+                                <a href="single.html">Formal</a>
                             </h3><!-- End .entry-title -->
 
                             <div class="entry-content">
@@ -616,7 +615,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h3 class="entry-title">
-                                <a href="single.html">Fusce lacinia arcuet nulla.</a>
+                                <a href="single.html">Casual</a>
                             </h3><!-- End .entry-title -->
 
                             <div class="entry-content">
@@ -639,7 +638,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h3 class="entry-title">
-                                <a href="single.html">Quisque volutpat mattis eros.</a>
+                                <a href="single.html">Sports Wear</a></a>
                             </h3><!-- End .entry-title -->
 
                             <div class="entry-content">
@@ -662,7 +661,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h3 class="entry-title">
-                                <a href="single.html">Mauris suscipit in massa.</a>
+                                <a href="single.html">xxxx</a>
                             </h3><!-- End .entry-title -->
 
                             <div class="entry-content">

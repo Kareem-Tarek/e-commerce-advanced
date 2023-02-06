@@ -11,21 +11,12 @@
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item"><a href="#">Company</a></li>
                         <li class="breadcrumb-item active" aria-current="page">404</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav --> --}}
-        	<div class="error-content text-center" style="background-image: url(/assets/images/backgrounds/error-bg.jpg);">
-                <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
-                    <div class="container">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">404</li>
-                        </ol>
-                    </div><!-- End .container -->
-                </nav><!-- End .breadcrumb-nav -->
+        	<div class="error-content text-center mt-5" style="background-image: url(/assets/images/backgrounds/error-bg.jpg);">
             	<div class="container">
             		<h1 class="error-title">Error 404</h1><!-- End .error-title -->
             		<p>We are sorry, the page you've requested is not available.</p>

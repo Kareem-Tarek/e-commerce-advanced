@@ -1,8 +1,17 @@
 <?php
+//Start Dashboard Controllers
+use App\Http\Controllers\Dashboard\DashboardHomeController;
+use App\Http\Controllers\Dashboard\DashboardProductController;
+//End Dashboard Controllers
 
+//Start Website Controllers
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ErrorsController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ComingSoonController;
+//End Website Controllers
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +38,29 @@ Route::group([], function () {
 
 Route::get('/error-404', [ErrorsController::class, 'index'])->name('error-404');
 
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
+
+Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
+
+Route::get('/coming-soon', [ComingSoonController::class, 'index'])->name('coming-soon');
 //-------------------------------------- END Website Routes --------------------------------------//
 
 
 //-------------------------------------- START Dashboard Routes --------------------------------------//
-Route::group([ 'middleware' => ['dashboard', 'auth'] ], function () {
-    Route::prefix('dashboard')->group([], function(){
-        //routes.......
+Route::group([
+    'middleware' => ['auth', 'dashboard']
+], function () {
+
+    Route::prefix('dashboard')->group(function () {
+        Route::group([], function () {    //group function for dashboard "home" route (same route name "dashboard")
+            Route::get('/home', [DashboardHomeController::class, 'index'])->name('dashboard');
+            Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard');
+        });
+
+        /********************** Start products routes. **********************/
+        Route::resource('/products', DashboardProductController::class);
+        /********************** End products routes. **********************/
     });
+
 });
 //-------------------------------------- END Dashboard Routes --------------------------------------//

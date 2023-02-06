@@ -57,6 +57,7 @@
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
+    @yield('scripts')
     <script src="/assets/js/demos/demo-15.js"></script>
 </body>
 
