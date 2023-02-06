@@ -41,11 +41,7 @@
             </div>
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">
-                @if(auth()->user()->user_type == "supplier")
-                    Products ({{ $final_products_count }})
-                @else
-                    Products ({{ $final_products_count }})
-                @endif
+                Products' Results (<span class="fw-bold">{{ $final_products_count }}</span>)
             </span>
         </p>
         <div class="table-responsive">
