@@ -70,7 +70,7 @@
                                 </span> --}}
                                 {{ $product->productDetail->discount * 100 }}%
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ $product->productDetail->discount * 100 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->productDetail->discount * 100 }}%" aria-valuenow="{{ $product->productDetail->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             @endif
                         </td>
@@ -78,7 +78,7 @@
                         <td>
                             @if($product->productDetail->discount > 0)
                                 <del class="text-danger">{{ $product->productDetail->price }}</del>
-                                <span class="text-success">{{ $product->productDetail->price - ($product->productDetail->price * $product->productDetail->discount) }}</span>
+                                <span class="text-success fw-bold">{{ $product->productDetail->price - ($product->productDetail->price * $product->productDetail->discount) }}</span>
                             @else($product->productDetail->discount == 0)
                                 <span class="text-dark">{{ $product->productDetail->price }}</span>
                             @endif
@@ -114,7 +114,9 @@
                         @endif
                     </tr>
                     @empty
-                    
+                        <div class="alert alert-danger text-center">
+                            <span class="h6">There are no products yet! <a href="{{ route('products.create') }}" class="fw-bold text-dark">Add products from here</a>.</span>
+                        </div>
                 @endforelse
             </tbody>
           </table>
