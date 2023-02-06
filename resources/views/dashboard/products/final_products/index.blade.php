@@ -151,7 +151,7 @@
                     </tr>
                     @empty
                         <div class="alert alert-danger text-center">
-                            <span class="h6">There are no products yet! <a href="{{ route('products.create') }}" class="fw-bold text-dark">Add products from here</a>.</span>
+                            <span class="h6">There are no product varieties for this product ({{ $find_product->name }}) yet!</span>
                         </div>
                 @endforelse
             </tbody>
