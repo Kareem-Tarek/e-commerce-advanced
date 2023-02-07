@@ -46,7 +46,7 @@
 
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic-users">
-                <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+                <i class="mdi mdi-account-multiple menu-icon"></i>
                 <span class="menu-title">Users</span>
                 <i class="menu-arrow"></i>
               </a>

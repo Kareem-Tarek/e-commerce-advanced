@@ -49,7 +49,7 @@
             <thead>
               <tr>
                 <th class="fw-bold text-center">#</th>
-                <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th>
+                {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
                 <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
                 <th class="text-center">Size</th>
@@ -71,7 +71,7 @@
                     <tr>
                         <td class="fw-bold">{{ $loop->iteration }}</td>
 
-                        <td class="fw-bold text-primary">{{ $product->product_id }}</td>
+                        {{-- <td class="fw-bold text-primary">{{ $product->product_id }}</td> --}}
 
                         <td class="py-1"><img src="{{ $product->image }}" alt="img Not Found!"/></td>
 

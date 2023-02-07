@@ -29,6 +29,7 @@ return new class extends Migration
             $table->enum('gender', ['male','female','unspecified'])->nullable();
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
+            $table->enum('status', ['active', 'inactive', 'blocked'])->default('active');
             $table->integer('create_user_id')->nullable(); // for dashboard (admin & moderator) when they create user
             $table->integer('update_user_id')->nullable(); // for dashboard (admin) when they update user
             $table->datetime('last_login_at')->nullable();

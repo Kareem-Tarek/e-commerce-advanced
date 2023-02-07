@@ -16,14 +16,14 @@ class DashboardFinalProductController extends Controller
      */
     public function index_for_each_product($id)
     {
-        $find_product = ProductDetail::find($id);
+        $find_product = ProductDetail::findOrFail($id);
 
         if(auth()->user()->user_type == 'supplier'){
-            $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(4);
+            $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(7);
             $final_products_count = $final_products->count();
         }
         else{
-            $final_products       = FinalProduct::where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(4);
+            $final_products       = FinalProduct::where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(7);
             $final_products_count = $final_products->count();
         }
         return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'find_product'));

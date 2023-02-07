@@ -48,7 +48,7 @@
                 <th class="text-center">Sub-category</th>
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
-                <th class="text-center">—</th>
+                <th class="text-center"> More Details</th>
                 @if(auth()->user()->user_type == "admin")
                     <th class="text-center">Action</th>
                 @endif
@@ -104,7 +104,7 @@
                         <td>
                             <a href="{{ route('products.index', [$product->id, $product->name]) }}" class="text-light text-decoration-none">
                                 <div class="bg-secondary text-center px-0 py-1 rounded">
-                                    Show more details...
+                                    Show..
                                 </div>
                             </a>
                         </td>
