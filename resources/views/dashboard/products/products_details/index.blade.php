@@ -102,7 +102,7 @@
                         <td>{{ $product->user_supplier->name }}</td>
 
                         <td>
-                            <a href="{{ route('products.index', [$product->id, $product->name]) }}" class="text-light text-decoration-none">
+                            <a href="{{ route('final_products.index', [$product->id, $product->name]) }}" class="text-light text-decoration-none">
                                 <div class="bg-secondary text-center px-0 py-1 rounded">
                                     Show..
                                 </div>

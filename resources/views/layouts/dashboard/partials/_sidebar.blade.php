@@ -38,7 +38,7 @@
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('all_products.index') }}">All Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products_details.index') }}">All Products</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
                 </ul>
               </div>
@@ -73,7 +73,7 @@
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('products.index') }}">All My Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products_details.index') }}">All My Products</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
                 </ul>
               </div>

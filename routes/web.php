@@ -60,9 +60,9 @@ Route::group([
 
         /********************** Start products routes. **********************/
         Route::resource('/products', DashboardFinalProductController::class)->except(['index']);
-        Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('products.index');
+        Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('final_products.index');
 
-        Route::get('/all-products', [DashboardProductDetailController::class, 'index'])->name('all_products.index');
+        Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products_details.index');
         /********************** End products routes. **********************/
     });
 

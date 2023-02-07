@@ -20,7 +20,7 @@
                 </a>
                 <p class="text-muted mb-0 hover-cursor">
                     &nbsp;/&nbsp;
-                    <a href="{{ route('all_products.index') }}" class="text-decoration-none">
+                    <a href="{{ route('products_details.index') }}" class="text-decoration-none">
                         @if(auth()->user()->user_type == "supplier")
                             All My Products
                         @else

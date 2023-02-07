@@ -8,7 +8,7 @@ use App\Models\ProductDetail;
 
 class DashboardProductDetailController extends Controller
 {
-    public function index(){
+    public function index_general_for_products(){
         if(auth()->user()->user_type == 'supplier'){
             $products_details       = ProductDetail::where('supplier_id', auth()->user()->id)->orderBy('created_at','asc')->paginate(30);
             $products_details_count = $products_details->count();

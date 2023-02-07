@@ -243,7 +243,7 @@ style="
                                             <a href="{{ route('dashboard') }}">Dashboard</a>
                                             <ul>
                                                 <li><a href="{{ route('dashboard') }}">Home</a></li>
-                                                <li><a href="{{ route('products.index') }}">My Products</a></li>
+                                                <li><a href="{{ route('products_details.index') }}">My Products</a></li>
                                             </ul>
                                         </li>
                                     @endif
