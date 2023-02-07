@@ -37,7 +37,7 @@
         <div class="table-responsive mt-2">
           <table class="table table-striped table-bordered border border-secondary @if($products_details_count == 0) d-none @endif">
             <thead>
-              <tr>
+              <tr class="bg-dark text-light">
                 <th class="fw-bold text-center">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
                 <th class="text-center">Image</th>

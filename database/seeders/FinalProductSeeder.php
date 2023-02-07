@@ -19,7 +19,7 @@ class FinalProductSeeder extends Seeder
         $final_product = FinalProduct::create([
             'size'               => "XL",
             'color'              => "grey",
-            'available_quantity' => 5,
+            'available_quantity' => 7,
             'image'              => '/assets/images/product-images/product-image36.jpg',
             'product_id'         => 1,
             'supplier_id'        => 5,
@@ -28,7 +28,7 @@ class FinalProductSeeder extends Seeder
         $final_product = FinalProduct::create([
             'size'               => "3XL",
             'color'              => "yellow",
-            'available_quantity' => 5,
+            'available_quantity' => 9,
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
@@ -39,14 +39,14 @@ class FinalProductSeeder extends Seeder
             'color'              => "grey",
             'available_quantity' => 5,
             'image'              => '/assets/images/',
-            'product_id'         => 1,
+            'product_id'         => 4,
             'supplier_id'        => 5,
         ]);
 
         $final_product = FinalProduct::create([
             'size'               => "M",
             'color'              => "grey",
-            'available_quantity' => 5,
+            'available_quantity' => 10,
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
@@ -66,7 +66,7 @@ class FinalProductSeeder extends Seeder
             'color'              => "yellow",
             'available_quantity' => 5,
             'image'              => '/assets/images/',
-            'product_id'         => 1,
+            'product_id'         => 2,
             'supplier_id'        => 5,
         ]);
 
@@ -82,7 +82,7 @@ class FinalProductSeeder extends Seeder
         $final_product = FinalProduct::create([
             'size'               => "M",
             'color'              => "olive",
-            'available_quantity' => 5,
+            'available_quantity' => 12,
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
@@ -94,7 +94,7 @@ class FinalProductSeeder extends Seeder
         $final_product = FinalProduct::create([
             'size'               => "M",
             'color'              => "red",
-            'available_quantity' => 3,
+            'available_quantity' => 8,
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-1.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,
@@ -103,7 +103,7 @@ class FinalProductSeeder extends Seeder
         $final_product = FinalProduct::create([
             'size'               => "L",
             'color'              => "gold",
-            'available_quantity' => 3,
+            'available_quantity' => 6,
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-2.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,
@@ -112,7 +112,7 @@ class FinalProductSeeder extends Seeder
         $final_product = FinalProduct::create([
             'size'               => "XL",
             'color'              => "white",
-            'available_quantity' => 3,
+            'available_quantity' => 5,
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-3.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,

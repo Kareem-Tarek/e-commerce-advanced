@@ -2,9 +2,9 @@
 
 @section('title') 
     @if(auth()->user()->user_type == "supplier")
-        All My Products
+        All My Products ({{ $find_product->name }})
     @else
-        All Products
+        All Products ({{ $find_product->name }})
     @endif
 @endsection
 
@@ -47,7 +47,7 @@
         <div class="table-responsive">
           <table class="table table-striped table-bordered border border-secondary @if($final_products_count == 0) d-none @endif">
             <thead>
-              <tr>
+              <tr class="bg-dark text-light">
                 <th class="fw-bold text-center">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
                 <th class="text-center">Image</th>
@@ -90,13 +90,13 @@
                             @if($product->productDetail->discount == 0)
                                 —
                             @else
-                                {{-- <span class="fw-bold text-light bg-dark p-1 rounded">
+                                <span class="fw-bold text-light bg-dark p-1 rounded">
                                     {{ $product->productDetail->discount * 100}}%
-                                </span> --}}
-                                <span class="fw-bold">{{ $product->productDetail->discount * 100 }}%</span>
+                                </span>
+                                {{-- <span class="fw-bold">{{ $product->productDetail->discount * 100 }}%</span>
                                 <div class="progress mt-2">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->productDetail->discount * 100 }}%" aria-valuenow="{{ $product->productDetail->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                                </div> --}}
                             @endif
                         </td>
 
@@ -111,7 +111,7 @@
                         </td>
 
                         <td class="text-center">
-                            @if($product->available_quantity <= 4 && (auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"))
+                            @if($product->available_quantity <= 5 && (auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"))
                                 <span class="text-danger">{{ $product->available_quantity }}</span>
                                 <hr>
                                 <a href="javascript:void(0);" class="text-dark text-decoration-none">
@@ -119,8 +119,14 @@
                                         Inform supplier!
                                     </div>
                                 </a>
-                            @elseif($product->available_quantity <= 4 && auth()->user()->user_type == "supplier")
+                            @elseif($product->available_quantity <= 5 && auth()->user()->user_type == "supplier")
                                 <span class="text-danger">{{ $product->available_quantity }}</span>
+                                <hr>
+                                <a href="javascript:void(0);" class="text-dark text-decoration-none">
+                                    <div class="bg-warning px-0 py-1 rounded">
+                                        Add more quantity!
+                                    </div>
+                                </a>
                             @else
                                 <span>{{ $product->available_quantity }}</span>
                             @endif
