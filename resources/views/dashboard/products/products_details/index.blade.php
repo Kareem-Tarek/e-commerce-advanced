@@ -2,9 +2,9 @@
 
 @section('title') 
     @if(auth()->user()->user_type == "supplier")
-        All My Products
+        My Products
     @else
-        All Products
+        Products
     @endif
 @endsection
 
@@ -38,7 +38,7 @@
           <table class="table table-striped table-bordered border border-secondary @if($products_details_count == 0) d-none @endif">
             <thead>
               <tr class="bg-dark text-light">
-                <th class="fw-bold text-center">#</th>
+                <th class="fw-bold">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
                 <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
@@ -90,11 +90,11 @@
                         </td>
 
                         <td>
-                            {{ ucfirst($product->subCategory->Category->name) }}
+                            {{ ucfirst($product->subCategory->Category->name) ?? 'N/A' }}
                         </td>
 
                         <td>
-                            {{ ucfirst($product->subCategory->name) }}
+                            {{ ucfirst($product->subCategory->name) ?? 'N/A' }}
                         </td>
 
                         <td>{{ $product->brand_name }}</td>
@@ -111,7 +111,7 @@
 
                         @if(auth()->user()->user_type == "admin")
                             <td class="text-center">
-                                <a href="javascript:void(0);" class="btn btn-success btn-sm p-1 text-white">
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm p-1 text-white">
                                     <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-danger btn-sm p-1 text-white">

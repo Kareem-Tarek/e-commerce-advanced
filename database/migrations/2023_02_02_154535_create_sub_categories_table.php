@@ -16,11 +16,14 @@ return new class extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             //$table->id();
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->longText('description')->nullable();
-            //$table->enum('gender', ['For Her', 'For Him', 'Unisex']);
+            //$table->enum('gender', ['For Her', 'For Him', 'Unisex'])->nullable();
             //Start FKs
             $table->string('cat_id');   // FK: (from categories table)
+            $table->integer('create_user_id')->nullable();
+            $table->integer('update_user_id')->nullable();
+            $table->integer('delete_user_id')->nullable();
             //End FKs
             $table->timestamps();
             $table->softDeletes();

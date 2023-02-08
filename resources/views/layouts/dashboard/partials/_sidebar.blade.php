@@ -30,6 +30,36 @@
 
           @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
             <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-categories" aria-expanded="false" aria-controls="ui-basic-categories">
+                <i class="mdi mdi-view-grid menu-icon"></i>
+                <span class="menu-title">Categories</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic-categories">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="{{ route('categories.create') }}">Create Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">All Categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('categories.delete') }}">Deleted Categories</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-sub-categories" aria-expanded="false" aria-controls="ui-basic-sub-categories">
+                <i class="mdi mdi-view-quilt menu-icon"></i>
+                <span class="menu-title">Sub-categories</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic-sub-categories">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Sub-category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Sub-categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Sub-categories</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-products" aria-expanded="false" aria-controls="ui-basic-products">
                 <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
                 <span class="menu-title">Products</span>
@@ -37,7 +67,7 @@
               </a>
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Product</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products_details.index') }}">All Products</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
                 </ul>

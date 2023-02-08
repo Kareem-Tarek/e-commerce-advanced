@@ -2,9 +2,9 @@
 
 @section('title') 
     @if(auth()->user()->user_type == "supplier")
-        All My Products ({{ $find_product->name }})
+        My Products ({{ $find_product->name }})
     @else
-        All Products ({{ $find_product->name }})
+        Products ({{ $find_product->name }})
     @endif
 @endsection
 
@@ -48,7 +48,7 @@
           <table class="table table-striped table-bordered border border-secondary @if($final_products_count == 0) d-none @endif">
             <thead>
               <tr class="bg-dark text-light">
-                <th class="fw-bold text-center">#</th>
+                <th class="fw-bold">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
                 <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
@@ -133,11 +133,11 @@
                         </td>
 
                         <td>
-                            {{ ucfirst($product->productDetail->subCategory->Category->name) }}
+                            {{ ucfirst($product->productDetail->subCategory->Category->name) ?? 'N/A' }}
                         </td>
 
                         <td>
-                            {{ ucfirst($product->productDetail->subCategory->name) }}
+                            {{ ucfirst($product->productDetail->subCategory->name) ?? 'N/A'}}
                         </td>
 
                         <td>{{ $product->productDetail->brand_name }}</td>
@@ -146,12 +146,20 @@
 
                         @if(auth()->user()->user_type == "admin")
                             <td class="text-center">
-                                <a href="javascript:void(0);" class="btn btn-success btn-sm p-1 text-white">
+                                {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm p-1 text-white">
                                     <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-danger btn-sm p-1 text-white">
                                     <i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete
-                                </a>
+                                </a> --}}
+                                {!! Form::open([
+                                    'route' => ['products.destroy',$product->id],
+                                    'method' => 'delete'
+                                ])!!}
+                                @php $product_name = $product->productDetail->name @endphp
+                                <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Edit '."- $product_name [$product->id]"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Edit</a>
+                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $product_name }}?');" type="submit" title="{{'Delete '."- $product_name [$product->id]"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
+                                {!! Form::close() !!}
                             </td>
                         @endif
                     </tr>

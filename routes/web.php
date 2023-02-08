@@ -1,6 +1,7 @@
 <?php
 //Start Dashboard Controllers
 use App\Http\Controllers\Dashboard\DashboardHomeController;
+use App\Http\Controllers\Dashboard\DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardProductDetailController;
 use App\Http\Controllers\Dashboard\DashboardFinalProductController;
 //End Dashboard Controllers
@@ -64,6 +65,13 @@ Route::group([
 
         Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products_details.index');
         /********************** End products routes. **********************/
+
+        /********************** Start categories routes. **********************/
+        Route::resource('/categories', DashboardCategoryController::class);
+        Route::get('/category/delete', [DashboardCategoryController::class, 'delete'])->name('categories.delete');
+        Route::get('/category/restore/{id}/', [DashboardCategoryController::class, 'restore'])->name('categories.restore');
+        Route::delete('/category/forceDelete/{id}/', [DashboardCategoryController::class, 'forceDelete'])->name('categories.forceDelete');
+        /********************** Start categories routes. **********************/
     });
 
 });

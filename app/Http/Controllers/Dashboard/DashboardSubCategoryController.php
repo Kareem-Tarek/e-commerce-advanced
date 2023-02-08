@@ -4,29 +4,18 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ProductDetail;
-use App\Models\FinalProduct;
+use App\Models\SubCategory;
 
-class DashboardFinalProductController extends Controller
+class DashboardSubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_for_each_product($id)
+    public function index()
     {
-        $find_product = ProductDetail::findOrFail($id);
-
-        if(auth()->user()->user_type == 'supplier'){
-            $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(7);
-            $final_products_count = $final_products->count();
-        }
-        else{
-            $final_products       = FinalProduct::where('product_id', $find_product->id)->orderBy('created_at','asc')->paginate(7);
-            $final_products_count = $final_products->count();
-        }
-        return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'find_product'));
+        //
     }
 
     /**
@@ -36,7 +25,7 @@ class DashboardFinalProductController extends Controller
      */
     public function create()
     {
-        return view('dashboard.products.final_products.create');
+        //
     }
 
     /**

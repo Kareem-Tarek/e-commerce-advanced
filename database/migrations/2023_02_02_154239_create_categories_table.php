@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             //$table->id();
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->longText('description')->nullable();
+            $table->integer('create_user_id')->nullable();
+            $table->integer('update_user_id')->nullable();
+            $table->integer('delete_user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
