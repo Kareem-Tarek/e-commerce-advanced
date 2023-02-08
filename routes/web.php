@@ -2,6 +2,7 @@
 //Start Dashboard Controllers
 use App\Http\Controllers\Dashboard\DashboardHomeController;
 use App\Http\Controllers\Dashboard\DashboardCategoryController;
+use App\Http\Controllers\Dashboard\DashboardSubCategoryController;
 use App\Http\Controllers\Dashboard\DashboardProductDetailController;
 use App\Http\Controllers\Dashboard\DashboardFinalProductController;
 //End Dashboard Controllers
@@ -61,7 +62,9 @@ Route::group([
 
         /********************** Start products routes. **********************/
         Route::resource('/products', DashboardFinalProductController::class)->except(['index']);
+        //this route replaces the "index" function from "DashboardFinalProductController"//
         Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('final_products.index');
+        //////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products_details.index');
         /********************** End products routes. **********************/
@@ -71,7 +74,14 @@ Route::group([
         Route::get('/category/delete', [DashboardCategoryController::class, 'delete'])->name('categories.delete');
         Route::get('/category/restore/{id}/', [DashboardCategoryController::class, 'restore'])->name('categories.restore');
         Route::delete('/category/forceDelete/{id}/', [DashboardCategoryController::class, 'forceDelete'])->name('categories.forceDelete');
-        /********************** Start categories routes. **********************/
+        /********************** End categories routes. **********************/
+
+        /********************** Start sub-categories routes. **********************/
+        Route::resource('/subcategories', DashboardSubCategoryController::class);
+        Route::get('/subcategory/delete', [DashboardSubCategoryController::class, 'delete'])->name('subcategories.delete');
+        Route::get('/subcategory/restore/{id}/', [DashboardSubCategoryController::class, 'restore'])->name('subcategories.restore');
+        Route::delete('/subcategory/forceDelete/{id}/', [DashboardSubCategoryController::class, 'forceDelete'])->name('subcategories.forceDelete');
+        /********************** End sub-categories routes. **********************/
     });
 
 });

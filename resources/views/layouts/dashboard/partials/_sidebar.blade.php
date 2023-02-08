@@ -52,9 +52,9 @@
               </a>
               <div class="collapse" id="ui-basic-sub-categories">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Sub-category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Sub-categories</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Sub-categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.create') }}">Create Sub-category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.index') }}">All Sub-categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.delete') }}">Deleted Sub-categories</a></li>
                 </ul>
               </div>
             </li>
@@ -88,8 +88,10 @@
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Moderators</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Suppliers</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Customers</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Active Users</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Inactive Users</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Blocked Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Users</a></li>
+                  {{-- <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Users</a></li> --}}
                 </ul>
               </div>
             </li>
@@ -102,7 +104,7 @@
               </a>
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Product</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products_details.index') }}">All My Products</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
                 </ul>

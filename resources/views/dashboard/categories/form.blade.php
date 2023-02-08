@@ -23,12 +23,4 @@
         @endforeach
     @endif --}}
 </div>
-
-{{-- <div class="form-group">
-    <label for="exampleTextarea1">Textarea</label>
-    <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-</div> --}}
-
-{{-- <button type="submit" class="btn btn-primary me-2">Submit</button>
-<button class="btn btn-light">Cancel</button> --}}
         
