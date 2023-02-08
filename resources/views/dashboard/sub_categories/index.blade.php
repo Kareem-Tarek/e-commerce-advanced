@@ -71,7 +71,7 @@
 
                         <td>{{ ucfirst($sub_category->name) }}</td>
 
-                        <td>{{ ucfirst($sub_category->category->name) }}</td>
+                        <td>{{ ucfirst($sub_category->category->name ?? '—') }}</td>
 
                         <td class="@if($sub_category->description == null) text-center @endif">
                             {{ $sub_category->description ?? '—' }}

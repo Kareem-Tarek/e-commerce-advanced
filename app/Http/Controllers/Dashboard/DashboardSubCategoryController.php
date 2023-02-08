@@ -115,15 +115,20 @@ class DashboardSubCategoryController extends Controller
         $sub_categories_old = SubCategory::findOrFail($id);    //this variable is used only to get the old data
 
         $sub_categories = SubCategory::findOrFail($id);
-        if($request->name == $sub_categories_old->name){
+        // $category = Category::find($id);
+        // if($category->id == $sub_categories->cat_id){
+        //     $category_name = $category->name;
+        // }
+
+        if($request->name == $sub_categories->name && $request->cat_id == $sub_categories->cat_id){
             return redirect()->route('subcategories.index')
-            ->with(['updated_same_name_sub_category_message' => "You entered the same sub-category name ($sub_categories->name). There are no changes made, please try again!"]);
+            ->with(['updated_same_name_sub_category_message' => "You entered the same names of sub-category & category for sub-category ($sub_categories->name). There are no changes made, please try again!"]);
         }
         else{
-            $sub_categories->name = $request->name;
+            $sub_categories->name   = $request->name;
+            $sub_categories->cat_id = $request->cat_id;
         }
         $sub_categories->description    = $request->description;
-        $sub_categories->cat_id         = $request->cat_id;
         $sub_categories->update_user_id = auth()->user()->id;
         $sub_categories->save();
 

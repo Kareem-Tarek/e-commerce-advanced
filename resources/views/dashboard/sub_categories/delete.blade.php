@@ -64,7 +64,7 @@
 
                         <td>{{ ucfirst($sub_category->name) }}</td>
 
-                        <td>{{ ucfirst($sub_category->category->name) }}</td>
+                        <td>{{ ucfirst($sub_category->category->name ?? '—') }}</td>
 
                         <td class="@if($sub_category->description == null) text-center @endif">
                             {{ $sub_category->description ?? '—' }}
@@ -91,10 +91,10 @@
                                     <i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete
                                 </a> --}}
                                 {!! Form::open([
-                                    'route' => ['categories.forceDelete',$sub_category->id],
+                                    'route' => ['subcategories.forceDelete',$sub_category->id],
                                     'method' => 'delete'
                                 ])!!}
-                                <a href="{{route('categories.restore', $sub_category->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Edit '."- ($sub_category->name)"}}"><i class="mdi mdi-backup-restore dashboard-admin-icon-action"></i> Restore</a>
+                                <a href="{{route('subcategories.restore', $sub_category->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Edit '."- ($sub_category->name)"}}"><i class="mdi mdi-backup-restore dashboard-admin-icon-action"></i> Restore</a>
                                 <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $sub_category->name }}?');" type="submit" title="{{'Delete '."- ($sub_category->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete </button>
                                 {!! Form::close() !!}
                             </td>

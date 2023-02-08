@@ -78,7 +78,7 @@ Route::group([
 
         /********************** Start sub-categories routes. **********************/
         Route::resource('/subcategories', DashboardSubCategoryController::class);
-        Route::get('/subcategories/delete', [DashboardSubCategoryController::class, 'delete'])->name('subcategories.delete');
+        Route::get('/subcategory/delete', [DashboardSubCategoryController::class, 'delete'])->name('subcategories.delete');
         Route::get('/subcategory/restore/{id}/', [DashboardSubCategoryController::class, 'restore'])->name('subcategories.restore');
         Route::delete('/subcategory/forceDelete/{id}/', [DashboardSubCategoryController::class, 'forceDelete'])->name('subcategories.forceDelete');
         /********************** End sub-categories routes. **********************/
