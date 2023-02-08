@@ -42,7 +42,8 @@
               <tr class="bg-dark text-light">
                 <th class="fw-bold">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
-                <th class="text-center">Name</th>
+                <th class="text-center">Name<br>(Sub-category)</th>
+                <th class="text-center">Category</th>
                 <th class="text-center">Description</th>
                 <th class="text-center">Created at</th>
                 <th class="text-center">Deleted at</th>
@@ -62,6 +63,8 @@
                         {{-- <td class="fw-bold text-primary">{{ $sub_category->product_id }}</td> --}}
 
                         <td>{{ ucfirst($sub_category->name) }}</td>
+
+                        <td>{{ ucfirst($sub_category->category->name) }}</td>
 
                         <td class="@if($sub_category->description == null) text-center @endif">
                             {{ $sub_category->description ?? '—' }}

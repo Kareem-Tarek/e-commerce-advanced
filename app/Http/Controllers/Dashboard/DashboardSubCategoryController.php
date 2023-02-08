@@ -53,15 +53,17 @@ class DashboardSubCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string|unique:categories',
+            'name'        => 'required|string|unique:sub_categories',
             'description' => 'nullable|string',
+            'cat_id'      => 'required',
         ]);
         //if the request is valid then proceed to insertion for the entity
         //if the request is not valid, then throw a ValidationException
 
-        $sub_categories                 = new Category();
+        $sub_categories                 = new SubCategory();
         $sub_categories->name           = $request->name;
         $sub_categories->description    = $request->description;
+        $sub_categories->cat_id         = $request->cat_id;
         $sub_categories->create_user_id = auth()->user()->id;
         $sub_categories->save();
 
@@ -121,6 +123,7 @@ class DashboardSubCategoryController extends Controller
             $sub_categories->name = $request->name;
         }
         $sub_categories->description    = $request->description;
+        $sub_categories->cat_id         = $request->cat_id;
         $sub_categories->update_user_id = auth()->user()->id;
         $sub_categories->save();
 

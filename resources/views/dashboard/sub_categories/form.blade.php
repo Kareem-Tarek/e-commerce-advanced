@@ -26,11 +26,10 @@
 
 <div class="form-group">
     <label for="exampleInputEmail3">Category <span class="text-danger">*</span></label>
-    {{-- @inject('Category_model','App\Models\Category') --}}
     <select name="cat_id" class="form-control select" value="{{Request::old('cat_id') ? Request::old('cat_id') : $SubCategory_model->cat_id}}" required>
         <option value="" selected> ---------- Select a category ---------- </option>        
         @forelse($category as $cat)
-            <option value="{{ $cat->id }}">
+            <option value="{{ $cat->id }}" {{ $cat->id == $SubCategory_model->cat_id ? 'selected' : '' }}>
                 {{ $cat->name }}
             </option>
             @empty
