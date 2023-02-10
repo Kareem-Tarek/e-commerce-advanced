@@ -51,9 +51,16 @@ class DashboardCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string|unique:categories',
+            'name'        => 'required|string|max:255|unique:categories',
             'description' => 'nullable|string',
         ]);
+
+        // Validator::make($request->all(), [
+        //     'name' => 'required|string|unique:categories',
+        //     'description' => 'nullable|string',
+        // ]);
+
+
         //if the request is valid then proceed to insertion for the entity
         //if the request is not valid, then throw a ValidationException
 
@@ -110,23 +117,23 @@ class DashboardCategoryController extends Controller
         $categories_old = Category::findOrFail($id);    //this variable is used only to get the old data
 
         // $request->validate([
-        //     'name'        => 'required|string|unique:categories,name',
+        //     'name'        => 'required|max:255|string|unique:categories,name',
         //     // 'name'        => ['required', Rule::unique('categories')->ignore($this->request->id)],
         //     'description' => 'nullable|string',
         // ]);
 
 
         // Validator::make($request->all(), [
-        //     'name' => ['required', Rule::unique('categories')->ignore($id)],
+        //     'name' => ['required', 'max:255', Rule::unique('categories')->ignore($id)],
         //     'description' => 'nullable',
         // ]);
 
         Validator::make($request->all(), [
-            'name' => ['required', 'unique:categories', Rule::unique('categories')->ignore($id)],
-            'description' => 'nullable',
+            'name' => ['required', 'max:255', 'string', 'unique:categories', Rule::unique('categories')->ignore($this->request->id)],
+            'description' => 'nullable|string',
         ]);
 
-        $categories                 = Category::findOrFail($id);
+        $categories = Category::findOrFail($id);
         if($request->name == $categories_old->name){
             return redirect()->route('categories.index')
             ->with(['updated_same_name_category_message' => "You entered the same category name ($categories->name). There are no changes made, please try again!"]);

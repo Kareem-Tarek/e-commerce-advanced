@@ -22,8 +22,7 @@ class UserSeeder extends Seeder
             'email'     => 'admin@gmail.com',
             'password'  => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
             'user_type' => 'admin',
-            'phone'     => '01010110457',
-        ]);
+            'phone'     => '01010110457'        ]);
 
         $user = User::create([ //ID = 2 (moderator)
             'name'      => "Maximus Franklin",
@@ -32,6 +31,7 @@ class UserSeeder extends Seeder
             'password'  => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
             'user_type' => 'moderator',
             'phone'     => '010000000001',
+
         ]);
 
         $user = User::create([ //ID = 3 (customer)
@@ -42,6 +42,7 @@ class UserSeeder extends Seeder
             'password'  => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
             'user_type' => 'customer',
             'phone'     => '010000000002',
+
         ]);
 
         $user = User::create([ //ID = 4 (supplier)
@@ -51,6 +52,7 @@ class UserSeeder extends Seeder
             'password'  => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
             'user_type' => 'supplier',
             'phone'     => '010000000003',
+
         ]);
 
         $user = User::create([ //ID = 5 (supplier)
@@ -60,6 +62,7 @@ class UserSeeder extends Seeder
             'password'  => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
             'user_type' => 'supplier',
             'phone'     => '010000000004',
+
         ]);
 
         $user = User::create([ //ID = 6 (supplier)
@@ -69,6 +72,7 @@ class UserSeeder extends Seeder
             'password'  => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
             'user_type' => 'supplier',
             'phone'     => '010000000005',
+
         ]);
     }
 }

@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
             'user_type' => ['required', 'in:supplier,customer'],
             'phone'     => ['nullable','string', 'min:11', 'max:11', 'unique:users'],
-            'avatar'    => ['nullable'],
+            'avatar'    => ['nullable', 'mimes:jpg,jpeg,png'],
         ]);
     }
 
@@ -69,6 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $avatar = $data['avatar'];
+
         if($avatar == null){
             $avatar = null;
         }

@@ -120,15 +120,17 @@ class DashboardSubCategoryController extends Controller
         //     $category_name = $category->name;
         // }
 
-        if($request->name == $sub_categories->name && $request->cat_id == $sub_categories->cat_id){
+        if($request->name == $sub_categories->name && 
+        $request->cat_id == $sub_categories->cat_id && 
+        $request->description == $sub_categories->description){
             return redirect()->route('subcategories.index')
             ->with(['updated_same_name_sub_category_message' => "You entered the same names of sub-category & category for sub-category ($sub_categories->name). There are no changes made, please try again!"]);
         }
         else{
             $sub_categories->name   = $request->name;
             $sub_categories->cat_id = $request->cat_id;
+            $sub_categories->description    = $request->description;
         }
-        $sub_categories->description    = $request->description;
         $sub_categories->update_user_id = auth()->user()->id;
         $sub_categories->save();
 

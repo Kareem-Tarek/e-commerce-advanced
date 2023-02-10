@@ -38,12 +38,23 @@
         <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
           <div class="ps-lg-1">
             <div class="d-flex align-items-center justify-content-between">
-              <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more with this template!</p>
-              <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/?utm_source=organic&utm_medium=banner&utm_campaign=buynow_demo" target="_blank" class="btn me-2 buy-now-btn border-0">Get Pro</a>
+              <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more!</p>
+              <span class="text-light">Contact Us at&nbsp;&nbsp;&RightArrow;&nbsp;&nbsp;</span>
+              <a href="javascript:void(0);" class="text-light">
+                <a href="http://wa.me/+201010110457" class="btn me-1 buy-now-btn border-0 text-decoration-underline" target="_blank">+201010110457</a><i class="fa-brands fa-whatsapp text-light"></i> &nbsp;<span class="text-light">|</span>&nbsp;
+                <a href="https://github.com/Kareem-Tarek" class="btn me-1 buy-now-btn border-0 text-decoration-underline" target="_blank">KareemDev</a><i class="fa-brands fa-github text-light"></i> &nbsp;<span class="text-light">|</span>&nbsp; 
+                <a href="https://kareemtarekpk@gmail.com" class="btn me-1 buy-now-btn border-0 text-decoration-underline" target="_blank">kareemtarekpk@gmail.com</a><i class="fa-brands fa-google text-light"></i>
+              </a>
             </div>
           </div>
+          <h6 class="mb-0 font-weight-medium me-3 buy-now-text">
+            Last login at: 
+            <span class="text-warning">
+              {{ date('(D) d-m-Y H:i:s A', strtotime(auth()->user()->last_login_at)) }}
+            </span>
+          </h6>
           <div class="d-flex align-items-center justify-content-between">
-            <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/"><i class="mdi mdi-home me-3 text-white"></i></a>
+            {{-- <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/"><i class="mdi mdi-home me-3 text-white"></i></a> --}}
             <button id="bannerClose" class="btn border-0 p-0">
               <i class="mdi mdi-close text-white me-0"></i>
             </button>
