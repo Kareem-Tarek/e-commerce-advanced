@@ -119,7 +119,7 @@ class DashboardSubCategoryController extends Controller
         //     'cat_id'      => 'required',
         // ]);
 
-        $sub_categories_old = SubCategory::findOrFail($id);    //this variable is used only to get the old data
+        $sub_categories_old = SubCategory::findOrFail($id);    //this variable is used only to get the old data from the columns
         //$category = Category::find($id);
         // if($category->id == $sub_categories->cat_id){
         //     $category_name = $category->name;
