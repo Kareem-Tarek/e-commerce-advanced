@@ -50,7 +50,7 @@
           <h6 class="mb-0 font-weight-medium me-3 buy-now-text">
             Last login at: 
             <span class="text-warning">
-              {{ date('(D) d-m-Y H:i:s A', strtotime(auth()->user()->last_login_at)) }}
+              {{ date('(D) d-m-Y h:m A', strtotime(auth()->user()->last_login_at)) }}
             </span>
           </h6>
           <div class="d-flex align-items-center justify-content-between">

@@ -11,7 +11,7 @@
           <div class="d-flex align-items-end flex-wrap">
             <div class="me-md-3 me-xl-5">
               <h2>Welcome back <span class="text-primary">{{ auth()->user()->name }}</span>,</h2>
-              <h6 class="text-secondary">Last login at: {{ date('(D) d-m-Y H:i:s A', strtotime(auth()->user()->last_login_at)) }}</h6>
+              <h6 class="text-secondary">Last login at: {{ date('(D) d-m-Y h:m A', strtotime(auth()->user()->last_login_at)) }}</h6>
               <p class="mb-md-0">Your analytics dashboard template.</p>
             </div>
             <div class="d-flex">

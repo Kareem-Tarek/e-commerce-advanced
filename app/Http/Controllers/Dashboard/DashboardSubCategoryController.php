@@ -110,32 +110,58 @@ class DashboardSubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {      
         $sub_categories_old = SubCategory::findOrFail($id);    //this variable is used only to get the old data
-
-        $sub_categories = SubCategory::findOrFail($id);
-        // $category = Category::find($id);
+        //$category = Category::find($id);
         // if($category->id == $sub_categories->cat_id){
         //     $category_name = $category->name;
         // }
 
-        if($request->name == $sub_categories->name && 
-        $request->cat_id == $sub_categories->cat_id && 
-        $request->description == $sub_categories->description){
-            return redirect()->route('subcategories.index')
-            ->with(['updated_same_name_sub_category_message' => "You entered the same names of sub-category & category for sub-category ($sub_categories->name). There are no changes made, please try again!"]);
-        }
-        else{
-            $sub_categories->name   = $request->name;
-            $sub_categories->cat_id = $request->cat_id;
-            $sub_categories->description    = $request->description;
-        }
+        $sub_categories = SubCategory::findOrFail($id);
         $sub_categories->update_user_id = auth()->user()->id;
-        $sub_categories->save();
 
-        return redirect()->route('subcategories.index')
+        if($request->name == $sub_categories_old->name && 
+        $request->cat_id == $sub_categories_old->cat_id && 
+        $request->description == $sub_categories_old->description){
+            return redirect()->route('subcategories.index')
+            ->with(['updated_same_name_sub_category_message' => "You entered the same values of sub-category, category & description for sub-category ($sub_categories->name). There are no changes made, please try again!"]);
+        }
+        ///
+        elseif($request->name != $sub_categories_old->name && 
+        $request->cat_id == $sub_categories_old->cat_id && 
+        $request->description == $sub_categories_old->description){
+            $sub_categories->name        = $request->name;
+            $sub_categories->cat_id      = $sub_categories_old->cat_id;
+            $sub_categories->description = $sub_categories_old->description;
+            $sub_categories->save();
+            return redirect()->route('subcategories.index')
             ->with(['updated_sub_category_message' => "$sub_categories_old->name → ($sub_categories->name) - Edited successfully!"]);
+        }
+        elseif($request->name == $sub_categories_old->name && 
+        $request->cat_id != $sub_categories_old->cat_id && 
+        $request->description == $sub_categories_old->description){
+            $sub_categories->name        = $sub_categories_old->name;
+            $sub_categories->cat_id      = $request->cat_id;
+            $sub_categories->description = $sub_categories_old->description;
+            $sub_categories->save();
+            // return redirect()->route('subcategories.index')
+            // ->with(['updated_sub_category_message' => "The sub-category's ($sub_categories->name) category has been changed from ($category->name) to ($sub_categories->cat_id) - Edited successfully!"]);
+            return redirect()->route('subcategories.index')
+            ->with(['updated_sub_category_message' => "The sub-category's ($sub_categories->name) category has been changed successfully!"]);
+        }
+        elseif($request->name == $sub_categories_old->name && 
+        $request->cat_id == $sub_categories_old->cat_id && 
+        $request->description != $sub_categories_old->description){
+            $sub_categories->name        = $sub_categories_old->name;
+            $sub_categories->cat_id      = $sub_categories_old->cat_id;
+            $sub_categories->description = $request->description;
+            $sub_categories->save();
+            return redirect()->route('subcategories.index')
+            ->with(['updated_sub_category_message' => "The sub-category's ($sub_categories->name) description has been changed successfully!"]);
+        }
+
     }
 
     /**
