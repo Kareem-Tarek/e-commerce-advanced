@@ -15,6 +15,7 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="/assets/dashboard/css/style.css">
+  <link rel="stylesheet" href="/assets/dashboard/css/custom_style.css">
   <!-- endinject -->
   <!-- icon in the title -->
   <link rel="icon" href="/assets/images/logos/Anywhere-Anytime(1).png" type="image/x-icon">

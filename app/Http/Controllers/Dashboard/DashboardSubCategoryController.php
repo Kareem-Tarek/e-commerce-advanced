@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubCategoryRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\SubCategory;
 use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
@@ -50,13 +52,14 @@ class DashboardSubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubCategoryRequest $request)
     {
-        $request->validate([
-            'name'        => 'required|string|unique:sub_categories',
-            'description' => 'nullable|string',
-            'cat_id'      => 'required',
-        ]);
+        // $request->validate([
+        //     'name'        => 'required|string|unique:sub_categories',
+        //     'description' => 'nullable|string',
+        //     'cat_id'      => 'required',
+        // ]);
+
         //if the request is valid then proceed to insertion for the entity
         //if the request is not valid, then throw a ValidationException
 

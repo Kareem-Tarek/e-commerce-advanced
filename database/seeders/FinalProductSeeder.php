@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 use App\Models\FinalProduct;
 
 class FinalProductSeeder extends Seeder
@@ -23,6 +24,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/product-images/product-image36.jpg',
             'product_id'         => 1,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -32,6 +35,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -41,6 +46,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/',
             'product_id'         => 4,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -50,6 +57,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -59,6 +68,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/product-images/product-image36.jpg',
             'product_id'         => 1,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -68,6 +79,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/',
             'product_id'         => 2,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -77,6 +90,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -86,6 +101,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/',
             'product_id'         => 1,
             'supplier_id'        => 5,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
         //---------------------------------------- End of product_id (1) ----------------------------------------//
 
@@ -98,6 +115,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-1.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -107,6 +126,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-2.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -116,6 +137,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-3.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         $final_product = FinalProduct::create([
@@ -125,6 +148,8 @@ class FinalProductSeeder extends Seeder
             'image'              => '/assets/images/product-detail-page/product-with-right-thumbs-3.jpg',
             'product_id'         => 2,
             'supplier_id'        => 4,
+            'created_at'         => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
+            'updated_at'         => null,
         ]);
 
         //---------------------------------------- End of product_id (2) ----------------------------------------//

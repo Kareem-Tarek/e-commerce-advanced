@@ -97,7 +97,13 @@
 
                         <td>{{ $category->created_at->format('(D) d-M-Y — h:m A') }}</td>
 
-                        <td>{{ $category->updated_at->format('(D) d-M-Y — h:m A') ?? '—' }}</td>
+                        <td class="@if($category->updated_at == null) text-center @endif">
+                          @if($category->updated_at == null)
+                            —
+                          @else
+                            {{ $category->updated_at->format('(D) d-M-Y — h:m A') }}
+                          @endif
+                        </td>
                         
                         <td class="text-center">{{ $category->create_user->name ?? '—'}}</td>
                         
