@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
@@ -48,12 +49,12 @@ class DashboardCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            'name'        => 'required|string|max:255|unique:categories',
-            'description' => 'nullable|string',
-        ]);
+        // $request->validate([
+        //     'name'        => 'required|string|max:255|unique:categories',
+        //     'description' => 'nullable|string',
+        // ]);
 
         // Validator::make($request->all(), [
         //     'name' => 'required|string|unique:categories',
@@ -112,7 +113,7 @@ class DashboardCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {      
         $categories_old = Category::findOrFail($id);    //this variable is used only to get the old data
 
@@ -128,10 +129,10 @@ class DashboardCategoryController extends Controller
         //     'description' => 'nullable',
         // ]);
 
-        Validator::make($request->all(), [
-            'name' => ['required', 'max:255', 'string', 'unique:categories', Rule::unique('categories')->ignore($this->request->id)],
-            'description' => 'nullable|string',
-        ]);
+        // Validator::make($request->all(), [
+        //     'name' => ['required', 'max:255', 'string', 'unique:categories', Rule::unique('categories')->ignore($this->request->id)],
+        //     'description' => 'nullable|string',
+        // ]);
 
         $categories = Category::findOrFail($id);
         if($request->name == $categories_old->name){

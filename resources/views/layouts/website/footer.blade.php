@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer @if(Route::is('login') || Route::is('register')) d-none @endif">
     <div class="footer-middle">
         <div class="container-fluid">
             <div class="row">

@@ -1,9 +1,9 @@
-<header class="header header-5"
+<header class="header header-5 @if(Route::is('login') || Route::is('register')) d-none @endif"
 style="
 @if(!Route::is('home')) 
     background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)); 
 @elseif(Route::is('home')) 
-    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); 
+    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
 @endif"
 >
     <div class="header-middle sticky-header">

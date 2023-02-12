@@ -5,13 +5,12 @@
 @endsection
 
 @section('content')
-<main class="main" style="padding-top: 7%;">
-    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0 mt-5">
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0 mt-0 bg-dark position-fixed w-100">
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Company</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Login</li>
+                <li class="breadcrumb-item active text-light" aria-current="page">Login</li>
             </ol>
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
