@@ -39,15 +39,13 @@
                 <a href="{{ route('dashboard') }}">
                     <i class="mdi mdi-home text-muted hover-cursor"></i>
                 </a>
-                <p class="text-muted mb-0 hover-cursor">
+                <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
-                    <a href="javascript:void(0);" class="text-decoration-none">
-                        @if(auth()->user()->user_type == "supplier")
-                            All My Products
-                        @else
-                            All Products
-                        @endif
-                    </a>
+                    @if(auth()->user()->user_type == "supplier")
+                        All My Products
+                    @else
+                        All Products
+                    @endif
                 </p>
             </div>
           {{-- Add class <code>.table-striped</code> --}}
@@ -70,7 +68,7 @@
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
                 <th class="text-center"> More Details</th>
-                @if(auth()->user()->user_type == "admin")
+                @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                     <th class="text-center">Action</th>
                 @endif
               </tr>
@@ -130,7 +128,7 @@
                             </a>
                         </td>
 
-                        @if(auth()->user()->user_type == "admin")
+                        @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                             <td class="text-center">
                                 <a href="javascript:void(0);" class="btn btn-primary btn-sm p-1 text-white">
                                     <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit

@@ -35,11 +35,9 @@
                 <a href="{{ route('dashboard') }}">
                     <i class="mdi mdi-home text-muted hover-cursor"></i>
                 </a>
-                <p class="text-muted mb-0 hover-cursor">
+                <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
-                    <a href="javascript:void(0);" class="text-decoration-none">
-                        All Categories
-                    </a>
+                    All Categories
                 </p>
             </div>
             @if(session()->has('added_category_message'))

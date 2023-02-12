@@ -154,17 +154,29 @@ class DashboardCategoryController extends Controller
         $request->description != $categories_old->description){
             $categories->name        = $categories_old->name;
             $categories->description = $request->description;
+            if($categories_old->description == null || $categories_old->description == ""){
+                $categories_old->description = 'NULL';
+            }
+            elseif($categories->description == null || $categories->description == ""){
+                $categories->description == 'NULL';
+            }
             $categories->save();
             return redirect()->route('categories.index')
-            ->with(['updated_category_message' => "The category's ($categories->name) description has been changed successfully!"]);
+            ->with(['updated_category_message' => "The category's ($categories->name) description has been changed from [$categories_old->description] to [$categories->description] successfully!"]);
         }
         elseif($request->name != $categories_old->name &&   //all the columns are changed!
         $request->description != $categories_old->description){
             $categories->name        = $request->name;
             $categories->description = $request->description;
+            if($categories_old->description == null || $categories_old->description == ""){
+                $categories_old->description = 'NULL';
+            }
+            elseif($categories->description == null || $categories->description == ""){
+                $categories->description == 'NULL';
+            }
             $categories->save();
             return redirect()->route('categories.index')
-            ->with(['updated_category_message' => "The category ($categories_old->name) has been changed to ($categories->name) + its description have been changed successfully!"]);
+            ->with(['updated_category_message' => "The category ($categories_old->name) has been changed to ($categories->name) + its description has been changed from [$categories_old->description] to [$categories->description] successfully!"]);
         }
     }
 

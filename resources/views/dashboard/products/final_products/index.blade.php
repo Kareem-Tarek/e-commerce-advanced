@@ -82,7 +82,7 @@
                 <th class="text-center">Sub-category</th>
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
-                @if(auth()->user()->user_type == "admin")
+                @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                     <th class="text-center">Action</th>
                 @endif
               </tr>
@@ -165,7 +165,7 @@
                         
                         <td>{{ $product->productDetail->user_supplier->name }}</td>
 
-                        @if(auth()->user()->user_type == "admin")
+                        @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                             <td class="text-center">
                                 {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm p-1 text-white">
                                     <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit
