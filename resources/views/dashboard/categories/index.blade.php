@@ -46,9 +46,9 @@
                 <div class="alert alert-success text-center">
                     {{ session()->get('added_category_message') }}
                 </div>
-            @elseif(session()->has('updated_same_name_category_message'))
+            @elseif(session()->has('updated_same_category_message'))
                 <div class="alert alert-warning text-center">
-                    {{ session()->get('updated_same_name_category_message') }}
+                    {{ session()->get('updated_same_category_message') }}
                 </div>
             @elseif(session()->has('updated_category_message'))
                 <div class="alert alert-success text-center">

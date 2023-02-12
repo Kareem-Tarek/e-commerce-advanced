@@ -135,19 +135,37 @@ class DashboardCategoryController extends Controller
         // ]);
 
         $categories = Category::findOrFail($id);
-        if($request->name == $categories_old->name){
-            return redirect()->route('categories.index')
-            ->with(['updated_same_name_category_message' => "You entered the same category name ($categories->name). There are no changes made, please try again!"]);
-        }
-        else{
-            $categories->name = $request->name;
-        }
-        $categories->description    = $request->description;
         $categories->update_user_id = auth()->user()->id;
-        $categories->save();
 
-        return redirect()->route('categories.index')
-            ->with(['updated_category_message' => "$categories_old->name → ($categories->name) - Edited successfully!"]);
+        if($request->name == $categories_old->name &&   //nothing changed in all the columns!
+            $request->description == $categories_old->description){
+            return redirect()->route('categories.index')
+            ->with(['updated_same_category_message' => "You entered the same category name ($categories->name) & description. There are no changes made, please try again!"]);
+        }
+        elseif($request->name != $categories_old->name &&   //only "name" column is changed!
+        $request->description == $categories_old->description){
+            $categories->name        = $request->name;
+            $categories->description = $categories_old->description;
+            $categories->save();
+            return redirect()->route('categories.index')
+            ->with(['updated_category_message' => "The category ($categories_old->name) has been changed to ($categories->name) successfully!"]);
+        }
+        elseif($request->name == $categories_old->name &&   //only "description" column is changed!
+        $request->description != $categories_old->description){
+            $categories->name        = $categories_old->name;
+            $categories->description = $request->description;
+            $categories->save();
+            return redirect()->route('categories.index')
+            ->with(['updated_category_message' => "The category's ($categories->name) description has been changed successfully!"]);
+        }
+        elseif($request->name != $categories_old->name &&   //all the columns are changed!
+        $request->description != $categories_old->description){
+            $categories->name        = $request->name;
+            $categories->description = $request->description;
+            $categories->save();
+            return redirect()->route('categories.index')
+            ->with(['updated_category_message' => "The category ($categories_old->name) has been changed to ($categories->name) + its description have been changed successfully!"]);
+        }
     }
 
     /**

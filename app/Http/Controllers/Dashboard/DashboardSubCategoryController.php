@@ -135,7 +135,7 @@ class DashboardSubCategoryController extends Controller
         $request->cat_id == $sub_categories_old->cat_id && 
         $request->description == $sub_categories_old->description){
             return redirect()->route('subcategories.index')
-            ->with(['updated_same_name_sub_category_message' => "You entered the same values of sub-category, category & description for sub-category ($sub_categories->name). There are no changes made, please try again!"]);
+            ->with(['updated_same_sub_category_message' => "You entered the same values of sub-category, category & description for sub-category ($sub_categories->name). There are no changes made, please try again!"]);
         }
 
         elseif($request->name != $sub_categories_old->name &&   //only "name" column is changed!
