@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('contact_us', function (Blueprint $table) {
             //$table->id();
             $table->bigIncrements('id');
+            $table->string('info_number');
             $table->string('name');
             $table->string('phone')->nullable();
             $table->string('email');
-            $table->string('subject');
+            $table->string('subject')->nullable();
             $table->longText('message');
-            $table->string('user_id')->nullable();
+            $table->string('create_user_id')->nullable();
             $table->string('user_type')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

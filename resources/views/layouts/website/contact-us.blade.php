@@ -22,7 +22,7 @@
     </div><!-- End .container -->
 
     <div class="page-content pb-0">
-        <div class="container">
+        <div class="container" id="contact-info-container">
             <div class="row">
                 <div class="col-lg-6 mb-2 mb-lg-0">
                     <h2 class="title mb-1">Contact Information</h2><!-- End .title mb-2 -->
@@ -71,34 +71,34 @@
                     <h2 class="title mb-1">Got Any Questions?</h2><!-- End .title mb-2 -->
                     <p class="mb-2">Use the form below to get in touch with the sales team</p>
 
-                    <form action="#" class="contact-form mb-3">
+                    <form class="contact-form mb-3" action="{{ route('contact-us.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
-                                <label for="cname" class="sr-only">Name</label>
-                                <input type="text" class="form-control" id="cname" placeholder="Name *" required>
+                                <label for="cname" class="sr-only">Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="form-control" id="cname" placeholder="Name *" required>
                             </div><!-- End .col-sm-6 -->
 
                             <div class="col-sm-6">
-                                <label for="cemail" class="sr-only">Email</label>
-                                <input type="email" class="form-control" id="cemail" placeholder="Email *" required>
+                                <label for="cemail" class="sr-only">Email <span class="text-danger">*</span></label>
+                                <input type="text" name="email" class="form-control" id="cemail" placeholder="Email *" required>
                             </div><!-- End .col-sm-6 -->
                         </div><!-- End .row -->
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cphone" class="sr-only">Phone</label>
-                                <input type="tel" class="form-control" id="cphone" placeholder="Phone">
+                                <input type="text" name="phone" class="form-control" id="cphone" placeholder="Phone">
                             </div><!-- End .col-sm-6 -->
 
                             <div class="col-sm-6">
                                 <label for="csubject" class="sr-only">Subject</label>
-                                <input type="text" class="form-control" id="csubject" placeholder="Subject">
+                                <input type="text" name="subject" class="form-control" id="csubject" placeholder="Subject">
                             </div><!-- End .col-sm-6 -->
                         </div><!-- End .row -->
 
-                        <label for="cmessage" class="sr-only">Message</label>
-                        <textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
+                        <label for="cmessage" class="sr-only">Message <span class="text-danger">*</span></label>
+                        <input class="form-control" name="message" cols="30" rows="4" id="cmessage" required placeholder="Message *">
 
                         <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                             <span>SUBMIT</span>
@@ -107,6 +107,17 @@
                     </form><!-- End .contact-form -->
                 </div><!-- End .col-lg-6 -->
             </div><!-- End .row -->
+            @if(session()->has('contact_unsuccessful_message'))
+                <div class="alert alert-danger text-center">
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-light" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <span class="fw-bold">{{ session()->get('contact_unsuccessful_message') }}</span>
+                </div>
+            @elseif(session()->has('contact_successful_message'))
+                <div class="alert alert-success text-center fw-bold">
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <span class="fw-bold">{{ session()->get('contact_successful_message') }}</span>
+                </div>
+            @endif
 
             <hr class="mt-4 mb-5">
 
