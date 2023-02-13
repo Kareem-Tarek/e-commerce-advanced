@@ -43,7 +43,21 @@ Route::get('/error-404', [ErrorsController::class, 'index'])->name('error-404');
 
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
-Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
+/********************** Start contact us routes. **********************/
+Route::group([
+    'middleware' => ['auth', 'dashboard']
+], function () {
+    Route::get('/all-contact-us', [ContactUsController::class, 'index'])->name('all-contact-us');   //contact us page "index" for dashboard
+    Route::delete('/contact-us/delete/{id}', [ContactUsController::class, 'destroy'])->name('contact-us.destroy');   //delete functionality "destroy" for dashboard
+})->prefix('dashboard');
+
+Route::group([
+    'middleware' => ['if_admin_or_moderator_redirect_back']
+], function () {
+    Route::get('/contact-us', [ContactUsController::class, 'create'])->name('contact-us');   //contact us page for website
+    Route::post('/contact-us/{id}', [ContactUsController::class, 'store'])->name('contact-us.store');
+});
+/********************** Start contact us routes. **********************/
 
 Route::get('/coming-soon', [ComingSoonController::class, 'index'])->name('coming-soon');
 //-------------------------------------- END Website Routes --------------------------------------//

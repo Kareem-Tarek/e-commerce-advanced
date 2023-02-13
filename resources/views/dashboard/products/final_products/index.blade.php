@@ -2,9 +2,9 @@
 
 @section('title') 
     @if(auth()->user()->user_type == "supplier")
-        My Products ({{ $find_product->name }})
+        My Products ({{ $product_detail->name }})
     @else
-        Products ({{ $find_product->name }})
+        Products ({{ $product_detail->name }})
     @endif
 @endsection
 
@@ -23,7 +23,7 @@
             <i class="mdi mdi-plus text-muted"></i>
           </button>
           <a href="{{ route('products.create') }}" class="btn btn-primary mt-2 mt-xl-0 text-light">
-            Add Product Variety (for "{{ $find_product->name }}")
+            Add Product Variety (for "{{ $product_detail->name }}")
           </a>
         </div>
       </div>
@@ -58,7 +58,7 @@
                 </p>
                     &RightArrow;
                     &nbsp;
-                "<p class="text-success fw-bold mb-0 hover-cursor">{{ $find_product->name }}</p>"
+                "<p class="text-success fw-bold mb-0 hover-cursor">{{ $product_detail->name }}</p>"
             </div>
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">
@@ -186,7 +186,7 @@
                     </tr>
                     @empty
                         <div class="alert alert-danger text-center">
-                            <span class="h6">There are no product varieties for this product ({{ $find_product->name }}) yet!</span>
+                            <span class="h6">There are no product varieties for this product ({{ $product_detail->name }}) yet!</span>
                         </div>
                 @endforelse
             </tbody>

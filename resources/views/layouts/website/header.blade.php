@@ -115,21 +115,49 @@ style="
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-sm -->
                         </li>
+                        
                         <li>
                             <a href="javascript:void(0);" class="sf-with-ul">Company</a>
+                            @if(!auth()->user())
+                                <ul>
+                                    <li>
+                                        <a href="{{ route('about-us') }}">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('contact-us') }}">Contact Us</a>
+                                    </li>
+                                    <li><a href="faq.html">FAQs</a></li>
+                                    {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
+                                    <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
+                                </ul>
+                            @endif
+                            @auth
+                                @if(auth()->user()->user_type == "customer" || auth()->user()->user_type == "supplier")
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('about-us') }}">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('contact-us') }}">Contact Us</a>
+                                        </li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                        {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
+                                        <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
+                                    </ul>
+                                @else
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('about-us') }}">About Us</a>
+                                        </li>
 
-                            <ul>
-                                <li>
-                                    <a href="{{ route('about-us') }}">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('contact-us') }}">Contact Us</a>
-                                </li>
-                                <li><a href="faq.html">FAQs</a></li>
-                                {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
-                                <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
-                            </ul>
-                        </li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                        {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
+                                        <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
+                                    </ul>
+                                @endif
+                            @endauth
+                        </li>  
+
                         <li>
                             <a href="blog.html" class="sf-with-ul">Blog</a>
 

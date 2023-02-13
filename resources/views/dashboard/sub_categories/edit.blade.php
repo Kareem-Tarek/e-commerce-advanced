@@ -23,6 +23,7 @@
                             {{ method_field('put') }}
                             @include('dashboard.sub_categories.form')
                             <input type="submit" value="Update" class="btn btn-primary border-info text-light me-2">
+                            <a href="{{ route('subcategories.index') }}" class="btn btn-secondary text-light me-2">Cancel</a>
                         </form>
                     </div>
                 </div>

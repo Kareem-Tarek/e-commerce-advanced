@@ -72,6 +72,7 @@
                     <p class="mb-2">Use the form below to get in touch with the sales team</p>
 
                     <form action="#" class="contact-form mb-3">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cname" class="sr-only">Name</label>

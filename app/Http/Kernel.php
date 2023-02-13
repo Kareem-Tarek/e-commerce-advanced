@@ -68,5 +68,11 @@ class Kernel extends HttpKernel
                                                               //it will take users with the user type "customer" to the main website's home page if they tried to write "/dashboard" in the URL (also for "customers", dashboard isn't allowed in the Front-End already & in URL!)
                                                               //it will take users with the user type "admin", "moderator" & "supplier" to the dashboard (dashboard is allowed to them in Front-End & in URL)
         /////////////// end admin, moderator & supplier user types middleware for dashboard ///////////////
+    
+        /////////////// start admin, moderator & supplier user types middleware for dashboard ///////////////
+        'if_admin_or_moderator_redirect_back' => \App\Http\Middleware\ifAdminModeratorRedirectBack::class, //it will take guests to the register page if they tried to write "/dashboard" in the URL (for "guests", dashboard isn't allowed in the Front-End already & in URL!)
+                                                              //it will take users with the user type "customer" to the main website's home page if they tried to write "/dashboard" in the URL (also for "customers", dashboard isn't allowed in the Front-End already & in URL!)
+                                                              //it will take users with the user type "admin", "moderator" & "supplier" to the dashboard (dashboard is allowed to them in Front-End & in URL)
+        /////////////// end admin, moderator & supplier user types middleware for dashboard ///////////////
     ];
 }
