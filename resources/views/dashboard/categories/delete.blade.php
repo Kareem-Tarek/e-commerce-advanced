@@ -23,11 +23,13 @@
             </div>
             @if(session()->has('restored_category_message'))
                 <div class="alert alert-success text-center">
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                     {{ session()->get('restored_category_message') }} 
                     Go back to the <a href="{{ route('categories.index') }}">categories'</a> main page.
                 </div>
             @elseif(session()->has('permanent_deleted_category_message'))
                 <div class="alert alert-success text-center">
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                     {{ session()->get('permanent_deleted_category_message') }}
                 </div>
             @endif

@@ -23,7 +23,7 @@ class ContactUsController extends Controller
             $contact_us->create_user_id = auth()->user()->id;
             $contact_us->user_type      = auth()->user()->user_type;
             if($request->email != auth()->user()->email){
-                return redirect(url()->previous().'#contact-info-container')->with('contact_unsuccessful_message' , 'You entered a wrong "Email"! Please try again.');;
+                return redirect(url()->previous().'#contact-info-container')->with('contact_unsuccessful_message' , 'You entered a wrong email! Please try again.');;
             }
             else{
                 $contact_us->email = $request->email;
@@ -43,7 +43,7 @@ class ContactUsController extends Controller
         $contact_us->updated_at  = null;
         $contact_us->save();
 
-        return redirect(url()->previous().'#contact-info-container')->with('contact_successful_message' , 'You submitted your contact us info successfully!');
+        return redirect(url()->previous().'#contact-info-container')->with('contact_successful_message' , "You submitted your contact us info successfully! Contact info number ($contact_us->info_number)");
     }
 
     public function destroy($id){

@@ -42,20 +42,24 @@
             </div>
             @if(session()->has('added_category_message'))
                 <div class="alert alert-success text-center">
-                    {{ session()->get('added_category_message') }}
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('added_category_message') }}
                 </div>
             @elseif(session()->has('updated_same_category_message'))
                 <div class="alert alert-warning text-center">
-                    {{ session()->get('updated_same_category_message') }}
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('updated_same_category_message') }}
                 </div>
             @elseif(session()->has('updated_category_message'))
                 <div class="alert alert-success text-center">
-                    {{ session()->get('updated_category_message') }}
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('updated_category_message') }}
                 </div>
             @elseif(session()->has('deleted_category_message'))
                 <div class="alert alert-success text-center">
-                    {{ session()->get('deleted_category_message') }} 
-                    and moved to <a href="{{ route('categories.delete') }}" class="text-primary text-decoration-none">Trash</a>.
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('deleted_category_message') }} 
+                  and moved to <a href="{{ route('categories.delete') }}" class="text-primary text-decoration-none">Trash</a>.
                 </div>
             @endif
           {{-- Add class <code>.table-striped</code> --}}

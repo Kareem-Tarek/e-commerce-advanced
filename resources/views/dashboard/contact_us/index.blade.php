@@ -42,7 +42,7 @@
             </div>
             @if(session()->has('deleted_contact_us_message'))
                 <div class="alert alert-success text-center">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-light" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                     {{ session()->get('deleted_contact_us_message') }}
                 </div>
             @endif

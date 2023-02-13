@@ -107,17 +107,21 @@
                     </form><!-- End .contact-form -->
                 </div><!-- End .col-lg-6 -->
             </div><!-- End .row -->
+
+            <!------------ Start all handled conditions (success/unsuccess) + ValidationExceptions ------------>
             @if(session()->has('contact_unsuccessful_message'))
                 <div class="alert alert-danger text-center">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-light" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                    <span class="fw-bold">{{ session()->get('contact_unsuccessful_message') }}</span>
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <span>{{ session()->get('contact_unsuccessful_message') }}</span>
                 </div>
             @elseif(session()->has('contact_successful_message'))
-                <div class="alert alert-success text-center fw-bold">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                    <span class="fw-bold">{{ session()->get('contact_successful_message') }}</span>
+                <div class="alert alert-primary text-center fw-bold">
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <span>{{ session()->get('contact_successful_message') }}</span>
+                    <span href="javascript:void(0);" class="font-weight-bold text-dark">&LeftArrow; Don't forget to copy it!</span>
                 </div>
             @endif
+            <!------------ End all handled conditions (success/unsuccess) + ValidationExceptions ------------>
 
             <hr class="mt-4 mb-5">
 
