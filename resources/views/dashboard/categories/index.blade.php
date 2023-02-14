@@ -64,7 +64,7 @@
             @endif
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">
-                Categories' Results (<span class="fw-bold">{{ $categories_count }}</span>)
+                Results (<span class="fw-bold">{{ $categories_count }}</span>)
             </span>
         </p>
         <div class="table-responsive mt-2">

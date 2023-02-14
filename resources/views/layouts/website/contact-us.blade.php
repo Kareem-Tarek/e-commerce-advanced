@@ -22,12 +22,79 @@
     </div><!-- End .container -->
 
     <div class="page-content pb-0">
-        <div class="container" id="contact-info-container">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6 mb-2 mb-lg-0">
+                <div class="col-lg-12 mb-4">
+                    <div id="map">
+                      <p class="paragraph-text-for-maps bg-dark p-2">
+                        <a class="font-weight-bold" id="switch" type="submit" href="javascript:void(0);">
+                            Click Here
+                        </a> 
+                        <span class="text-white">to toggle between the standard "Road Map" & the "Satellite Map".</span>
+                      </p>
+                      <!-- Makram Ebeid Map (Roadmap) -->
+                        <div id="mapouter_roadmap"><div class="gmap_canvas_roadmap"><iframe class="gmap_iframe_roadmap" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=makram ebied&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div></div>
+                      <!-- Makram Ebeid Map (Satellite) -->
+                        <div id="mapouter_satellite" hidden><div class="gmap_canvas_satellite"><iframe class="gmap_iframe_satellite" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=makram ebied&amp;t=h&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div></div>
+                    </div>
+                </div>
+                <style>
+                    #map{
+                        height: 100%;
+                    }
+
+                    .paragraph-text-for-maps{
+                        font-size: 100%;
+                    }
+
+                    #mapouter_roadmap{ /* Road Map */
+                        position:relative;
+                        text-align:right;
+                        width:100%;
+                        height:400px;
+                    }
+                    .gmap_canvas_roadmap{ /* Road Map */
+                        overflow:hidden;
+                        background:none!important;
+                        width:100%;
+                        height:400px;
+                    }
+                    .gmap_iframe_roadmap{ /* Road Map */
+                        height:400px!important;
+                    }
+
+                    #mapouter_satellite{ /* Satellite Map */
+                        position:relative;
+                        text-align:right;
+                        width:100%;
+                        height:400px;
+                    }
+                    .gmap_canvas_satellite{ /* Satellite Map */
+                        overflow:hidden;
+                        background:none!important;
+                        width:100%;
+                        height:400px;
+                    }
+                    .gmap_iframe_satellite{ /* Satellite Map */
+                        height:400px!important;
+                    }
+                </style>
+                <script>
+                    const road_map = document.querySelector("#mapouter_roadmap"),
+                    satellite_map = document.querySelector("#mapouter_satellite");
+
+                    document.querySelector("#switch").addEventListener("click", function() {
+                        // hide element: element.hidden = true;
+                        // show element: element.hidden = false;
+                        road_map.hidden = !road_map.hidden;
+                        satellite_map.hidden = !satellite_map.hidden;
+                    });
+                </script>
+                <div class="col-lg-6 mb-2 mb-lg-0" id="contact-info-container">
                     <h2 class="title mb-1">Contact Information</h2><!-- End .title mb-2 -->
                     <p class="mb-3">Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
                     <div class="row">
+
                         <div class="col-sm-7">
                             <div class="contact-info">
                                 <h3>The Office</h3>
@@ -35,7 +102,7 @@
                                 <ul class="contact-list">
                                     <li>
                                         <i class="icon-map-marker"></i>
-                                        Nasr City, Cairo, Egypt
+                                        Makram Ebeid, Nasr City, Cairo, Egypt
                                     </li>
                                     <li>
                                         <i class="icon-phone"></i>

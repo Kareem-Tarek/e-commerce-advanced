@@ -62,7 +62,7 @@
             </div>
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">
-                Products' Results (<span class="fw-bold">{{ $final_products_count }}</span>)
+                Results (<span class="fw-bold">{{ $final_products_count }}</span>)
             </span>
         </p>
         <div class="table-responsive">

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.master')
 
 @section('title') 
-    Contact Us
+    All Contact Us Info
 @endsection
 
 @section('content')
@@ -48,7 +48,7 @@
             @endif
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">
-                Contact Us Info' Results (<span class="fw-bold">{{ $all_contact_us_count }}</span>)
+                Results (<span class="fw-bold">{{ $all_contact_us_count }}</span>)
             </span>
         </p>
         <div class="table-responsive mt-2">
@@ -76,15 +76,10 @@
                     <tr>
                         <td class="fw-bold">{{ $loop->iteration }}</td>
 
-                        {{-- <td class="fw-bold text-primary">{{ $contact_us->product_id }}</td> --}}
                         <td class="fw-bold">{{ $contact_us->info_number }}</td>
 
                         <td>
-                            @if($contact_us->create_user_id == null)
-                                {{ ucfirst($contact_us->name) }} (guest)
-                            @else
-                                {{ ucfirst($contact_us->name) }}
-                            @endif
+                            {{ ucfirst($contact_us->name) }}
                         </td>
 
                         <td>{{ $contact_us->email }}</td>
@@ -109,8 +104,8 @@
                                     {{ $contact_us->user->name }}
                                 @endif
                             @elseif($contact_us->create_user_id == null)
-                                —
-                                {{-- Unknown --}}
+                                {{-- — --}}
+                                <span class="fw-bold">Guest/Unknown</span>
                             @endif
                         </td>
 

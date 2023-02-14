@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'name'       => "Kareem Tarek",
             'username'   => "KareemDEV",
             'email'      => 'admin@gmail.com',
-            'password'   => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
+            'password'   => bcrypt('123456789'),
             'user_type'  => 'admin',
             'phone'      => '01010110457', 
             'created_at' => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'name'       => "Maximus Franklin",
             'username'   => "M.Franklin",
             'email'      => 'moderator@gmail.com',
-            'password'   => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
+            'password'   => bcrypt('123456789'),
             'user_type'  => 'moderator',
             'phone'      => '010000000001',
             'created_at' => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'name'       => "Maria Madison",
             'username'   => "MaryMad",
             'email'      => 'customer@gmail.com',
-            'password'   => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
+            'password'   => bcrypt('123456789'),
             'user_type'  => 'customer',
             'phone'      => '010000000002',
             'created_at' => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
             'name'       => "Raymond",
             'username'   => "Raymond",
             'email'      => 'supplier@gmail.com',
-            'password'   => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
+            'password'   => bcrypt('123456789'),
             'user_type'  => 'supplier',
             'phone'      => '010000000003',
             'created_at' => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
             'name'       => "Fashionholic",
             'username'   => "Fashionholic",
             'email'      => 'supplier2@gmail.com',
-            'password'   => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
+            'password'   => bcrypt('123456789'),
             'user_type'  => 'supplier',
             'phone'      => '010000000004',
             'created_at' => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             'name'       => "Aesthetics",
             'username'   => "Aesthetics",
             'email'      => 'supplier3@gmail.com',
-            'password'   => '$2y$10$2Z8CF/lDpvDYYDIP28j7he3vHlKpFExarjbU04U7In8bjem9KlKdi', // password (is hashed): 123456789
+            'password'   => bcrypt('123456789'),
             'user_type'  => 'supplier',
             'phone'      => '010000000005',
             'created_at' => Carbon::now()->toDateTimeString(), // Also Carbon::now()->toDateTimeString() OR Carbon::now OR now()

@@ -48,7 +48,11 @@ Route::group([
     'middleware' => ['auth', 'dashboard']
 ], function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us.index');   //contact us page "index" for dashboard
+        Route::get('/contact-us', [ContactUsController::class, 'index_for_all_contact_us_info'])->name('contact-us.index');   //all contact us info page "index" for dashboard
+        Route::get('/contact-us/registered-users', [ContactUsController::class, 'registered_users_contact_us_info'])->name('registered-users-contact-us-info');   //registered users contact us info page for dashboard
+        Route::get('/contact-us/customers', [ContactUsController::class, 'customers_contact_us_info'])->name('customers-contact-us-info');   //registered users contact us info page for dashboard
+        Route::get('/contact-us/suppliers', [ContactUsController::class, 'suppliers_contact_us_info'])->name('suppliers-contact-us-info');   //registered users contact us info page for dashboard
+        Route::get('/contact-us/unregistered-users', [ContactUsController::class, 'unregistered_users_contact_us_info'])->name('unregistered-users-contact-us-info');   //unregistered users contact us info page for dashboard
         Route::delete('/contact-us/delete/{id}', [ContactUsController::class, 'destroy'])->name('contact-us.destroy');   //delete functionality "destroy" for dashboard
     });
 });
