@@ -230,6 +230,9 @@ style="
                                     @if(auth()->user()->user_type == "customer")
                                         <li><a href="javascript:void(0);">My Wishlist (0)</a></li>
                                     @endif
+                                    {{-- @if(auth()->user()->user_type == "customer" || auth()->user()->user_type == "supplier")
+                                        <li><a href="javascript:void(0);">My Sent Mails</a></li>
+                                    @endif --}}
                                     @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
                                         <li>
                                             <a href="{{ route('dashboard') }}">Dashboard</a>

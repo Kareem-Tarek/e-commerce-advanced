@@ -39,7 +39,7 @@
                 <a href="{{ route('dashboard') }}">
                     <i class="mdi mdi-home text-muted hover-cursor"></i>
                 </a>
-                <p class="text-muted mb-0 hover-cursor">
+                <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
                     <a href="{{ route('products_details.index') }}" class="text-decoration-none">
                         @if(auth()->user()->user_type == "supplier")
@@ -58,7 +58,7 @@
                 </p>
                     &RightArrow;
                     &nbsp;
-                "<p class="text-success fw-bold mb-0 hover-cursor">{{ $product_detail->name }}</p>"
+                "<p class="text-success fw-bold mb-0">{{ $product_detail->name }}</p>"
             </div>
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">

@@ -27,12 +27,17 @@
                 <div class="col-sm-4 col-lg-2">
                     <div class="widget">
                         <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
-
                         <ul class="widget-list">
                             <li><a href="about.html">About AA</a></li>
                             <li><a href="#">How to shop on AA</a></li>
                             <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
+                            @if(auth()->user())
+                                @if(auth()->user()->user_type == "customer" || auth()->user()->user_type == "supplier")
+                                    <li><a href="{{ route('contact-us') }}">Contact us</a></li>
+                                @endif
+                            @else(!auth()->user())
+                                <li><a href="{{ route('contact-us') }}">Contact us</a></li>
+                            @endif
                             <li><a href="{{ route('login') }}">Log in</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->

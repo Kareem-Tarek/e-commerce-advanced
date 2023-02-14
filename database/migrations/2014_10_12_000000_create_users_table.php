@@ -20,13 +20,13 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->string('username')->unique();
             $table->string('name')->nullable();    
-            $table->enum('user_type',['admin','moderator','supplier','customer']);
+            $table->enum('user_type', ['admin','moderator','supplier','customer']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->unique()->nullable();
             $table->longText('bio')->nullable();
-            $table->enum('gender', ['male','female','unspecified'])->nullable();
+            $table->enum('gender', ['male','female'])->nullable();
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
             $table->enum('status', ['active', 'inactive', 'blocked'])->default('active');

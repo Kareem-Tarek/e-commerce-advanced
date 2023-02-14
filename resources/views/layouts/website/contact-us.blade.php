@@ -35,15 +35,15 @@
                                 <ul class="contact-list">
                                     <li>
                                         <i class="icon-map-marker"></i>
-                                        70 Washington Square South New York, NY 10012, United States
+                                        Nasr City, Cairo, Egypt
                                     </li>
                                     <li>
                                         <i class="icon-phone"></i>
-                                        <a href="tel:#">+92 423 567</a>
+                                        <a href="tel:#">+20 101 011 0457</a>
                                     </li>
                                     <li>
                                         <i class="icon-envelope"></i>
-                                        <a href="mailto:#">info@Molla.com</a>
+                                        <a href="mailto:#">info@AA.com</a>
                                     </li>
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
@@ -56,11 +56,11 @@
                                 <ul class="contact-list">
                                     <li>
                                         <i class="icon-clock-o"></i>
-                                        <span class="text-dark">Monday-Saturday</span> <br>11am-7pm ET
+                                        <span class="text-dark">Monday-Saturday</span> <br>11 AM - 7 PM ET
                                     </li>
                                     <li>
                                         <i class="icon-calendar"></i>
-                                        <span class="text-dark">Sunday</span> <br>11am-6pm ET
+                                        <span class="text-dark">Sunday</span> <br>11 AM - 6 PM ET
                                     </li>
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
@@ -69,14 +69,13 @@
                 </div><!-- End .col-lg-6 -->
                 <div class="col-lg-6">
                     <h2 class="title mb-1">Got Any Questions?</h2><!-- End .title mb-2 -->
-                    <p class="mb-2">Use the form below to get in touch with the sales team</p>
-
+                    <p class="mb-2">Use the form below to get in touch with our team.</p>
                     <form class="contact-form mb-3" action="{{ route('contact-us.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cname" class="sr-only">Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control" id="cname" placeholder="Name *" required>
+                                <input type="text" name="name" class="form-control" id="cname" placeholder="Name *" value="{{ old('name') }}" required>
                             </div><!-- End .col-sm-6 -->
 
                             <div class="col-sm-6">

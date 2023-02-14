@@ -30,7 +30,7 @@
 
           @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('all-contact-us.index') }}">
+              <a class="nav-link" href="{{ route('contact-us.index') }}">
                 <i class="mdi mdi-contact-mail menu-icon"></i>
                 <span class="menu-title">Contact Us Info</span>
               </a>

@@ -99,7 +99,7 @@
                         </td>
 
                         <td class="@if($sub_category->description == null) text-center @endif">
-                            {{ $sub_category->description ?? '—' }}
+                          {{ $sub_category->description ?? '—' }}
                         </td>
 
                         <td>{{ $sub_category->created_at->format('(D) d-M-Y — h:m A') }}</td>

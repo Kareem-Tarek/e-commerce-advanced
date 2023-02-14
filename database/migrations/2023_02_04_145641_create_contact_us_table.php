@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('contact_us', function (Blueprint $table) {
             //$table->id();
             $table->bigIncrements('id');
-            $table->string('info_number');
+            $table->string('info_number')->unique();
             $table->string('name');
             $table->string('phone')->nullable();
             $table->string('email');

@@ -48,7 +48,7 @@ Route::group([
     'middleware' => ['auth', 'dashboard']
 ], function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/contact-us', [ContactUsController::class, 'index'])->name('all-contact-us.index');   //contact us page "index" for dashboard
+        Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us.index');   //contact us page "index" for dashboard
         Route::delete('/contact-us/delete/{id}', [ContactUsController::class, 'destroy'])->name('contact-us.destroy');   //delete functionality "destroy" for dashboard
     });
 });
@@ -57,7 +57,8 @@ Route::group([
     'middleware' => ['if_admin_or_moderator_redirect_back']
 ], function () {
     Route::get('/contact-us', [ContactUsController::class, 'create'])->name('contact-us');   //contact us page for website
-    Route::post('/contact-us/submit-contact-info', [ContactUsController::class, 'store'])->name('contact-us.store');
+    // Route::get('/my-sent-mails', [ContactUsController::class, 'index_for_each_sender'])->name('my-sent-mails');
+    Route::post('/contact-us/store', [ContactUsController::class, 'store'])->name('contact-us.store');
 });
 /********************** Start contact us routes. **********************/
 
