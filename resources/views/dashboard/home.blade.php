@@ -11,10 +11,25 @@
           <div class="d-flex align-items-end flex-wrap">
             <div class="me-md-3 me-xl-5">
               <h2>Welcome back <span class="text-primary">{{ auth()->user()->name ?? auth()->user()->username }}</span>,</h2>
-              <h6 class="text-secondary">Last login at: {{ date('(D) d-m-Y h:m A', strtotime(auth()->user()->last_login_at)) }}</h6>
-              <p class="mb-md-0">Your analytics page.</p>
+              <h6 class="text-secondary mb-3">Last login at: {{ date('(D) d-m-Y h:m A', strtotime(auth()->user()->last_login_at)) }}</h6>
+              {{-- <p class="mb-md-0">Your analytics page.</p> --}}
+              <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                <i class="mdi mdi-home text-muted"></i>
+                <span class="text-muted mb-0">
+                  @if(auth()->user()->user_type == 'admin') 
+                    Admin
+                  @elseif(auth()->user()->user_type == 'moderator')
+                    Moderator
+                  @else
+                    Supplier 
+                  @endif 
+                  Dashboard
+                </span>
+              </a>
+              &nbsp;/
+              <span class="text-primary mb-0">Analytics</span>
             </div>
-            <div class="d-flex">
+            {{-- <div class="d-flex">
               <a href="{{ route('dashboard') }}" class="text-decoration-none">
                 <i class="mdi mdi-home text-muted"></i>
                 <span class="text-muted mb-0">
@@ -29,7 +44,7 @@
                 </span>
               </a>
               <p class="text-primary mb-0">Analytics</p>
-            </div>
+            </div> --}}
           </div>
           <div class="d-flex justify-content-between align-items-end flex-wrap">
             <button type="button" class="btn btn-light bg-white btn-icon me-3 d-none d-md-block ">
@@ -48,161 +63,176 @@
         <div class="card">
           <div class="card-body dashboard-tabs p-0">
             <ul class="nav nav-tabs px-4" role="tablist">
+              @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
+                <li class="nav-item">
+                  <a class="nav-link active" id="users-tab" data-bs-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="categories-tab" data-bs-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="subcategories-tab" data-bs-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Sub-categories</a>
+                </li>
+              @endif
               <li class="nav-item">
-                <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                <a class="nav-link {{ auth()->user()->user_type == "supplier" ? 'active' : '' }}" id="products-details-tab" data-bs-toggle="tab" href="#products-details" role="tab" aria-controls="products-details" aria-selected="{{ auth()->user()->user_type == "supplier" ? 'true' : 'false' }}">
+                  {{ auth()->user()->user_type == "supplier" ? 'My Products Details' : 'Products Details' }}
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="sales-tab" data-bs-toggle="tab" href="#sales" role="tab" aria-controls="sales" aria-selected="false">Sales</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="purchases-tab" data-bs-toggle="tab" href="#purchases" role="tab" aria-controls="purchases" aria-selected="false">Purchases</a>
+                <a class="nav-link" id="final-products-tab" data-bs-toggle="tab" href="#final-products" role="tab" aria-controls="final-products" aria-selected="false">
+                  {{ auth()->user()->user_type == "supplier" ? 'My Final Products' : 'Final Products' }}
+                </a>
               </li>
             </ul>
             <div class="tab-content py-0 px-0">
-              <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                <div class="d-flex flex-wrap justify-content-xl-between">
-                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Start date</small>
-                      <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                          <a class="dropdown-item" href="#">12 Aug 2018</a>
-                          <a class="dropdown-item" href="#">22 Sep 2018</a>
-                          <a class="dropdown-item" href="#">21 Oct 2018</a>
-                        </div>
+              @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
+                <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+                  <div class="d-flex flex-wrap justify-content-xl-between">
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-multiple-outline icon-lg me-3 text-primary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">All Users</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::all()->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-key me-3 icon-lg text-danger"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Admins</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::type('admin')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-star me-3 icon-lg text-success"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Moderators</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::type('moderator')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account me-3 icon-lg text-warning"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Customers</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::type('customer')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-card-details me-3 icon-lg text-danger"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Suppliers</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::type('supplier')->count() }})</h5>
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Revenue</small>
-                      <h5 class="me-2 mb-0">$577545</h5>
+                </div> 
+
+                <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
+                  <div class="d-flex flex-wrap justify-content-xl-between">
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-view-grid icon-lg me-3 text-primary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Categories</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\Category::all()->count() }})</h5>
+                      </div>
                     </div>
                   </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Total views</small>
-                      <h5 class="me-2 mb-0">9833550</h5>
+                </div>
+
+                <div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
+                  <div class="d-flex flex-wrap justify-content-xl-between">
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-view-quilt icon-lg me-3 text-primary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Sub-categories</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\SubCategory::all()->count() }})</h5>
+                      </div>
                     </div>
                   </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
+                </div>
+              @endif
+
+              <div class="tab-pane fade {{ auth()->user()->user_type == "supplier" ? 'show active' : '' }}" id="products-details" role="tabpanel" aria-labelledby="products-details-tab">
+                <div class="d-flex flex-wrap justify-content-xl-between">
+                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                    <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
                     <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Downloads</small>
-                      <h5 class="me-2 mb-0">2233783</h5>
+                      <small class="mb-1 text-muted">{{ auth()->user()->user_type == "supplier" ? 'All My Products Details' : 'All Products Details' }}</small>
+                      <h5 class="me-2 mb-0">
+                        @if(auth()->user()->user_type == "supplier")
+                          ({{ \App\Models\ProductDetail::where('supplier_id', auth()->user()->id)->count() }})
+                        @else 
+                          ({{ \App\Models\ProductDetail::all()->count() }})
+                        @endif
+                      </h5>
                     </div>
                   </div>
-                  <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
+                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                     <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Flagged</small>
-                      <h5 class="me-2 mb-0">3497843</h5>
+                      <h5 class="me-2 mb-0">
+                        <h1>
+                          {{-- &RightArrow; --}}
+                          &equals;
+                        </h1>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                    <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
+                    <div class="d-flex flex-column justify-content-around">
+                      <small class="mb-1 text-muted">With Discounts</small>
+                      <h5 class="me-2 mb-0">
+                        @if(auth()->user()->user_type == "supplier")
+                          ({{ \App\Models\ProductDetail::where('discount', '>', 0)->where('supplier_id', auth()->user()->id)->count() }})
+                        @else 
+                          ({{ \App\Models\ProductDetail::where('discount', '>', 0)->count() }})
+                        @endif
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                    <div class="d-flex flex-column justify-content-around">
+                      <h5 class="me-2 mb-0">
+                        <h1>
+                          &plus;
+                        </h1>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                    <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
+                    <div class="d-flex flex-column justify-content-around">
+                      <small class="mb-1 text-muted">Without Discounts</small>
+                      <h5 class="me-2 mb-0">
+                        @if(auth()->user()->user_type == "supplier")
+                          ({{ \App\Models\ProductDetail::where('discount', 0)->where('supplier_id', auth()->user()->id)->count() }})
+                        @else 
+                          ({{ \App\Models\ProductDetail::where('discount', 0)->count() }})
+                        @endif
+                      </h5>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
+
+              <div class="tab-pane fade" id="final-products" role="tabpanel" aria-labelledby="final-products-tab">
                 <div class="d-flex flex-wrap justify-content-xl-between">
                   <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
+                    <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
                     <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Start date</small>
-                      <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                          <a class="dropdown-item" href="#">12 Aug 2018</a>
-                          <a class="dropdown-item" href="#">22 Sep 2018</a>
-                          <a class="dropdown-item" href="#">21 Oct 2018</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Downloads</small>
-                      <h5 class="me-2 mb-0">2233783</h5>
-                    </div>
-                  </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Total views</small>
-                      <h5 class="me-2 mb-0">9833550</h5>
-                    </div>
-                  </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Revenue</small>
-                      <h5 class="me-2 mb-0">$577545</h5>
-                    </div>
-                  </div>
-                  <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Flagged</small>
-                      <h5 class="me-2 mb-0">3497843</h5>
+                      <small class="mb-1 text-muted">{{ auth()->user()->user_type == "supplier" ? 'All My Final Products' : 'All Final Products' }}</small>
+                      <h5 class="me-2 mb-0">
+                        @if(auth()->user()->user_type == "supplier")
+                          ({{ \App\Models\FinalProduct::where('supplier_id', auth()->user()->id)->count() }})
+                        @else 
+                          ({{ \App\Models\FinalProduct::all()->count() }})
+                        @endif
+                      </h5>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
-                <div class="d-flex flex-wrap justify-content-xl-between">
-                  <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Start date</small>
-                      <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                          <a class="dropdown-item" href="#">12 Aug 2018</a>
-                          <a class="dropdown-item" href="#">22 Sep 2018</a>
-                          <a class="dropdown-item" href="#">21 Oct 2018</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Revenue</small>
-                      <h5 class="me-2 mb-0">$577545</h5>
-                    </div>
-                  </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Total views</small>
-                      <h5 class="me-2 mb-0">9833550</h5>
-                    </div>
-                  </div>
-                  <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Downloads</small>
-                      <h5 class="me-2 mb-0">2233783</h5>
-                    </div>
-                  </div>
-                  <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
-                    <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Flagged</small>
-                      <h5 class="me-2 mb-0">3497843</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
