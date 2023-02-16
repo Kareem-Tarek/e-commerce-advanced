@@ -3,6 +3,11 @@
 @section('title')
   Home
 @endsection
+<style>
+  .ancor-underline-color{
+    text-decoration-color: black;
+  }
+</style>
 
 @section('content')          
     <div class="row">
@@ -68,6 +73,9 @@
                   <a class="nav-link active" id="users-tab" data-bs-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" id="contact-us-tab" data-bs-toggle="tab" href="#contact-us" role="tab" aria-controls="contact-us" aria-selected="false">Contact Us</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" id="categories-tab" data-bs-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
                 </li>
                 <li class="nav-item">
@@ -125,7 +133,62 @@
                       </div>
                     </div>
                   </div>
-                </div> 
+                </div>
+                
+                <div class="tab-pane fade" id="contact-us" role="tabpanel" aria-labelledby="contact-us-tab">
+                  {{-- <li class="nav-item"><a class="nav-link" href="{{ route('contact-us.index') }}">All Contact Us Info ({{ \App\Models\ContactUs::all()->count() }})</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('registered-users-contact-us-info') }}">Registered Users ({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->count() }})</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('customers-contact-us-info') }}">Customers Users ({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->where('user_type', 'customer')->count() }})</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('suppliers-contact-us-info') }}">Suppliers Users ({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->where('user_type', 'supplier')->count() }})</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('unregistered-users-contact-us-info') }}">Unregistered Users ({{ \App\Models\ContactUs::whereNull('create_user_id')->whereNull('user_type')->count() }})</a></li> --}}
+                  <div class="d-flex flex-wrap justify-content-xl-between">
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-contact-mail icon-lg me-3 text-secondary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <a href="{{ route('contact-us.index') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">All Contact Us Info</small>
+                        </a>
+                        <h5 class="me-2 mb-0">({{ \App\Models\ContactUs::all()->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-check icon-lg me-3 text-primary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <a href="{{ route('registered-users-contact-us-info') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Registered Users</small>
+                        </a>
+                        <h5 class="me-2 mb-0">({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account icon-lg me-3 text-warning"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <a href="{{ route('customers-contact-us-info') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Customers</small>
+                        </a>
+                        <h5 class="me-2 mb-0">({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->where('user_type', 'customer')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-card-details icon-lg me-3 text-info"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <a href="{{ route('suppliers-contact-us-info') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Suppliers</small>
+                        </a>
+                        <h5 class="me-2 mb-0">({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->where('user_type', 'supplier')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account-remove icon-lg me-3 text-danger"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <a href="{{ route('unregistered-users-contact-us-info') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Unregistered Users<br>(Guests/Uknowns)</small>
+                        </a>
+                        <h5 class="me-2 mb-0">({{ \App\Models\ContactUs::whereNull('create_user_id')->whereNull('user_type')->count() }})</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
                   <div class="d-flex flex-wrap justify-content-xl-between">
@@ -178,7 +241,9 @@
                     </div>
                   </div>
                   <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
+                    {{-- <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i> --}}
+                    <i class="fa-solid fa-percent"></i>&nbsp;&nbsp;
+                    <i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;&nbsp;
                     <div class="d-flex flex-column justify-content-around">
                       <small class="mb-1 text-muted">With Discounts</small>
                       <h5 class="me-2 mb-0">
@@ -200,7 +265,9 @@
                     </div>
                   </div>
                   <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                    <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
+                    {{-- <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i> --}}
+                    <i class="fa-solid fa-percent"></i>&nbsp;&nbsp;
+                    <i class="fa-solid fa-circle-xmark"></i>&nbsp;&nbsp;&nbsp;
                     <div class="d-flex flex-column justify-content-around">
                       <small class="mb-1 text-muted">Without Discounts</small>
                       <h5 class="me-2 mb-0">

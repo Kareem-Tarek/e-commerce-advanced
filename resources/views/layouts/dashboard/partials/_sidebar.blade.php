@@ -41,7 +41,7 @@
                   <li class="nav-item"><a class="nav-link" href="{{ route('registered-users-contact-us-info') }}">Registered Users ({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->count() }})</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('customers-contact-us-info') }}">Customers Users ({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->where('user_type', 'customer')->count() }})</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('suppliers-contact-us-info') }}">Suppliers Users ({{ \App\Models\ContactUs::whereNotNull('create_user_id')->whereNotNull('user_type')->where('user_type', 'supplier')->count() }})</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('unregistered-users-contact-us-info') }}">Unregistered Users ({{ \App\Models\ContactUs::whereNull('create_user_id')->count() }})</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('unregistered-users-contact-us-info') }}">Unregistered Users ({{ \App\Models\ContactUs::whereNull('create_user_id')->whereNull('user_type')->count() }})</a></li>
                 </ul>
               </div>
             </li>
