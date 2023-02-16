@@ -1,5 +1,6 @@
 <?php
 //Start Dashboard Controllers
+use App\Http\Controllers\Dashboard\DashboardSettingController;
 use App\Http\Controllers\Dashboard\DashboardHomeController;
 use App\Http\Controllers\Dashboard\DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardSubCategoryController;
@@ -112,6 +113,10 @@ Route::group([
         Route::get('/subcategory/restore/{id}/', [DashboardSubCategoryController::class, 'restore'])->name('subcategories.restore');
         Route::delete('/subcategory/forceDelete/{id}/', [DashboardSubCategoryController::class, 'forceDelete'])->name('subcategories.forceDelete');
         /********************** End sub-categories routes. **********************/
+
+        /********************** Start settings routes. **********************/
+        Route::resource('/settings', DashboardSettingController::class);
+        /********************** End settings routes. **********************/
     });
 
 });

@@ -30,6 +30,35 @@
 
           @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('settings.index') }}" target="_blank">
+                <i class="mdi mdi-settings menu-icon"></i>
+                <span class="menu-title">Settings</span>
+              </a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic-users">
+                <i class="mdi mdi-account-multiple menu-icon"></i>
+                <span class="menu-title">Users</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic-users">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create User</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Users</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Admins</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Moderators</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Suppliers</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Customers</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Active Users</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Inactive Users</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Blocked Users</a></li>
+                  {{-- <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Users</a></li> --}}
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-contact-us" aria-expanded="false" aria-controls="ui-basic-contact-us">
                 <i class="mdi mdi-contact-mail menu-icon"></i>
                 <span class="menu-title">Contact Us Info</span>
@@ -93,28 +122,6 @@
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Final Products</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Final Products</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic-users">
-                <i class="mdi mdi-account-multiple menu-icon"></i>
-                <span class="menu-title">Users</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="ui-basic-users">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create User</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Admins</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Moderators</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Suppliers</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Customers</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Active Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Inactive Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Blocked Users</a></li>
-                  {{-- <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Users</a></li> --}}
                 </ul>
               </div>
             </li>

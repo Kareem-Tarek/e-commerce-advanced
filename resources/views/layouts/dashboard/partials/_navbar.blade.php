@@ -121,7 +121,7 @@
               <span class="nav-profile-name">{{ auth()->user()->name ?? auth()->user()->username }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{{ route('settings.index') }}">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
               </a>

@@ -105,7 +105,7 @@
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                      <i class="mdi mdi-account-key me-3 icon-lg text-danger"></i>
+                      <i class="mdi mdi-account-key me-3 icon-lg text-dark"></i>
                       <div class="d-flex flex-column justify-content-around">
                         <small class="mb-1 text-muted">Admins</small>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('admin')->count() }})</h5>
@@ -119,17 +119,40 @@
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                      <i class="mdi mdi-account me-3 icon-lg text-warning"></i>
+                      <i class="mdi mdi-account me-3 icon-lg text-info"></i>
                       <div class="d-flex flex-column justify-content-around">
                         <small class="mb-1 text-muted">Customers</small>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('customer')->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                      <i class="mdi mdi-account-card-details me-3 icon-lg text-danger"></i>
+                      <i class="mdi mdi-account-card-details me-3 icon-lg text-secondary"></i>
                       <div class="d-flex flex-column justify-content-around">
                         <small class="mb-1 text-muted">Suppliers</small>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('supplier')->count() }})</h5>
+                      </div>
+                    </div>
+
+
+                    <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account me-3 icon-lg text-success"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Active Users</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::where('status', 'active')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account me-3 icon-lg text-warning"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Inactive Users</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::where('status', 'inactive')->count() }})</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex border-md-right flex-grow-2 align-items-center justify-content-center p-3 item">
+                      <i class="mdi mdi-account me-3 icon-lg text-danger"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Blocked Users</small>
+                        <h5 class="me-2 mb-0">({{ \App\Models\User::where('status', 'blocked')->count() }})</h5>
                       </div>
                     </div>
                   </div>
@@ -195,7 +218,9 @@
                     <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-view-grid icon-lg me-3 text-primary"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Categories</small>
+                        <a href="{{ route('categories.index') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Categories</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\Category::all()->count() }})</h5>
                       </div>
                     </div>
@@ -207,7 +232,9 @@
                     <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-view-quilt icon-lg me-3 text-primary"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Sub-categories</small>
+                        <a href="{{ route('subcategories.index') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Sub-categories</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\SubCategory::all()->count() }})</h5>
                       </div>
                     </div>
@@ -220,7 +247,9 @@
                   <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                     <i class="mdi mdi-format-list-bulleted-type icon-lg me-3 text-primary"></i>
                     <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">{{ auth()->user()->user_type == "supplier" ? 'All My Products Details' : 'All Products Details' }}</small>
+                      <a href="{{ route('all-products.index') }}" class="ancor-underline-color">
+                        <small class="mb-1 text-muted">{{ auth()->user()->user_type == "supplier" ? 'All My Products Details' : 'All Products Details' }}</small>
+                      </a>
                       <h5 class="me-2 mb-0">
                         @if(auth()->user()->user_type == "supplier")
                           ({{ \App\Models\ProductDetail::where('supplier_id', auth()->user()->id)->count() }})
@@ -245,7 +274,9 @@
                     <i class="fa-solid fa-percent"></i>&nbsp;&nbsp;
                     <i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;&nbsp;
                     <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">With Discounts</small>
+                      <a href="javascript:void(0);" class="ancor-underline-color">
+                        <small class="mb-1 text-muted">With Discounts</small>
+                      </a>
                       <h5 class="me-2 mb-0">
                         @if(auth()->user()->user_type == "supplier")
                           ({{ \App\Models\ProductDetail::where('discount', '>', 0)->where('supplier_id', auth()->user()->id)->count() }})
@@ -269,7 +300,9 @@
                     <i class="fa-solid fa-percent"></i>&nbsp;&nbsp;
                     <i class="fa-solid fa-circle-xmark"></i>&nbsp;&nbsp;&nbsp;
                     <div class="d-flex flex-column justify-content-around">
-                      <small class="mb-1 text-muted">Without Discounts</small>
+                      <a href="javascript:void(0);" class="ancor-underline-color">
+                        <small class="mb-1 text-muted">Without Discounts</small>
+                      </a>
                       <h5 class="me-2 mb-0">
                         @if(auth()->user()->user_type == "supplier")
                           ({{ \App\Models\ProductDetail::where('discount', 0)->where('supplier_id', auth()->user()->id)->count() }})
