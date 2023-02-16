@@ -21,6 +21,8 @@ return new class extends Migration
             //$table->enum('gender', ['For Her', 'For Him', 'Unisex'])->nullable();
             //Start FKs
             $table->string('cat_id');   // FK: (from categories table)
+            // $table->BigInteger('cat_id')->unsigned();
+            // $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->integer('create_user_id')->nullable();
             $table->integer('update_user_id')->nullable();
             $table->integer('delete_user_id')->nullable();

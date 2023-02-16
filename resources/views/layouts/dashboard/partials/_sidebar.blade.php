@@ -84,9 +84,15 @@
               </a>
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('products_details.index') }}">All Products</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
+                  <li><span class="text-decoration-underline">Products Details</span> [ <i class="fa-solid fa-1"></i> ]</li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.create') }}">Create Product Detail</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.index') }}">All Products Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.delete') }}">Deleted Products Details</a></li>
+                  <hr class="w-75">
+                  <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Final Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Final Products</a></li>
                 </ul>
               </div>
             </li>
@@ -121,9 +127,15 @@
               </a>
               <div class="collapse" id="ui-basic-products">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('products_details.index') }}">All My Products</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Products</a></li>
+                  <li><span class="text-decoration-underline">Products Details</span> [ <i class="fa-solid fa-1"></i> ]</li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.create') }}">Create Product Detail</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.index') }}">All My Products Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.delete') }}">My Deleted Products Details</a></li>
+                  <hr class="w-75">
+                  <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All My Final Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">My Deleted Final Products</a></li>
                 </ul>
               </div>
             </li>

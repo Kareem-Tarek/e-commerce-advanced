@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->float('discount')->default(0);
             $table->integer('quantity')->default(1);
-            $table->string('category_id');
+            $table->string('cat_id');
             $table->string('sub_cat_id');
             $table->longText('description')->nullable();
             $table->integer('available_quantity')->nullable();

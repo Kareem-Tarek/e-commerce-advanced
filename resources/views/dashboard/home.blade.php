@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.master')
 
 @section('title')
-   Dashboard Home
+  Home
 @endsection
 
 @section('content')          
@@ -10,14 +10,25 @@
         <div class="d-flex justify-content-between flex-wrap">
           <div class="d-flex align-items-end flex-wrap">
             <div class="me-md-3 me-xl-5">
-              <h2>Welcome back <span class="text-primary">{{ auth()->user()->name }}</span>,</h2>
+              <h2>Welcome back <span class="text-primary">{{ auth()->user()->name ?? auth()->user()->username }}</span>,</h2>
               <h6 class="text-secondary">Last login at: {{ date('(D) d-m-Y h:m A', strtotime(auth()->user()->last_login_at)) }}</h6>
-              <p class="mb-md-0">Your analytics dashboard template.</p>
+              <p class="mb-md-0">Your analytics page.</p>
             </div>
             <div class="d-flex">
-              <i class="mdi mdi-home text-muted hover-cursor"></i>
-              <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-              <p class="text-primary mb-0 hover-cursor">Analytics</p>
+              <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                <i class="mdi mdi-home text-muted"></i>
+                <span class="text-muted mb-0">
+                  @if(auth()->user()->user_type == 'admin') 
+                    Admin
+                  @elseif(auth()->user()->user_type == 'moderator')
+                    Moderator
+                  @else
+                    Supplier 
+                  @endif 
+                  Dashboard&nbsp;/&nbsp;
+                </span>
+              </a>
+              <p class="text-primary mb-0">Analytics</p>
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-end flex-wrap">
@@ -27,10 +38,7 @@
             <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
               <i class="mdi mdi-clock-outline text-muted"></i>
             </button>
-            <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-              <i class="mdi mdi-plus text-muted"></i>
-            </button>
-            <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
+            <button class="btn btn-primary text-light mt-2 mt-xl-0">Generate report</button>
           </div>
         </div>
       </div>

@@ -19,11 +19,9 @@
           <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
             <i class="mdi mdi-clock-outline text-muted"></i>
           </button>
-          <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-            <i class="mdi mdi-plus text-muted"></i>
-          </button>
-          <a href="{{ route('products.create') }}" class="btn btn-primary mt-2 mt-xl-0 text-light">
-            Add Product Variety (for "{{ $product_detail->name }}")
+          <a href="{{ route('products.create') }}" class="btn btn-primary text-light">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Product Variety (for "{{ $product_detail->name }}")</span>
           </a>
         </div>
       </div>
@@ -41,7 +39,7 @@
                 </a>
                 <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
-                    <a href="{{ route('products_details.index') }}" class="text-decoration-none">
+                    <a href="{{ route('all-products.index') }}" class="text-decoration-none">
                         @if(auth()->user()->user_type == "supplier")
                             All My Products
                         @else

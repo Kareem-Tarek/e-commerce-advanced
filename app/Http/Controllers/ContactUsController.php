@@ -74,7 +74,7 @@ class ContactUsController extends Controller
         }
     }
 
-    // public function index_for_each_sender(){
+    // public function contact_us_info_for_each_sender(){
     //     $all_my_contact_us       = ContactUs::where('create_user_id', auth()->user()->id)->paginate(10);
     //     $all_my_contact_us_count = $all_my_contact_us->count();
     //     if(auth()->user()->user_type == "customer" || auth()->user()->user_type == "supplier"){

@@ -15,11 +15,9 @@
           <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
             <i class="mdi mdi-clock-outline text-muted"></i>
           </button>
-          <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-            <i class="mdi mdi-plus text-muted"></i>
-          </button>
-          <a href="{{ route('categories.create') }}" class="btn btn-primary mt-2 mt-xl-0 text-light">
-            Add Category
+          <a href="{{ route('categories.create') }}" class="btn btn-primary text-light">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Category</span>
           </a>
         </div>
       </div>

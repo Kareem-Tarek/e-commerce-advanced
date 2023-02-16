@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -186,13 +187,39 @@ class DashboardCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $categories     = Category::findOrFail($id);
+    //     // $categories->delete_user_id = auth()->user()->id;
+    //     $sub_categories = SubCategory::where('cat_id', $categories->id)->find($id);
+
+    //     if($sub_categories != null){
+    //         // $sub_categories_count = $sub_categories->count();
+    //         foreach($sub_categories as $sub_category){
+    //             $sub_category = SubCategory::where('cat_id', $categories->id)->find($id);
+    //             $sub_category->delete();
+    //         }
+    //         $categories->delete();
+    //     }
+    //     else{
+    //         $categories->delete();
+    //     }
+
+    //     return redirect()->route('categories.index')
+    //         ->with(['deleted_category_message' => "($categories->name) - Deleted successfully from the categories main page"]);
+    // }
+
     public function destroy($id)
     {
-        $categories                 = Category::findOrFail($id);
-        $categories->delete_user_id = auth()->user()->id; 
-        $categories->delete();
+        $category = Category::find($id);
+        $sub_cats = SubCategory::where('cat_id', $category->id)->get();
+        foreach($sub_cats as $sub_cat){
+            $sub_cat->delete();
+        }
+        $category->delete();
+
         return redirect()->route('categories.index')
-            ->with(['deleted_category_message' => "($categories->name) - Deleted successfully from the categories main page"]);
+            ->with(['deleted_category_message' => "($category->name) - Deleted successfully from the categories main page"]);
     }
 
     public function delete()
@@ -208,10 +235,22 @@ class DashboardCategoryController extends Controller
         }
     }
 
+    // public function restore($id)
+    // {
+    //     Category::withTrashed()->find($id)->restore();
+    //     $categories = Category::findOrFail($id);
+    //     return redirect()->route('categories.delete')
+    //         ->with(['restored_category_message' => "($categories->name) - Restored successfully!"]);
+    // }
+
     public function restore($id)
     {
         Category::withTrashed()->find($id)->restore();
-        $categories = Category::findOrFail($id);
+        $categories     = Category::findOrFail($id);
+        $sub_categories = SubCategory::withTrashed()->get();
+        foreach($sub_categories as $sub_category){
+            $sub_category->restore();
+        }
         return redirect()->route('categories.delete')
             ->with(['restored_category_message' => "($categories->name) - Restored successfully!"]);
     }

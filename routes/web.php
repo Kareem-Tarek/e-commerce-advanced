@@ -48,20 +48,20 @@ Route::group([
     'middleware' => ['auth', 'dashboard']
 ], function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/contact-us', [ContactUsController::class, 'index_for_all_contact_us_info'])->name('contact-us.index');   //all contact us info page "index" for dashboard
-        Route::get('/contact-us/registered-users', [ContactUsController::class, 'registered_users_contact_us_info'])->name('registered-users-contact-us-info');   //registered users contact us info page for dashboard
-        Route::get('/contact-us/customers', [ContactUsController::class, 'customers_contact_us_info'])->name('customers-contact-us-info');   //registered users contact us info page for dashboard
-        Route::get('/contact-us/suppliers', [ContactUsController::class, 'suppliers_contact_us_info'])->name('suppliers-contact-us-info');   //registered users contact us info page for dashboard
-        Route::get('/contact-us/unregistered-users', [ContactUsController::class, 'unregistered_users_contact_us_info'])->name('unregistered-users-contact-us-info');   //unregistered users contact us info page for dashboard
-        Route::delete('/contact-us/delete/{id}', [ContactUsController::class, 'destroy'])->name('contact-us.destroy');   //delete functionality "destroy" for dashboard
+        Route::get('/contact-us', [ContactUsController::class, 'index_for_all_contact_us_info'])->name('contact-us.index');   //all contact us info page "index" - for dashboard
+        Route::get('/contact-us/registered-users', [ContactUsController::class, 'registered_users_contact_us_info'])->name('registered-users-contact-us-info');   //registered users contact us info page - for dashboard
+        Route::get('/contact-us/customers', [ContactUsController::class, 'customers_contact_us_info'])->name('customers-contact-us-info');   //customers contact us info page - for dashboard
+        Route::get('/contact-us/suppliers', [ContactUsController::class, 'suppliers_contact_us_info'])->name('suppliers-contact-us-info');   //suppliers contact us info page - for dashboard
+        Route::get('/contact-us/unregistered-users', [ContactUsController::class, 'unregistered_users_contact_us_info'])->name('unregistered-users-contact-us-info');   //unregistered users contact us info page - for dashboard
+        Route::delete('/contact-us/delete/{id}', [ContactUsController::class, 'destroy'])->name('contact-us.destroy');   //contact us info delete functionality "destroy" for dashboard (without softDelete!)
     });
 });
 
 Route::group([
     'middleware' => ['if_admin_or_moderator_redirect_back']
 ], function () {
-    Route::get('/contact-us', [ContactUsController::class, 'create'])->name('contact-us');   //contact us page for website
-    // Route::get('/my-sent-mails', [ContactUsController::class, 'index_for_each_sender'])->name('my-sent-mails');
+    Route::get('/contact-us', [ContactUsController::class, 'create'])->name('contact-us');   //contact us page - for website
+    // Route::get('/my-sent-contact-us-forms', [ContactUsController::class, 'contact_us_info_for_each_sender'])->name('my-sent-contact-us-forms');
     Route::post('/contact-us/store', [ContactUsController::class, 'store'])->name('contact-us.store');
 });
 /********************** Start contact us routes. **********************/
@@ -82,12 +82,21 @@ Route::group([
         });
 
         /********************** Start products routes. **********************/
-        Route::resource('/products', DashboardFinalProductController::class)->except(['index']);
+        Route::resource('/all-products', DashboardProductDetailController::class);
+        // Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products-details.index');
+        Route::get('/all-product/delete', [DashboardProductDetailController::class, 'delete'])->name('all-products.delete');
+        Route::get('/all-product/restore/{id}/', [DashboardProductDetailController::class, 'restore'])->name('all-products.restore');
+        Route::delete('/all-product/forceDelete/{id}/', [DashboardProductDetailController::class, 'forceDelete'])->name('all-products.forceDelete');
+
+        
+        Route::resource('/products', DashboardFinalProductController::class);
         //this route replaces the "index" function from "DashboardFinalProductController"//
         Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('final_products.index');
         //////////////////////////////////////////////////////////////////////////////////
+        Route::get('/product/delete', [DashboardFinalProductController::class, 'delete'])->name('products.delete');
+        Route::get('/product/restore/{id}/', [DashboardFinalProductController::class, 'restore'])->name('products.restore');
+        Route::delete('/product/forceDelete/{id}/', [DashboardFinalProductController::class, 'forceDelete'])->name('products.forceDelete');
 
-        Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products_details.index');
         /********************** End products routes. **********************/
 
         /********************** Start categories routes. **********************/

@@ -16,17 +16,33 @@ class DashboardFinalProductController extends Controller
      */
     public function index_for_each_product($id)
     {
-        $product_detail = ProductDetail::findOrFail($id);
-
-        if(auth()->user()->user_type == 'supplier'){
-            $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
-            $final_products_count = $final_products->count();
+        $product_detail = ProductDetail::find($id);
+        if($product_detail == null){
+            return view('errors.template-customized-error.dashboard.404');
         }
         else{
-            $final_products       = FinalProduct::where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
-            $final_products_count = $final_products->count();
+            if(auth()->user()->user_type == 'supplier'){
+                $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
+                $final_products_count = $final_products->count();
+            }
+            else{
+                $final_products       = FinalProduct::where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
+                $final_products_count = $final_products->count();
+            }
+            return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'product_detail'));
         }
-        return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'product_detail'));
+
+        // $product_detail = ProductDetail::find($id);
+
+        // if(auth()->user()->user_type == 'supplier'){
+        //     $final_products       = FinalProduct::where('supplier_id', auth()->user()->id)->where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
+        //     $final_products_count = $final_products->count();
+        // }
+        // else{
+        //     $final_products       = FinalProduct::where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
+        //     $final_products_count = $final_products->count();
+        // }
+        // return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'product_detail'));
     }
 
     /**

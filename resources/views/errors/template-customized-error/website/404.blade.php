@@ -1,7 +1,7 @@
 @extends('layouts.website.master')
 
 @section('title')
-    Error - 404
+    Error (404)
 @endsection
 
 @section('content')

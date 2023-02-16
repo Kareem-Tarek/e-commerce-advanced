@@ -231,7 +231,7 @@ style="
                                         <li><a href="javascript:void(0);">My Wishlist (0)</a></li>
                                     @endif
                                     {{-- @if(auth()->user()->user_type == "customer" || auth()->user()->user_type == "supplier")
-                                        <li><a href="javascript:void(0);">My Sent Mails</a></li>
+                                        <li><a href="javascript:void(0);">My Sent Contact Us Forms</a></li>
                                     @endif --}}
                                     @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
                                         <li>
@@ -274,7 +274,7 @@ style="
                                             <a href="{{ route('dashboard') }}">Dashboard</a>
                                             <ul>
                                                 <li><a href="{{ route('dashboard') }}">Home</a></li>
-                                                <li><a href="{{ route('products_details.index') }}">My Products</a></li>
+                                                <li><a href="{{ route('all-products.index') }}">My Products</a></li>
                                             </ul>
                                         </li>
                                     @endif

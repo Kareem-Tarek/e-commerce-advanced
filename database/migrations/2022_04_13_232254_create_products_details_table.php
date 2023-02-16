@@ -26,9 +26,10 @@ return new class extends Migration
             //Start FKs
             $table->string('supplier_id')->nullable();   //!!! NOT NULL !!!, FK: for supplier relationship (from users table)
             $table->string('sub_cat_id')->nullable();   //!!! NOT NULL !!!, FK: (from sub-categories table)
+            $table->integer('create_user_id')->nullable();
+            $table->integer('update_user_id')->nullable();
+            $table->integer('delete_user_id')->nullable();
             //End FKs
-            // $table->integer('create_user_id')->nullable();
-            // $table->integer('update_user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

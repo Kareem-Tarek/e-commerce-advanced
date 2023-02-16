@@ -17,7 +17,7 @@ class ProductDetail extends Model
 
     public function subCategory()
     {
-        return $this->BelongsTo(SubCategory::class, 'sub_cat_id', 'id');
+        return $this->belongsTo(SubCategory::class, 'sub_cat_id', 'id');
     }
 
     public function finalProduct()
@@ -32,16 +32,31 @@ class ProductDetail extends Model
 
     public function user_supplier()
     {
-        return $this->BelongsTo(User::class, 'supplier_id', 'id');
+        return $this->belongsTo(User::class, 'supplier_id', 'id');
+    }
+
+    public function create_user(): \Illuminate\Database\Eloquent\Relations\belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function update_user(): \Illuminate\Database\Eloquent\Relations\belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function delete_user(): \Illuminate\Database\Eloquent\Relations\belongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     // public function cart()
     // {
-    //     return $this->BelongsTo(Cart::class, 'product_id', 'id');
+    //     return $this->belongsTo(Cart::class, 'product_id', 'id');
     // }
     public function cart()
     {
-        return $this->BelongsToMany(Cart::class, 'product_id', 'id');
+        return $this->belongsToMany(Cart::class, 'product_id', 'id');
     }
 
 }

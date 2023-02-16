@@ -221,8 +221,8 @@ class DashboardSubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $sub_categories                 = SubCategory::findOrFail($id);
-        $sub_categories->delete_user_id = auth()->user()->id; 
+        $sub_categories = SubCategory::findOrFail($id);
+        // $sub_categories->delete_user_id = auth()->user()->id; 
         $sub_categories->delete();
         return redirect()->route('subcategories.index')
             ->with(['deleted_sub_category_message' => "($sub_categories->name) - Deleted successfully from the sub-categories main page"]);
