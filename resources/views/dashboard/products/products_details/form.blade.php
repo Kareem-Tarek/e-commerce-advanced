@@ -1,3 +1,17 @@
+@if($errors->any())
+<div class="alert alert-danger">
+    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+    <h4>Whoops! Something went wrong.</h4>
+    <span class="text-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </span>
+</div>
+@endif
+
 @if(session()->has('auth_user_supplier_not_matching_id'))
     <div class="alert alert-danger text-center">
     <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
@@ -17,33 +31,33 @@
 
 <div class="form-group">
     <label>Discount (%)</label>
-    {{-- <select name="discount" class="form-control select" id="discount">
+    <select name="discount" class="form-control select discount" id="discount">
         <option value="" disabled>---------- Please select a discount ----------</option>
-        @for($d = 0.00 ; $d < 1.00 ; $d = $d + 0.01)    <!-- for(start ; end ; increment/decrement) -->
+        @for($d = 0.00; $d < 1; $d = $d + 0.01)    <!-- for(start; end; increment/decrement) -->
             <option value="{{ $d }}" {{ $ProductDetail_model->discount == $d ? 'selected' : '' }}>
                 @if($d == 0.00)
-                    {{ $d * 100 }}% (No Discount)
+                    {{ $d * 100 }}% (No Discount) <!-- = 0% -->
                 @else
-                    {{ $d * 100 }}% 
+                    {{ $d * 100 }}%  <!-- > 0% -->
                 @endif
             </option>
         @endfor
-    </select> --}}
-    <input name="discount" id="discount" type="text" class="form-control" value="{{Request::old('discount') ? Request::old('discount') : $ProductDetail_model->discount * 100 }}" placeholder="Enter discount here..">
+    </select>
+    {{-- <input name="discount" id="discount" type="text" class="form-control" value="{{Request::old('discount') ? Request::old('discount') : $ProductDetail_model->discount }}" placeholder="Enter discount here.."> --}}
 </div>
 
 <div class="form-group">
     <label>Price (EGP) <span class="text-danger">*</span></label>
-    {{-- <input class="form-control"
+    <input class="form-control"
             value="{{Request::old('price') ? Request::old('price') : $ProductDetail_model->price}}" 
             type="text" name="price" placeholder="Enter price here.." 
-            onkeyup="$('#gain_value').val($(this).val() - ( $(this).val() * $('#discount').val() ) );" 
-            autocomplete="off"> --}}
-        <input class="form-control"
+            onkeyup="$('#gain_value').val($(this).val() - ( $(this).val() * $('#discount').val() ) ); 
+                     $('.gain_value').val($(this).val() - ( $(this).val() * $('.discount').val() ) );" autocomplete="off">
+        {{-- <input class="form-control"
             value="{{Request::old('price') ? Request::old('price') : $ProductDetail_model->price}}" 
             type="text" name="price" placeholder="Enter price here.." 
-            onkeyup="$('#gain_value').val($(this).val() - ( $(this).val() * $('#discount').val() ) / 100 );" 
-            autocomplete="off">
+            onkeyup="$('#gain_value').val($(this).val() - ( $(this).val() * $('#discount').val() / 100) );
+                     $('.gain_value').val($(this).val() - ( $(this).val() * $('.discount').val() / 100 ) );" autocomplete="off"> --}}
 </div>
 
 <div class="form-group">
@@ -51,12 +65,13 @@
     <input class="form-control text-dark" 
     value="{{ $ProductDetail_model->price - ($ProductDetail_model->price * $ProductDetail_model->discount) ?? $ProductDetail_model->price}}"
     name="sale_price_final_price" id="gain_value" placeholder="Price After Discount/Final Price" 
+    class="gain_value"
     style="background-color: rgb(228, 231, 244); color: black; border: 1px solid rgb(11, 19, 170); font-weight: bold;" 
     disabled>
 </div>
 
 <div class="form-group">
-    <label>Sub-category</label>
+    <label>Sub-category <span class="text-danger">*</span></label>
     <select name="sub_cat_id" class="form-control select mb-2" value="{{Request::old('sub_cat_id') ? Request::old('sub_cat_id') : $ProductDetail_model->sub_cat_id}}">
         <option value="" selected> ---------- Select a Sub-category ---------- </option>  
         @forelse($sub_category as $sub_cat)
@@ -69,7 +84,7 @@
 </div>
 
 <div class="form-group">
-    <label>Brand Name</label>
+    <label>Brand Name <span class="text-danger">*</span></label>
     <input name="brand_name" type="text" class="form-control" value="{{Request::old('brand_name') ? Request::old('brand_name') : $ProductDetail_model->brand_name}}" placeholder="Enter brand name here..">
 </div>
 

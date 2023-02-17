@@ -1,5 +1,6 @@
 <?php
 //Start Dashboard Controllers
+use App\Http\Controllers\Dashboard\DashboardUserController;
 use App\Http\Controllers\Dashboard\DashboardSettingController;
 use App\Http\Controllers\Dashboard\DashboardHomeController;
 use App\Http\Controllers\Dashboard\DashboardCategoryController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\ErrorsController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ComingSoonController;
+use App\Http\Controllers\UserController;
 //End Website Controllers
 
 /*
@@ -43,6 +45,10 @@ Route::group([], function () {
 Route::get('/error-404', [ErrorsController::class, 'index'])->name('error-404');
 
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
+
+/********************** Start users routes. **********************/
+Route::get('/my-profile', [UserController::class, 'index'])->name('profile-management');
+/********************** End users routes. **********************/
 
 /********************** Start contact us routes. **********************/
 Route::group([
@@ -85,6 +91,9 @@ Route::group([
         /********************** Start products routes. **********************/
         Route::resource('/all-products', DashboardProductDetailController::class);
         // Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products-details.index');
+        Route::get('/all-products-with-discounts', [DashboardProductDetailController::class, 'index_with_discounts'])->name('all-products.index-with-discounts');
+        Route::get('/all-products-without-discounts', [DashboardProductDetailController::class, 'index_without_discounts'])->name('all-products.index-without-discounts');
+
         Route::get('/all-product/delete', [DashboardProductDetailController::class, 'delete'])->name('all-products.delete');
         Route::get('/all-product/restore/{id}/', [DashboardProductDetailController::class, 'restore'])->name('all-products.restore');
         Route::delete('/all-product/forceDelete/{id}/', [DashboardProductDetailController::class, 'forceDelete'])->name('all-products.forceDelete');

@@ -226,7 +226,7 @@ style="
                                     <span style="padding: 8px 0px 0px 2px;">{{ auth()->user()->name ?? auth()->user()->username }} ({{ auth()->user()->user_type }})</span>
                                 </a>
                                 <ul>
-                                    <li><a href="javascript:void(0);">Profile Management</a></li>
+                                    <li><a href="{{ route('profile-management') }}">Profile Management</a></li>
                                     @if(auth()->user()->user_type == "customer")
                                         <li><a href="javascript:void(0);">My Wishlist (0)</a></li>
                                     @endif
@@ -316,7 +316,7 @@ style="
                                 {{ auth()->user()->name ?? auth()->user()->username }} ({{ ucfirst(auth()->user()->user_type) }})
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);" onMouseOver="this.style.color='#CC9966'" onMouseOut="this.style.color='inherit'">Profile Management</a>
+                                <a class="dropdown-item" href="{{ route('profile-management') }}" onMouseOver="this.style.color='#CC9966'" onMouseOut="this.style.color='inherit'">Profile Management</a>
                                 @if(auth()->user()->user_type == "customer")
                                     <a class="dropdown-item" href="javascript:void(0);" onMouseOver="this.style.color='#CC9966'" onMouseOut="this.style.color='inherit'">My Wishlist (0)</a>
                                 @endif

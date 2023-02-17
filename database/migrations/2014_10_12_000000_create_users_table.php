@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('cover')->nullable();
             $table->string('username')->unique();
-            $table->string('name')->nullable();    
+            $table->string('name')->nullable();
             $table->enum('user_type', ['admin','moderator','supplier','customer']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -30,6 +30,9 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
             $table->enum('status', ['active', 'inactive', 'blocked'])->default('active');
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->integer('create_user_id')->nullable(); // for dashboard (admin & moderator) when they create user
             $table->integer('update_user_id')->nullable(); // for dashboard (admin) when they update user
             $table->datetime('last_login_at')->nullable();

@@ -51,6 +51,11 @@
                   <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                   {{ session()->get('added_products_details_message') }}
                 </div>
+            @elseif(session()->has('updated_products_details_message'))
+                <div class="alert alert-success text-center">
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('updated_products_details_message') }}
+                </div>
             @elseif(session()->has('deleted_product_detail_message'))
                 <div class="alert alert-success text-center">
                   <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
@@ -157,15 +162,6 @@
                             <a href="{{ route('final_products.index', [$product->id, $product->name]) }}" class="text-decoration-none">
                                 <div class="bg-secondary text-white fw-bold px-0 py-2 rounded">Show..</div>
                             </a>
-                            {{-- <span class="text-secondary">
-                                (
-                                @if($x <= 5)
-                                    <span class="text-danger">{{ $final_products_count }}</span>
-                                @else
-                                    {{ $final_products_count }}
-                                @endif
-                                )
-                            </span> --}}
                         </td>
 
                         @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")

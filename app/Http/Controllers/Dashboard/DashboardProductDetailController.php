@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductDetailRequest;
 use App\Models\ProductDetail;
 use App\Models\FinalProduct;
 use App\Models\SubCategory;
@@ -46,6 +47,34 @@ class DashboardProductDetailController extends Controller
         return view('dashboard.products.products_details.index', compact('products_details', 'products_details_count'/*, 'final_products_count'*/));
     }
 
+    public function index_with_discounts(){
+
+        if(auth()->user()->user_type == 'supplier'){
+            $products_details       = ProductDetail::where('discount', '>', 0)->where('supplier_id', auth()->user()->id)->orderBy('created_at','asc')->paginate(30);
+            $products_details_count = $products_details->count();
+        }
+        else{
+            $products_details       = ProductDetail::where('discount', '>', 0)->orderBy('created_at','asc')->paginate(30);
+            $products_details_count = $products_details->count();
+        }
+
+        return view('dashboard.products.products_details.index_with_discounts', compact('products_details', 'products_details_count'));
+    }
+
+    public function index_without_discounts(){
+
+        if(auth()->user()->user_type == 'supplier'){
+            $products_details       = ProductDetail::where('discount', '=', 0)->where('supplier_id', auth()->user()->id)->orderBy('created_at','asc')->paginate(30);
+            $products_details_count = $products_details->count();
+        }
+        else{
+            $products_details       = ProductDetail::where('discount', '=', 0)->orderBy('created_at','asc')->paginate(30);
+            $products_details_count = $products_details->count();
+        }
+
+        return view('dashboard.products.products_details.index_without_discounts', compact('products_details', 'products_details_count'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,7 +92,7 @@ class DashboardProductDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductDetailRequest $request)
     {
         $product_details              = new ProductDetail;
         $product_details->name        = $request->name;
@@ -91,7 +120,6 @@ class DashboardProductDetailController extends Controller
         else{
             $product_details->supplier_id = $request->supplier_id;
         }
-        // $product_details->supplier_id    = $request->supplier_id;
         $product_details->create_user_id = auth()->user()->id;
         $product_details->save();
 
@@ -119,9 +147,14 @@ class DashboardProductDetailController extends Controller
     public function edit($id)
     {
         if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier"){
-            $ProductDetail_model = ProductDetail::findOrFail($id);
-            $sub_category        = SubCategory::all();
-            return view('dashboard.products.products_details.edit', compact('ProductDetail_model', 'sub_category'));
+            $ProductDetail_model = ProductDetail::find($id);
+            if($ProductDetail_model != null){
+                $sub_category = SubCategory::all();
+                return view('dashboard.products.products_details.edit', compact('ProductDetail_model', 'sub_category'));
+            }
+            else{
+                return view('errors.template-customized-error.dashboard.404');
+            }
         }
         elseif(auth()->user()->user_type == "moderator"){
             return redirect()->route('all-products.index');
@@ -135,7 +168,7 @@ class DashboardProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductDetailRequest $request, $id)
     {
         $product_details_old          = ProductDetail::findOrFail($id);
 
@@ -157,12 +190,11 @@ class DashboardProductDetailController extends Controller
         else{
             $product_details->supplier_id = $request->supplier_id;
         }
-        // $product_details->supplier_id    = $request->supplier_id;
         $product_details->update_user_id = auth()->user()->id;
         $product_details->save();
 
         return redirect()->route('all-products.index')
-            ->with(['updated_products_details_message' => "The product detail ($product_details_old->name) has been changed to ($product_details->name) successfully!"]);
+            ->with(['updated_products_details_message' => "The product ($product_details_old->name) has been changed to ($product_details->name) successfully!"]);
     }
 
     /**
@@ -180,8 +212,8 @@ class DashboardProductDetailController extends Controller
         }
         $product_detail->delete();
 
-        return redirect()->route('all-products.index')
-            ->with(['deleted_product_detail_message' => "($product_detail->name) - Deleted successfully from the products main page"]);
+        return redirect()->back()
+            ->with(['deleted_product_detail_message' => "($product_detail->name) - Deleted successfully from the products details main page"]);
     }
 
     public function delete()

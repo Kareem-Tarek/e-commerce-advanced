@@ -2,9 +2,9 @@
 
 @section('title') 
     @if(auth()->user()->user_type == "supplier")
-        My Deleted Products Details
+        My Products Details (With Discounts)
     @else
-        Deleted Products Details
+        Products Details (With Discounts)
     @endif
 @endsection
 
@@ -40,22 +40,17 @@
                 <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
                     @if(auth()->user()->user_type == "supplier")
-                        All My Deleted Products Details
+                        All My Products (With Discounts)
                     @else
-                        All Deleted Products Details
+                        All Products (With Discounts)
                     @endif
                 </p>
             </div>
-            @if(session()->has('restored_product_detail_message'))
+            @if(session()->has('deleted_product_detail_message'))
                 <div class="alert alert-success text-center">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                    {{ session()->get('restored_product_detail_message') }} 
-                    Go back to the <a href="{{ route('all-products.index') }}">products'</a> main page.
-                </div>
-            @elseif(session()->has('permanent_deleted_product_detail_message'))
-                <div class="alert alert-success text-center">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                    {{ session()->get('permanent_deleted_product_detail_message') }}
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('deleted_product_detail_message') }} 
+                  and moved to <a href="{{ route('all-products.delete') }}" class="text-primary text-decoration-none">Trash</a>.
                 </div>
             @endif
           {{-- Add class <code>.table-striped</code> --}}
@@ -77,9 +72,10 @@
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
                 <th class="text-center"> Created at</th>
+                <th class="text-center"> Updated at</th>
                 <th class="text-center"> Added by</th>
-                <th class="text-center"> Deleted at</th>
-                {{-- <th class="text-center"> More Details</th> --}}
+                <th class="text-center"> Last Updated by</th>
+                <th class="text-center"> More Details</th>
                 @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                     <th class="text-center">Action</th>
                 @endif
@@ -95,27 +91,19 @@
                         <td>{{ $product->name }}</td>
 
                         <td class="text-center w-25">
-                            @if($product->discount == 0)
-                                —
-                            @else
-                                {{-- <span class="fw-bold text-light bg-dark p-1 rounded">
-                                    {{ $product->discount * 100}}%
-                                </span> --}}
-                                <span class="fw-bold">{{ $product->discount * 100 }}%</span>
-                                <div class="progress mt-2">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->discount * 100 }}%" aria-valuenow="{{ $product->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            @endif
+                            {{-- <span class="fw-bold text-light bg-dark p-1 rounded">
+                                {{ $product->discount * 100}}%
+                            </span> --}}
+                            <span class="fw-bold">{{ $product->discount * 100 }}%</span>
+                            <div class="progress mt-2">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->discount * 100 }}%" aria-valuenow="{{ $product->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </td>
 
                         <td>
-                            @if($product->discount > 0)
-                                <del class="text-danger">{{ $product->price }}</del>
-                                &RightArrow;
-                                <span class="text-success fw-bold">{{ $product->price - ($product->price * $product->discount) }}</span>
-                            @else($product->discount == 0)
-                                <span class="text-dark">{{ $product->price }}</span>
-                            @endif
+                            <del class="text-danger">{{ $product->price }}</del>
+                            &RightArrow;
+                            <span class="text-success fw-bold">{{ $product->price - ($product->price * $product->discount) }}</span>
                         </td>
 
                         <td>
@@ -128,9 +116,13 @@
 
                         <td>{{ $product->brand_name }}</td>
                         
-                        <td>{{ $product->user_supplier->name }}</td>
+                        <td>{{ $product->user_supplier->name ?? 'N/A' }}</td>
 
                         <td>{{ $product->created_at->format('(D) d-M-Y — h:m A') }}</td>
+
+                        <td>
+                            {{ isset($product->updated_at) ? $product->updated_at->format('(D) d-M-Y — h:m A') : 'N/A' }}
+                        </td>
 
                         <td>
                             @if(isset($product->create_user->name) == null)
@@ -140,35 +132,41 @@
                             @endif
                         </td>
 
-                        <td>{{ $product->deleted_at->format('(D) d-M-Y — h:m A') }}</td>
+                        <td>
+                            @if(isset($product->update_user->name) == null)
+                                {{ $product->update_user->username ?? 'N/A' }}
+                            @else
+                                {{ $product->update_user->name ?? 'N/A' }}
+                            @endif
+                        </td>
 
-                        {{-- <td>
-                            <a href="{{ route('final_products.index', [$product->id, $product->name]) }}" class="text-light text-decoration-none">
-                                <div class="bg-secondary text-center fw-bold px-0 py-2 rounded">Show..</div>
+                        <td class="text-center">
+                            <a href="{{ route('final_products.index', [$product->id, $product->name]) }}" class="text-decoration-none">
+                                <div class="bg-secondary text-white fw-bold px-0 py-2 rounded">Show..</div>
                             </a>
-                        </td> --}}
+                        </td>
 
                         @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
-                            <td class="text-center">
-                                {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm p-1 text-white">
-                                    <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-danger btn-sm p-1 text-white">
-                                    <i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete
-                                </a> --}}
-                                {!! Form::open([
-                                    'route' => ['all-products.forceDelete',$product->id],
-                                    'method' => 'delete'
-                                ])!!}
-                                <a href="{{route('all-products.restore', $product->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Edit '."- ($product->name)"}}"><i class="mdi mdi-backup-restore dashboard-admin-icon-action"></i> Restore</a>
-                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $product->name }}?');" type="submit" title="{{'Delete '."- ($product->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete </button>
-                                {!! Form::close() !!}
-                            </td>
+                        <td class="text-center">
+                            {{-- <a href="javascript:void(0);" class="btn btn-success btn-sm p-1 text-white">
+                                <i class="fas fa-edit dashboard-admin-icon-action"></i> Edit
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-danger btn-sm p-1 text-white">
+                                <i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete
+                            </a> --}}
+                            {!! Form::open([
+                                'route' => ['all-products.destroy',$product->id],
+                                'method' => 'delete'
+                            ])!!}
+                            <a href="{{route('all-products.edit', $product->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Edit '."- ($product->name)"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Edit</a>
+                            <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $product->name }}?');" type="submit" title="{{'Delete '."- ($product->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
+                            {!! Form::close() !!}
+                        </td>
                         @endif
                     </tr>
                     @empty
-                        <div class="alert alert-info text-center">
-                            <span class="h6">There are no deleted products details!</span>
+                        <div class="alert alert-danger text-center">
+                            <span class="h6">There are no products with discounts yet! <a href="{{ route('all-products.create') }}" class="fw-bold text-dark">Add products from here (and add a discount to it)</a>.</span>
                         </div>
                 @endforelse
             </tbody>

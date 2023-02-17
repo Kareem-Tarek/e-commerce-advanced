@@ -37,12 +37,12 @@ class CategoryRequest extends FormRequest
         return [
             //------------------- Customized method for ValidationException error messages! -------------------//
             // Validation "name"
-            'name.required'   => 'The "Name" field is required.',
-            'name.string'     => 'The "Name" field must be string.',
+            'name.required'   => 'The "Name" field is required!',
+            'name.string'     => 'The "Name" field must be string!',
             'name.unique'     => 'This category name has already been taken! please try another one.',
 
             // Validation "description"
-            'description.max' => 'The "Description" field must be 500 characters or less.',
+            'description.max' => 'The "Description" field must be 500 characters or less!',
 
             //------------------- NOT customized method for ValidationException error messages! -------------------//
             // 'required' => 'The category ":attribute" field is required.',

@@ -115,8 +115,30 @@
                 <ul class="nav flex-column sub-menu">
                   <li><span class="text-decoration-underline">Products Details</span> [ <i class="fa-solid fa-1"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('all-products.create') }}">Create Product Detail</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.index') }}">All Products Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.delete') }}">Deleted Products Details</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.index') }}">
+                      All Products Details 
+                      ({{ \App\Models\ProductDetail::all()->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.index-with-discounts') }}">
+                      ..With Discounts 
+                      ({{ \App\Models\ProductDetail::where('discount', '>', 0)->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.index-without-discounts') }}">
+                      ..Without Discounts 
+                      ({{ \App\Models\ProductDetail::where('discount', '=', 0)->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.delete') }}">
+                      Deleted Products Details 
+                      ({{ \App\Models\ProductDetail::onlyTrashed()->count() }})
+                    </a>
+                  </li>
                   <hr class="w-75">
                   <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
@@ -136,13 +158,35 @@
                 <ul class="nav flex-column sub-menu">
                   <li><span class="text-decoration-underline">Products Details</span> [ <i class="fa-solid fa-1"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('all-products.create') }}">Create Product Detail</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.index') }}">All My Products Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('all-products.delete') }}">My Deleted Products Details</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.index') }}">
+                      All Products Details 
+                      ({{ \App\Models\ProductDetail::where('supplier_id', auth()->user()->id)->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.index-with-discounts') }}">
+                      ..With Discounts 
+                      ({{ \App\Models\ProductDetail::where('discount', '>', 0)->where('supplier_id', auth()->user()->id)->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.index-without-discounts') }}">
+                      ..Without Discounts 
+                      ({{ \App\Models\ProductDetail::where('discount', '=', 0)->where('supplier_id', auth()->user()->id)->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all-products.delete') }}">
+                      Deleted Products Details 
+                      ({{ \App\Models\ProductDetail::where('supplier_id', auth()->user()->id)->onlyTrashed()->count() }})
+                    </a>
+                  </li>
                   <hr class="w-75">
                   <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All My Final Products</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">My Deleted Final Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Final Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Final Products</a></li>
                 </ul>
               </div>
             </li>

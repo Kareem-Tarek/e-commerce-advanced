@@ -38,15 +38,15 @@ class SubCategoryRequest extends FormRequest
         return [
             //------------------- Customized method for ValidationException error messages! -------------------//
             // Validation "name"
-            'name.required'   => 'The "Name" field is required.',
-            'name.string'     => 'The "Name" field must be string.',
+            'name.required'   => 'The "Name" field is required!',
+            'name.string'     => 'The "Name" field must be string!',
             'name.unique'     => 'This sub-category name has already been taken! please try another one.',
 
             // Validation "description"
-            'description.max' => 'The "Description" field must be 500 characters or less.',
+            'description.max' => 'The "Description" field must be 500 characters or less!',
 
             // Validation "cat_id"
-            'cat_id.required' => 'The "Category" field is required.',
+            'cat_id.required' => 'The "Category" field is required!',
 
             //------------------- NOT customized method for ValidationException error messages! -------------------//
             // 'required' => 'The sub-category ":attribute" field is required.',

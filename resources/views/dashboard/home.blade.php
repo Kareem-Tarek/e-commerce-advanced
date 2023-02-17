@@ -20,7 +20,7 @@
               {{-- <p class="mb-md-0">Your analytics page.</p> --}}
               <a href="{{ route('dashboard') }}" class="text-decoration-none">
                 <i class="mdi mdi-home text-muted"></i>
-                <span class="text-muted mb-0">
+                <span class="text-muted">
                   @if(auth()->user()->user_type == 'admin') 
                     Admin
                   @elseif(auth()->user()->user_type == 'moderator')
@@ -31,8 +31,8 @@
                   Dashboard
                 </span>
               </a>
-              &nbsp;/
-              <span class="text-primary mb-0">Analytics</span>
+              /
+              <span class="text-primary">Analytics</span>
             </div>
             {{-- <div class="d-flex">
               <a href="{{ route('dashboard') }}" class="text-decoration-none">
@@ -274,7 +274,7 @@
                     <i class="fa-solid fa-percent"></i>&nbsp;&nbsp;
                     <i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;&nbsp;
                     <div class="d-flex flex-column justify-content-around">
-                      <a href="javascript:void(0);" class="ancor-underline-color">
+                      <a href="{{ route('all-products.index-with-discounts') }}" class="ancor-underline-color">
                         <small class="mb-1 text-muted">With Discounts</small>
                       </a>
                       <h5 class="me-2 mb-0">
@@ -300,7 +300,7 @@
                     <i class="fa-solid fa-percent"></i>&nbsp;&nbsp;
                     <i class="fa-solid fa-circle-xmark"></i>&nbsp;&nbsp;&nbsp;
                     <div class="d-flex flex-column justify-content-around">
-                      <a href="javascript:void(0);" class="ancor-underline-color">
+                      <a href="{{ route('all-products.index-without-discounts') }}" class="ancor-underline-color">
                         <small class="mb-1 text-muted">Without Discounts</small>
                       </a>
                       <h5 class="me-2 mb-0">
