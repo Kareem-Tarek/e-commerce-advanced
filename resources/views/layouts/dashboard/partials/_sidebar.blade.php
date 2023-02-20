@@ -47,7 +47,7 @@
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Users</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Carts</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Contact Us Info</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-categories') }}">Categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}">Sub-categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Products</a></li>
                 </ul>
@@ -104,6 +104,7 @@
                   <li class="nav-item"><a class="nav-link" href="{{ route('categories.create') }}">Create Category</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">All Categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('categories.delete') }}">Deleted Categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-categories') }}"><i class="fas fa-file-excel"></i>&nbsp;Excel (Import/Export)</a></li>
                 </ul>
               </div>
             </li>
@@ -119,7 +120,7 @@
                   <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.create') }}">Create Sub-category</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.index') }}">All Sub-categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.delete') }}">Deleted Sub-categories</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}">Import/Export - &nbsp;<i class="fas fa-file-excel"></i>&nbsp;Excel</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}"><i class="fas fa-file-excel"></i>&nbsp;Excel (Import/Export)</a></li>
                 </ul>
               </div>
             </li>

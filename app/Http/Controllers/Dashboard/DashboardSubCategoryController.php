@@ -263,7 +263,7 @@ class DashboardSubCategoryController extends Controller
  
     public function importSubCategories(Request $request){
         $rules = [
-            'importing_input'          => 'required|mimes:xlx,xls',
+            'importing_input'          => 'required|mimes:xlsx,xlx,xls',
         ];
 
         $messages = [
@@ -278,7 +278,7 @@ class DashboardSubCategoryController extends Controller
             $request->file('importing_input')->store('files')
         );
 
-        return redirect()->back()->with(['imported_file_successfully' => "Your file has been imported successfully!"]);
+        return redirect()->back()->with(['imported_file_successfully' => 'Your file has been imported to "Sub-categories" successfully!']);
     }
  
     public function exportSubCategories(){

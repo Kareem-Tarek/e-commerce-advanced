@@ -9,6 +9,9 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportCategory;
+use App\Exports\ExportCategory;
 
 class DashboardCategoryController extends Controller
 {
@@ -260,6 +263,35 @@ class DashboardCategoryController extends Controller
         Category::where('id', $id)->forceDelete();
         return redirect()->route('categories.delete')
             ->with(['permanent_deleted_category_message' => "Permanently deleted successfully!"]);
+    }
+
+    public function importExportViewCategories(){
+        return view('dashboard.categories.excel_imports_exports.import_export_file');
+    }
+ 
+    public function importCategories(Request $request){
+        $rules = [
+            'importing_input'          => 'required|mimes:xlsx,xlx,xls',
+        ];
+
+        $messages = [
+            'importing_input.required' => "You didn't upload an Excel file! Please try again.",
+            'importing_input.mimes'    => "The file's extension you uploaded isn't allowed to be chosen! Please try again.",
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        Excel::import(
+            new ImportCategory, 
+            $request->file('importing_input')->store('files')
+        );
+
+        return redirect()->back()->with(['imported_file_successfully' => 'Your file has been imported to "Categories" successfully!']);
+    }
+ 
+    public function exportCategories(){
+        return Excel::download(new ExportCategory, Carbon::now()->format('dmys').'_'.'categories.xlsx');
+            // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 
 }

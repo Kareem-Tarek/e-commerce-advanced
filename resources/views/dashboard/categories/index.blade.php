@@ -9,11 +9,10 @@
     <div class="col-md-12 grid-margin">
       <div class="d-flex justify-content-end flex-wrap">
         <div class="d-flex justify-content-between align-items-end flex-wrap">
-          <button type="button" class="btn btn-light bg-white btn-icon me-3 d-none d-md-block ">
-            <i class="mdi mdi-download text-muted"></i>
-          </button>
-          <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-            <i class="mdi mdi-clock-outline text-muted"></i>
+          <button type="button" onclick="window.location.href='{{ route('import-export-view-categories') }}'" class="btn btn-dark bg-success me-3 mt-2 mt-xl-0">
+            <i class="mdi mdi-upload"></i>
+            <i class="mdi mdi-download"></i>
+            <span>Import/Export into/from "Excel" file</span>
           </button>
           <a href="{{ route('categories.create') }}" class="btn btn-primary text-light">
             <i class="fa-solid fa-plus"></i>

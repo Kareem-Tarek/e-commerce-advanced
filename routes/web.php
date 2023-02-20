@@ -118,6 +118,11 @@ Route::group([
         Route::get('/category/delete', [DashboardCategoryController::class, 'delete'])->name('categories.delete');
         Route::get('/category/restore/{id}/', [DashboardCategoryController::class, 'restore'])->name('categories.restore');
         Route::delete('/category/forceDelete/{id}/', [DashboardCategoryController::class, 'forceDelete'])->name('categories.forceDelete');
+        /***** Start excel routes for categories (view, import & export functionalities) *****/
+        Route::get('/category/excel-import-export', [DashboardCategoryController::class,'importExportViewCategories'])->name('import-export-view-categories');
+        Route::post('/category/import', [DashboardCategoryController::class,'importCategories'])->name('import-categories');
+        Route::get('/category/export', [DashboardCategoryController::class,'exportCategories'])->name('export-categories');
+        /***** End excel routes for categories (view, import & export functionalities) *****/
         /********************** End categories routes. **********************/
 
         /********************** Start sub-categories routes. **********************/

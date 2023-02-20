@@ -9,10 +9,6 @@
     <div class="col-md-12 grid-margin">
       <div class="d-flex justify-content-end flex-wrap">
         <div class="d-flex justify-content-between align-items-end flex-wrap">
-          {{-- <a href="{{ route('export-view-sub-categories') }}" class="btn btn-success text-light px-2 py-1">
-            <i class="mdi mdi-download"></i>
-            <span>Import/Export into Excel file</span>
-          </a> --}}
           <button type="button" onclick="window.location.href='{{ route('import-export-view-sub-categories') }}'" class="btn btn-dark bg-success me-3 mt-2 mt-xl-0">
             <i class="mdi mdi-upload"></i>
             <i class="mdi mdi-download"></i>
