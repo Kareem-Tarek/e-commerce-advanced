@@ -16,10 +16,10 @@ class ImportSubCategory implements ToModel
     public function model(array $row)
     {
         return new SubCategory([
-            'name'        => $row[0],
-            'description' => $row[1],
-            'cat_id'      => $row[2],
-            'created_at'  => Carbon::now(),
+            'name'        => $row[0], //1st row
+            'description' => $row[1], //2nd row
+            'cat_id'      => $row[2], //3rd row
+            'updated_at'  => null,
         ]);
     }
 }

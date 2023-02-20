@@ -14,6 +14,7 @@
             <span>Import/Export into Excel file</span>
           </a> --}}
           <button type="button" onclick="window.location.href='{{ route('import-export-view-sub-categories') }}'" class="btn btn-dark bg-success me-3 mt-2 mt-xl-0">
+            <i class="mdi mdi-upload"></i>
             <i class="mdi mdi-download"></i>
             <span>Import/Export into/from "Excel" file</span>
           </button>
@@ -47,7 +48,7 @@
                   </span>
                 </a>
                 <p class="text-muted mb-0">
-                    &nbsp;/&nbsp;
+                    &nbsp;/
                     All Sub-categories
                 </p>
             </div>

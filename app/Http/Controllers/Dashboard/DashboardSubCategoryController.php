@@ -262,13 +262,28 @@ class DashboardSubCategoryController extends Controller
     }
  
     public function importSubCategories(Request $request){
-        Excel::import(new ImportSubCategory,
-                      $request->file('input_file_for_importing')->store('files'));
-        return redirect()->back();
+        $rules = [
+            'importing_input'          => 'required|mimes:xlx,xls',
+        ];
+
+        $messages = [
+            'importing_input.required' => "You didn't upload an Excel file! Please try again.",
+            'importing_input.mimes'    => "The file's extension you uploaded isn't allowed to be chosen! Please try again.",
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        Excel::import(
+            new ImportSubCategory, 
+            $request->file('importing_input')->store('files')
+        );
+
+        return redirect()->back()->with(['imported_file_successfully' => "Your file has been imported successfully!"]);
     }
  
-    public function exportSubCategories(Request $request){
-        return Excel::download(new ExportSubCategory, Carbon::now()->format('dmyhms').'-'.'sub-categories.xlsx');
+    public function exportSubCategories(){
+        return Excel::download(new ExportSubCategory, Carbon::now()->format('dmys').'_'.'subcategories.xlsx');
+            // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 
 }

@@ -44,7 +44,12 @@
               </a>
               <div class="collapse" id="ui-basic-excel">
                 <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Users</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Carts</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Contact Us Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}">Sub-categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Products</a></li>
                 </ul>
               </div>
             </li>
