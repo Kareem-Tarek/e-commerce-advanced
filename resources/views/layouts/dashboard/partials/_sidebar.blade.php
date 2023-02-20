@@ -139,7 +139,8 @@
                       ({{ \App\Models\ProductDetail::onlyTrashed()->count() }})
                     </a>
                   </li>
-                  <hr class="w-75">
+                  {{-- <hr class="w-75"> --}}
+                  <li>&downarrow;</li>
                   <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.delete') }}">Deleted Final Products</a></li>

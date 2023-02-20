@@ -137,6 +137,7 @@ class DashboardFinalProductController extends Controller
             }
             if(auth()->user()->user_type == "supplier"){
                 $final_product->supplier_id = auth()->user()->id;
+                // $final_product->update_user_id = $request->color;
             }
             else{
                 $final_product->supplier_id = $request->supplier_id;

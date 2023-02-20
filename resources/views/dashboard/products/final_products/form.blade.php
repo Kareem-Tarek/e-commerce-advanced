@@ -38,7 +38,7 @@
 <div class="form-group">
     <label>Size <span class="text-danger">*</span></label>
     <select name="size" class="form-control select" value="{{Request::old('size') ? Request::old('size') : $FinalProduct_model->size}}">
-        <option value="" disabled selected>---------- Please select a size ----------</option>
+        <option value="" selected>---------- Please select a size ----------</option>
         <option value="XS" {{ $FinalProduct_model->size == "XS" ? 'selected' : '' }}>XS</option>
         <option value="S" {{ $FinalProduct_model->size == "S" ? 'selected' : '' }}>S</option>
         <option value="M" {{ $FinalProduct_model->size == "M" ? 'selected' : '' }}>M</option>
@@ -53,24 +53,26 @@
 <div class="form-group">
     <label>Color <span class="text-danger">*</span></label>
     <select name="color" class="form-control select" value="{{Request::old('color') ? Request::old('color') : $FinalProduct_model->color}}">
-        <option value="" disabled selected>---------- Please select a color ----------</option>
-        <option value="red" {{ $FinalProduct_model->color == 'red' ? 'selected' : '' }}>Red</option>
-        <option value="blue" {{ $FinalProduct_model->color == 'blue' ? 'selected' : '' }}>Blue</option>
-        <option value="darkcyan" {{ $FinalProduct_model->color == 'darkcyan' ? 'selected' : '' }}>Dark Cyan</option>
-        <option value="cyan" {{ $FinalProduct_model->color == 'cyan' ? 'selected' : '' }}>Cyan</option>
-        <option value="yellow" {{ $FinalProduct_model->color == 'yellow' ? 'selected' : '' }}>Yellow</option>
-        <option value="gold" {{ $FinalProduct_model->color == 'gold' ? 'selected' : '' }}>Gold</option>
-        <option value="rgb(241, 148, 47)" {{ $FinalProduct_model->color == 'rgb(241, 148, 47)' ? 'selected' : '' }}>Orange</option>
-        <option value="rgb(126, 57, 57)" {{ $FinalProduct_model->color == 'rgb(126, 57, 57)' ? 'selected' : '' }}>Brown</option>
-        <option value="grey" {{ $FinalProduct_model->color == 'grey' ? 'selected' : '' }}>Grey</option>
-        <option value="rgb(217, 128, 128)" {{ $FinalProduct_model->color == 'rgb(217, 128, 128)' ? 'selected' : '' }}>Light Red</option>
-        <option value="beige" {{ $FinalProduct_model->color == 'beige' ? 'selected' : '' }}>Beige</option>
-        <option value="olive" {{ $FinalProduct_model->color == 'olive' ? 'selected' : '' }}>Olive</option>
-        <option value="white" {{ $FinalProduct_model->color == 'white' ? 'selected' : '' }}>White</option>
-        <option value="rgb(145, 57, 124)" {{ $FinalProduct_model->color == 'rgb(145, 57, 124)' ? 'selected' : '' }}>Light Purple</option>
-        <option value="green" {{ $FinalProduct_model->color == 'green' ? 'selected' : '' }}>Green</option>
-        <option value="rgb(50, 177, 164)" {{ $FinalProduct_model->color == 'rgb(50, 177, 164)' ? 'selected' : '' }}>Greenish Blue</option>
-        <option value="rgb(207, 84, 137)" {{ $FinalProduct_model->color == 'rgb(207, 84, 137)' ? 'selected' : '' }}>Light Pinkish Red</option>
+        <option value="" selected>---------- Please select a color ----------</option>
+        <option value="#800000" class="text-white" style="background-color: #800000;" {{ $FinalProduct_model->color == '#800000' ? 'selected' : '' }}>Dark Red</option>
+        <option value="red" class="text-white" style="background-color: red;" {{ $FinalProduct_model->color == 'red' ? 'selected' : '' }}>Red</option>
+        <option value="rgb(241, 148, 47)" style="background-color: rgb(241, 148, 47);" class="text-white" {{ $FinalProduct_model->color == 'rgb(241, 148, 47)' ? 'selected' : '' }}>Orange</option>
+        <option value="gold" class="text-dark" style="background-color: gold;" {{ $FinalProduct_model->color == 'gold' ? 'selected' : '' }}>Gold</option>
+        <option value="yellow" class="text-dark" style="background-color: yellow;" {{ $FinalProduct_model->color == 'yellow' ? 'selected' : '' }}>Yellow</option>
+        <option value="rgb(145, 57, 124)" class="text-white" style="background-color: rgb(145, 57, 124);" {{ $FinalProduct_model->color == 'rgb(145, 57, 124)' ? 'selected' : '' }}>Light Purple</option>
+        <option value="rgb(207, 84, 137)" class="text-white" style="background-color: rgb(207, 84, 137);" {{ $FinalProduct_model->color == 'rgb(207, 84, 137)' ? 'selected' : '' }}>Light Pinkish Red</option>
+        <option value="rgb(217, 128, 128)" style="background-color: rgb(217, 128, 128);" class="text-white" {{ $FinalProduct_model->color == 'rgb(217, 128, 128)' ? 'selected' : '' }}>Light Red</option>
+        <option value="#000080" class="text-white" style="background-color: #000080;" {{ $FinalProduct_model->color == '#000080' ? 'selected' : '' }}>Navy Blue</option>
+        <option value="blue" class="text-white" style="background-color: blue;" {{ $FinalProduct_model->color == 'blue' ? 'selected' : '' }}>Blue</option>
+        <option value="darkcyan" class="text-white" style="background-color: darkcyan;" {{ $FinalProduct_model->color == 'darkcyan' ? 'selected' : '' }}>Dark Cyan</option>
+        <option value="cyan" class="text-dark" style="background-color: cyan;" {{ $FinalProduct_model->color == 'cyan' ? 'selected' : '' }}>Cyan</option>
+        <option value="rgb(126, 57, 57)" class="text-white" style="background-color: rgb(126, 57, 57);" {{ $FinalProduct_model->color == 'rgb(126, 57, 57)' ? 'selected' : '' }}>Brown</option>
+        <option value="grey" class="text-white" style="background-color: grey;" {{ $FinalProduct_model->color == 'grey' ? 'selected' : '' }}>Grey/Gray</option>
+        <option value="olive" class="text-white" style="background-color: olive;"  {{ $FinalProduct_model->color == 'olive' ? 'selected' : '' }}>Olive</option>
+        <option value="beige" class="text-dark" style="background-color: beige;"  {{ $FinalProduct_model->color == 'beige' ? 'selected' : '' }}>Beige</option>
+        <option value="white" class="text-white" style="background-color: white;" {{ $FinalProduct_model->color == 'white' ? 'selected' : '' }}>White</option>
+        <option value="green" class="text-white" style="background-color: green;" {{ $FinalProduct_model->color == 'green' ? 'selected' : '' }}>Green</option>
+        <option value="rgb(50, 177, 164)" class="text-white" style="background-color: rgb(50, 177, 164);" {{ $FinalProduct_model->color == 'rgb(50, 177, 164)' ? 'selected' : '' }}>Greenish Blue</option>
     </select>
     <div class="d-flex @if(Route::is('products.edit')) d-block @else d-none @endif">
         Live:&nbsp;

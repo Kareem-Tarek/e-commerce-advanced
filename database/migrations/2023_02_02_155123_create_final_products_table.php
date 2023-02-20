@@ -17,7 +17,7 @@ return new class extends Migration
             //$table->id();
             $table->bigIncrements('id');
             $table->string('image');
-            $table->enum('size' , ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']);
+            $table->enum('size' , ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL']);
             $table->string('color');
             $table->integer('available_quantity');
             //Start Fks
