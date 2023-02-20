@@ -34,8 +34,18 @@
         <h4 class="card-title">Products</h4>
         <p class="card-description">
             <div class="d-flex mb-3">
-                <a href="{{ route('dashboard') }}">
-                    <i class="mdi mdi-home text-muted hover-cursor"></i>
+                <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                  <i class="mdi mdi-home text-primary"></i>
+                  <span class="text-primary">
+                    @if(auth()->user()->user_type == 'admin') 
+                      Admin
+                    @elseif(auth()->user()->user_type == 'moderator')
+                      Moderator
+                    @else
+                      Supplier 
+                    @endif 
+                    Dashboard
+                  </span>
                 </a>
                 <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
@@ -48,15 +58,26 @@
                     </a>
                     &nbsp;/&nbsp;
                     @if(auth()->user()->user_type == "supplier")
-                        All My Products Varieties That Belongs To
+                        All My Products That Belongs To
                     @else
-                        All Products Varieties That Belongs To
+                        All Products That Belongs To
                     @endif
                     &nbsp;
                 </p>
                     &RightArrow;
-                    &nbsp;
                 "<p class="text-success fw-bold mb-0">{{ ucfirst($product_detail->name) }}</p>"
+                &nbsp;
+                <p class="text-decoration-underline">
+                    @if($product_detail->discount == 0)
+                        (Without Discounts&nbsp;
+                        <i class="fa-solid fa-percent"></i>
+                        <i class="fa-solid fa-circle-xmark"></i>)
+                    @else
+                        (With Discounts&nbsp;
+                        <i class="fa-solid fa-percent"></i>
+                        <i class="fa-solid fa-circle-check"></i>)
+                    @endif
+                </p>
             </div>
             @if(session()->has('added_final_products_message'))
                 <div class="alert alert-success text-center">
@@ -76,7 +97,7 @@
                 <th class="fw-bold">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
                 <th class="text-center">ID</th>
-                <th>Name</th>
+                {{-- <th class="text-center">Name</th> --}}
                 <th class="text-center">Image</th>
                 <th class="text-center">Size</th>
                 <th class="text-center">Color</th>
@@ -103,7 +124,7 @@
 
                         <td class="fw-bold">{{ $product->id }}</td>
 
-                        <td>{{ $product->productDetail->name }}</td>
+                        {{-- <td>{{ $product->productDetail->name }}</td> --}}
 
                         <td class="py-1"><img src="{{ $product->image }}" alt="No img!"/></td>
 

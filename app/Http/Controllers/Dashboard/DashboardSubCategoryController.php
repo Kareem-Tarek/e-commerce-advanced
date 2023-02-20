@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\SubCategory;
 use App\Models\Category;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportSubCategory;
+use App\Exports\ExportSubCategory;
 
 class DashboardSubCategoryController extends Controller
 {
@@ -254,6 +255,20 @@ class DashboardSubCategoryController extends Controller
         SubCategory::where('id', $id)->forceDelete();
         return redirect()->route('subcategories.delete')
             ->with(['permanent_deleted_sub_category_message' => "Permanently deleted successfully!"]);
+    }
+
+    public function importExportViewSubCategories(){
+        return view('dashboard.sub_categories.excel_imports_exports.import_export_file');
+    }
+ 
+    public function importSubCategories(Request $request){
+        Excel::import(new ImportSubCategory,
+                      $request->file('input_file_for_importing')->store('files'));
+        return redirect()->back();
+    }
+ 
+    public function exportSubCategories(Request $request){
+        return Excel::download(new ExportSubCategory, Carbon::now()->format('dmyhms').'-'.'sub-categories.xlsx');
     }
 
 }

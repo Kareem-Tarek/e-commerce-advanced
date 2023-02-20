@@ -30,14 +30,20 @@
         <h4 class="card-title">Categories</h4>
         <p class="card-description">
             <div class="d-flex mb-3">
-                <a href="{{ route('dashboard') }}">
-                    <i class="mdi mdi-home text-muted hover-cursor"></i>
+                <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                  <i class="mdi mdi-home text-primary"></i>
+                  <span class="text-primary">
+                    @if(auth()->user()->user_type == 'admin') 
+                      Admin
+                    @else
+                      Moderator 
+                    @endif 
+                    Dashboard
+                  </span>
                 </a>
-                <p class="text-muted mb-0 hover-cursor">
+                <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
-                    <a href="javascript:void(0);" class="text-decoration-none">
-                        All Deleted Categories
-                    </a>
+                    All Deleted Categories
                 </p>
             </div>
             @if(session()->has('restored_category_message'))

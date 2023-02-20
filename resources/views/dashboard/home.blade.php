@@ -19,8 +19,8 @@
               <h6 class="text-secondary mb-3">Last login at: {{ date('(D) d-m-Y h:m A', strtotime(auth()->user()->last_login_at)) }}</h6>
               {{-- <p class="mb-md-0">Your analytics page.</p> --}}
               <a href="{{ route('dashboard') }}" class="text-decoration-none">
-                <i class="mdi mdi-home text-muted"></i>
-                <span class="text-muted">
+                <i class="mdi mdi-home text-primary"></i>
+                <span class="text-primary">
                   @if(auth()->user()->user_type == 'admin') 
                     Admin
                   @elseif(auth()->user()->user_type == 'moderator')
@@ -32,11 +32,11 @@
                 </span>
               </a>
               /
-              <span class="text-primary">Analytics</span>
+              <span class="text-muted">Analytics</span>
             </div>
             {{-- <div class="d-flex">
               <a href="{{ route('dashboard') }}" class="text-decoration-none">
-                <i class="mdi mdi-home text-muted"></i>
+                <i class="mdi mdi-home text-primary"></i>
                 <span class="text-muted mb-0">
                   @if(auth()->user()->user_type == 'admin') 
                     Admin

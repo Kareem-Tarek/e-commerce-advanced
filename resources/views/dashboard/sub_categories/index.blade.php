@@ -9,12 +9,17 @@
     <div class="col-md-12 grid-margin">
       <div class="d-flex justify-content-end flex-wrap">
         <div class="d-flex justify-content-between align-items-end flex-wrap">
-          <button type="button" class="btn btn-light bg-white btn-icon me-3 d-none d-md-block ">
-            <i class="mdi mdi-download text-muted"></i>
+          {{-- <a href="{{ route('export-view-sub-categories') }}" class="btn btn-success text-light px-2 py-1">
+            <i class="mdi mdi-download"></i>
+            <span>Import/Export into Excel file</span>
+          </a> --}}
+          <button type="button" onclick="window.location.href='{{ route('import-export-view-sub-categories') }}'" class="btn btn-dark bg-success me-3 mt-2 mt-xl-0">
+            <i class="mdi mdi-download"></i>
+            <span>Import/Export into Excel file</span>
           </button>
-          <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
+          {{-- <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
             <i class="mdi mdi-clock-outline text-muted"></i>
-          </button>
+          </button> --}}
           <a href="{{ route('subcategories.create') }}" class="btn btn-primary text-light">
             <i class="fa-solid fa-plus"></i>
             <span>Add Sub-category</span>
@@ -30,8 +35,16 @@
         <h4 class="card-title">Sub-categories</h4>
         <p class="card-description">
             <div class="d-flex mb-3">
-                <a href="{{ route('dashboard') }}">
-                    <i class="mdi mdi-home text-muted hover-cursor"></i>
+                <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                  <i class="mdi mdi-home text-primary"></i>
+                  <span class="text-primary">
+                    @if(auth()->user()->user_type == 'admin') 
+                      Admin
+                    @else
+                      Moderator 
+                    @endif 
+                    Dashboard
+                  </span>
                 </a>
                 <p class="text-muted mb-0">
                     &nbsp;/&nbsp;

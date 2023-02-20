@@ -82,11 +82,12 @@ Route::get('/coming-soon', [ComingSoonController::class, 'index'])->name('coming
 //-------------------------------------- END Website Routes --------------------------------------//
 
 
+
+
 //-------------------------------------- START Dashboard Routes --------------------------------------//
 Route::group([
     'middleware' => ['auth', 'dashboard']
 ], function () {
-
     Route::prefix('dashboard')->group(function () {
         Route::group([], function () {    //group function for dashboard "home" route (same route name "dashboard")
             Route::get('/home', [DashboardHomeController::class, 'index'])->name('dashboard');
@@ -124,12 +125,16 @@ Route::group([
         Route::get('/subcategory/delete', [DashboardSubCategoryController::class, 'delete'])->name('subcategories.delete');
         Route::get('/subcategory/restore/{id}/', [DashboardSubCategoryController::class, 'restore'])->name('subcategories.restore');
         Route::delete('/subcategory/forceDelete/{id}/', [DashboardSubCategoryController::class, 'forceDelete'])->name('subcategories.forceDelete');
+        /***** Start excel routes for sub-categories (view, import & export functionalities) *****/
+        Route::get('/subcategory/excel-import-export', [DashboardSubCategoryController::class,'importExportViewSubCategories'])->name('import-export-view-sub-categories');
+        Route::post('/subcategory/import', [DashboardSubCategoryController::class,'importSubCategories'])->name('import-sub-categories');
+        Route::get('/subcategory/export', [DashboardSubCategoryController::class,'exportSubCategories'])->name('export-sub-categories');
+        /***** End excel routes for sub-categories (view, import & export functionalities) *****/
         /********************** End sub-categories routes. **********************/
 
         /********************** Start settings routes. **********************/
         Route::resource('/settings', DashboardSettingController::class);
         /********************** End settings routes. **********************/
     });
-
 });
 //-------------------------------------- END Dashboard Routes --------------------------------------//
