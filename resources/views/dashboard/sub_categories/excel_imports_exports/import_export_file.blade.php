@@ -47,14 +47,14 @@
                 </p>
                 <p class="text-muted mb-0">
                     &nbsp;/&nbsp;
-                    Import & Export Sub-categories from/to excel file
+                    Import & Export Sub-categories from/to Excel file
                 </p>
             </div>
          <div class="container">
              <div class="card bg-light mt-3">
                     <div class="card-header">
-                        Import and Export Excel data
-                        to database
+                        Import/Export Excel data
+                        to/from database
                     </div>
                     <div class="card-body">
                         <form action="{{ route('import-sub-categories') }}" method="POST" enctype="multipart/form-data">

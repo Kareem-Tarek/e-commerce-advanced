@@ -37,6 +37,19 @@
             </li> 
 
             <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-excel" aria-expanded="false" aria-controls="ui-basic-excel">
+                <i class="fas fa-file-excel menu-icon"></i>
+                <span class="menu-title">Excel (Import/Export)</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic-excel">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}">Sub-categories</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic-users">
                 <i class="mdi mdi-account-multiple menu-icon"></i>
                 <span class="menu-title">Users</span>
@@ -101,6 +114,7 @@
                   <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.create') }}">Create Sub-category</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.index') }}">All Sub-categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('subcategories.delete') }}">Deleted Sub-categories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}">Import/Export - &nbsp;<i class="fas fa-file-excel"></i>&nbsp;Excel</a></li>
                 </ul>
               </div>
             </li>
