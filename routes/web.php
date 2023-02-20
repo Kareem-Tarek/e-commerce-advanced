@@ -16,7 +16,7 @@ use App\Http\Controllers\ErrorsController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ComingSoonController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 //End Website Controllers
 
 /*
@@ -47,7 +47,12 @@ Route::get('/error-404', [ErrorsController::class, 'index'])->name('error-404');
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
 /********************** Start users routes. **********************/
-Route::get('/my-profile', [UserController::class, 'index'])->name('profile-management');
+Route::group([
+    'middleware' => ['auth']
+], function () {
+    Route::get('/my-profile', [UserProfileController::class, 'edit_my_profile'])->name('profile-management');
+    Route::patch('/my-profile/update', [UserProfileController::class, 'update_my_profile'])->name('update-my-profile');
+});
 /********************** End users routes. **********************/
 
 /********************** Start contact us routes. **********************/
@@ -90,18 +95,16 @@ Route::group([
 
         /********************** Start products routes. **********************/
         Route::resource('/all-products', DashboardProductDetailController::class);
-        // Route::get('/all-products', [DashboardProductDetailController::class, 'index_general_for_products'])->name('products-details.index');
-        Route::get('/all-products-with-discounts', [DashboardProductDetailController::class, 'index_with_discounts'])->name('all-products.index-with-discounts');
-        Route::get('/all-products-without-discounts', [DashboardProductDetailController::class, 'index_without_discounts'])->name('all-products.index-without-discounts');
-
+        Route::get('/all-products-with-discounts', [DashboardProductDetailController::class, 'index_with_discounts'])->name('all-products.index-with-discounts');//index of products (with discounts)
+        Route::get('/all-products-without-discounts', [DashboardProductDetailController::class, 'index_without_discounts'])->name('all-products.index-without-discounts');//index of products (without discounts)
         Route::get('/all-product/delete', [DashboardProductDetailController::class, 'delete'])->name('all-products.delete');
         Route::get('/all-product/restore/{id}/', [DashboardProductDetailController::class, 'restore'])->name('all-products.restore');
         Route::delete('/all-product/forceDelete/{id}/', [DashboardProductDetailController::class, 'forceDelete'])->name('all-products.forceDelete');
 
         
-        Route::resource('/products', DashboardFinalProductController::class);
+        Route::resource('/products', DashboardFinalProductController::class)->except(['index']);
         //this route replaces the "index" function from "DashboardFinalProductController"//
-        Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('final_products.index');
+        Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('final_products.index'); //index of products of products
         //////////////////////////////////////////////////////////////////////////////////
         Route::get('/product/delete', [DashboardFinalProductController::class, 'delete'])->name('products.delete');
         Route::get('/product/restore/{id}/', [DashboardFinalProductController::class, 'restore'])->name('products.restore');

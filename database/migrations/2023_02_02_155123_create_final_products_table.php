@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('final_products', function (Blueprint $table) {
             //$table->id();
             $table->bigIncrements('id');
+            $table->string('image');
             $table->enum('size' , ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']);
             $table->string('color');
-            $table->string('available_quantity');
-            $table->string('image');
+            $table->integer('available_quantity');
             //Start Fks
             $table->string('product_id');
-            $table->string('supplier_id'); //
-            //End FKs
+            $table->string('supplier_id');
             $table->integer('create_user_id')->nullable();
             $table->integer('update_user_id')->nullable();
+            //End FKs
             $table->timestamps();
             $table->softDeletes();
         });

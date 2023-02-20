@@ -2,9 +2,9 @@
 
 @section('title') 
     @if(auth()->user()->user_type == "supplier")
-        My Products ({{ $product_detail->name }})
+        My Products ({{ ucfirst($product_detail->name) }})
     @else
-        Products ({{ $product_detail->name }})
+        Products ({{ ucfirst($product_detail->name) }})
     @endif
 @endsection
 
@@ -21,7 +21,7 @@
           </button>
           <a href="{{ route('products.create') }}" class="btn btn-primary text-light">
             <i class="fa-solid fa-plus"></i>
-            <span>Add Product Variety (for "{{ $product_detail->name }}")</span>
+            <span>Add Product Variety (for "{{ ucfirst($product_detail->name) }}")</span>
           </a>
         </div>
       </div>
@@ -56,8 +56,14 @@
                 </p>
                     &RightArrow;
                     &nbsp;
-                "<p class="text-success fw-bold mb-0">{{ $product_detail->name }}</p>"
+                "<p class="text-success fw-bold mb-0">{{ ucfirst($product_detail->name) }}</p>"
             </div>
+            @if(session()->has('added_final_products_message'))
+                <div class="alert alert-success text-center">
+                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                  {{ session()->get('added_final_products_message') }} 
+                </div>
+            @endif
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">
                 Results (<span class="fw-bold">{{ $final_products_count }}</span>)
@@ -69,8 +75,9 @@
               <tr class="bg-dark text-light">
                 <th class="fw-bold">#</th>
                 {{-- <th class="text-center text-white" style="background-color: rgb(129, 170, 247);">ID</th> --}}
+                <th class="text-center">ID</th>
+                <th>Name</th>
                 <th class="text-center">Image</th>
-                <th class="text-center">Name</th>
                 <th class="text-center">Size</th>
                 <th class="text-center">Color</th>
                 <th class="text-center">Discount</th>
@@ -80,6 +87,8 @@
                 <th class="text-center">Sub-category</th>
                 <th class="text-center">Brand Name</th>
                 <th class="text-center">Supplier</th>
+                <th class="text-center">Created at</th>
+                <th class="text-center">Updated at</th>
                 @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                     <th class="text-center">Action</th>
                 @endif
@@ -92,9 +101,11 @@
 
                         {{-- <td class="fw-bold text-primary">{{ $product->product_id }}</td> --}}
 
-                        <td class="py-1"><img src="{{ $product->image }}" alt="img Not Found!"/></td>
+                        <td class="fw-bold">{{ $product->id }}</td>
 
                         <td>{{ $product->productDetail->name }}</td>
+
+                        <td class="py-1"><img src="{{ $product->image }}" alt="No img!"/></td>
 
                         <td>{{ $product->size }}</td>
 
@@ -130,7 +141,7 @@
                         </td>
 
                         <td class="text-center">
-                            @if($product->available_quantity <= 5 && (auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"))
+                            {{-- @if($product->available_quantity <= 5 && (auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"))
                                 <span class="text-danger">{{ $product->available_quantity }}</span>
                                 <hr>
                                 <a href="javascript:void(0);" class="text-dark text-decoration-none">
@@ -146,7 +157,23 @@
                                         Add more quantity!
                                     </div>
                                 </a>
-                            @else
+                            @endif --}}
+
+                            @if($product->available_quantity <= 5)
+                                @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator")
+                                    <span class="text-danger">{{ $product->available_quantity }}</span>
+                                    <hr>
+                                    <a href="javascript:void(0);" class="text-dark text-decoration-none">
+                                        <div class="bg-warning px-0 py-1 rounded">Inform supplier!</div>
+                                    </a>
+                                @else(auth()->user()->user_type == "supplier")
+                                    <span class="text-danger">{{ $product->available_quantity }}</span>
+                                    <hr>
+                                    <a href="javascript:void(0);" class="text-dark text-decoration-none">
+                                        <div class="bg-warning px-0 py-1 rounded">Add more quantity!</div>
+                                    </a>
+                                @endif
+                            @else($product->available_quantity > 5)
                                 <span>{{ $product->available_quantity }}</span>
                             @endif
                         </td>
@@ -163,6 +190,10 @@
                         
                         <td>{{ $product->productDetail->user_supplier->name }}</td>
 
+                        <td>{{ $product->created_at->format('(D) d-M-Y — h:m A') }}</td>
+
+                        <td>{{ isset($product->updated_at) ? $product->updated_at->format('(D) d-M-Y — h:m A') : '—' }}</td>
+
                         @if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "supplier")
                             <td class="text-center">
                                 {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm p-1 text-white">
@@ -177,7 +208,7 @@
                                 ])!!}
                                 @php $product_name = $product->productDetail->name @endphp
                                 <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Edit '."- $product_name [$product->id]"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Edit</a>
-                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $product_name }}?');" type="submit" title="{{'Delete '."- $product_name [$product->id]"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
+                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $product_name }}?');" type="submit" title="{{'Delete '."- $product_name [$product->id]"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete</button>
                                 {!! Form::close() !!}
                             </td>
                         @endif

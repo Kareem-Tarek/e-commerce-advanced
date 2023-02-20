@@ -142,8 +142,7 @@
                   <hr class="w-75">
                   <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Final Products</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Final Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products.delete') }}">Deleted Final Products</a></li>
                 </ul>
               </div>
             </li>
@@ -182,11 +181,11 @@
                       ({{ \App\Models\ProductDetail::where('supplier_id', auth()->user()->id)->onlyTrashed()->count() }})
                     </a>
                   </li>
-                  <hr class="w-75">
+                  {{-- <hr class="w-75"> --}}
+                  <li>&downarrow;</li>
                   <li><span class="text-decoration-underline">Final Products</span> [ <i class="fa-solid fa-2"></i> ]</li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('products.create') }}">Create Final Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Final Products</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Final Products</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('products.delete') }}">Deleted Final Products</a></li>
                 </ul>
               </div>
             </li>

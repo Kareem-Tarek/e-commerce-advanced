@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.master')
 
 @section('title')
-  Home
+  Dashboard Home
 @endsection
 <style>
   .ancor-underline-color{

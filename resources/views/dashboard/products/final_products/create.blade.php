@@ -1,9 +1,8 @@
 @extends('layouts.dashboard.master')
-@inject('ProductDetail_model', 'App\Models\ProductDetail')
 @inject('FinalProduct_model', 'App\Models\FinalProduct')
 
 @section('title')
-    Create Product
+    Create Final Product
 @endsection
 
 @section('content')
@@ -12,7 +11,7 @@
       <div class="card-body">
             <h4 class="card-title">Products</h4>
             <p class="card-description">
-                Add Product
+                Add Final Product
             </p>
             <div class="col-sm-12 col-xl-12 xl-100">
                 {{-- <div class="card-header pb-0">
@@ -20,7 +19,7 @@
                 </div> --}}
                 <div class="card-body">
                     <div class="tab-content" id="pills-tabContent">
-                        <form action="{{route('products.store')}}" class="forms-sample" method="post" id="alert-form">
+                        <form action="{{route('products.store')}}" class="forms-sample" method="POST" id="alert-form">
                             @csrf
                             @include('dashboard.products.final_products.form')
                             <input type="submit" value="Add" class="btn btn-success border-info text-light me-2">

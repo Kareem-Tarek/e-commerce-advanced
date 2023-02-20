@@ -71,12 +71,12 @@
 </div>
 
 <div class="form-group">
-    <label>Sub-category <span class="text-danger">*</span></label>
+    <label>(Sub-category) <span class="text-danger">*</span> &RightArrow; [Category]</label>
     <select name="sub_cat_id" class="form-control select mb-2" value="{{Request::old('sub_cat_id') ? Request::old('sub_cat_id') : $ProductDetail_model->sub_cat_id}}">
         <option value="" selected> ---------- Select a Sub-category ---------- </option>  
         @forelse($sub_category as $sub_cat)
             <option value="{{ $sub_cat->id }}" {{ $sub_cat->id == $ProductDetail_model->sub_cat_id ? 'selected' : '' }}>
-                ({{ ucfirst($sub_cat->name) }}) &RightArrow; from Category [{{ ucfirst($sub_cat->Category->name) }}]
+                ({{ ucfirst($sub_cat->name) }}) &RightArrow; [{{ ucfirst($sub_cat->Category->name) }}]
             </option>
             @empty
         @endforelse
@@ -92,7 +92,7 @@
     <label>Supplier <span class="text-danger">*</span></label>
     @inject('user', 'App\Models\User')
     @if(auth()->user()->user_type == "supplier")
-        {!! Form::select('supplier_id', $user->where('id', auth()->user()->id)->type('supplier')->pluck('name', 'id'), Request::old('supplier_id') ? Request::old('supplier_id') : $ProductDetail_model->supplier_id,[
+        {!! Form::select('supplier_id', $user->where('id', auth()->user()->id)->pluck('name', 'id'), Request::old('supplier_id') ? Request::old('supplier_id') : $ProductDetail_model->supplier_id,[
             'class' => 'form-control select'.( $errors->has('supplier_id') ? ' is-invalid' : '' ),
             // ( $ProductDetail_model->supplier_id == auth()->user()->id ? 'selected'  : '' ),
             // 'required',

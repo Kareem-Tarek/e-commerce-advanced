@@ -26,137 +26,37 @@
     <div class="page-content pb-0">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 mb-3 mb-lg-3 text-center">
+
+                <div class="col-lg-12 mb-3 mb-lg-3 text-center" id="profile-account-status-info">
                     <h2 class="title">Account Status</h2><!-- End .title -->
-                    @if(auth()->user()->status == "active")
-                    <p class="bg-success p-2 mx-auto rounded" style="width: 8%;">
-                        <span class="text-white">{{ ucfirst(auth()->user()->status) ?? '' }}</span>
-                    </p>
-                    @elseif(auth()->user()->status == "inactive")
-                    <p class="bg-warning p-2 mx-auto rounded" style="width: 8%;">
-                        <span class="text-white">{{ ucfirst(auth()->user()->status) ?? '' }}</span>
-                    </p>
-                    @else(auth()->user()->status == "blocked")
-                    <p class="bg-danger p-2 mx-auto rounded" style="width: 8%;">
-                        <span class="text-white">{{ ucfirst(auth()->user()->status) ?? '' }}</span>
-                    </p>
+                    @if($User_model->status == "active")
+                        <p class="bg-success p-2 mx-auto rounded" style="width: 6%;">
+                            <span class="text-white">{{ ucfirst($User_model->status) ?? '' }}</span>
+                        </p>
+                    @elseif($User_model->status == "inactive")
+                        <p class="bg-warning p-2 mx-auto rounded" style="width: 6%;">
+                            <span class="text-white">{{ ucfirst($User_model->status) ?? '' }}</span>
+                        </p>
+                    @else($User_model->status == "blocked")
+                        <p class="bg-danger p-2 mx-auto rounded" style="width: 6%;">
+                            <span class="text-white">{{ ucfirst($User_model->status) ?? '' }}</span>
+                        </p>
                     @endif
-                </div><!-- End .col-lg-6 -->
+                </div><!-- End .col-lg-12 -->
+
+                <div class="col-lg-12 mb-lg-1 text-center" id="profile-account-status-info">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <input disabled type="text" style="width: 20%;" class="form-control bg-dark text-center text-white rounded" value="{{ Request::Old('user_type') ? Request::Old('user_type') : 'User Type: '.ucfirst($User_model->user_type) }}">
+                        </div>
+                      </div>
+                </div><!-- End .col-lg-12 -->
+
                 <div class="col-lg-12 mb-3 mb-lg-0">
-                    <form action="#" method="POST">
+                    <form action="{{ route('update-my-profile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ method_field('patch') }}
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label>Name</label>
-                            <input name="name" type="text" class="form-control" value="{{ auth()->user()->name ?? '' }}" placeholder="Enter your name here...">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label >Username <span class="text-danger">*</span></label>
-                            <input name="username" type="text" class="form-control" value="{{ auth()->user()->username ?? '' }}" placeholder="Enter your username here...">
-                          </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label>Email <span class="text-danger">*</span></label>
-                              <input name="email" type="text" class="form-control" value="{{ auth()->user()->email ?? '' }}" placeholder="Enter your email here...">
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label >Phone Number</label>
-                              <input name="phone" type="text" class="form-control" value="{{ auth()->user()->phone ?? '' }}" placeholder="Enter your phone number here...">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label>Date Of Birth</label>
-                              <input name="dob" type="date" class="form-control" value="{{ auth()->user()->dob ?? '' }}">
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label >User Type <span class="text-danger">*</span></label>
-                              <input name="user_type" type="text" class="form-control" value="{{ ucfirst(auth()->user()->user_type) ?? '' }}" disabled>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label>Avatar</label>
-                              <input name="avatar" type="file" class="form-control" value="{{ auth()->user()->avatar ?? '' }}">
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label >Cover</label>
-                              <input name="cover" type="file" class="form-control"  value="{{ auth()->user()->cover ?? '' }}">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label>Bio</label>
-                              <input name="bio" type="text" class="form-control" value="{{ auth()->user()->bio ?? '' }}" placeholder="Enter your bio here...">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Gender</label>
-                                <div class="d-flex col-md-4 justify-content-between">
-                                    <div class="radio radio-success">
-                                        <input id="radioinline1" type="radio" name="gender" {{ auth()->user()->gender == 'male' ? 'checked'  : '' }}  value="male">
-                                        <label class="mb-0" for="radioinline1">Male</label>
-                                    </div>
-                                    <div class="radio radio-primary">
-                                        <input id="radioinline2" type="radio" name="gender" {{ auth()->user()->gender == 'female' ? 'checked'  : '' }} value="female">
-                                        <label class="mb-0" for="radioinline2">Female</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label>Address</label>
-                          <input type="text" class="form-control" value="{{ auth()->user()->address ?? '' }}" placeholder="Enter your address here...">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Whatsapp</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-brands fa-whatsapp" style="font-size: 180%"></i></span>
-                                <input type="text" class="form-control" value="{{ auth()->user()->whatsapp ?? '' }}" placeholder="Enter your whatsapp number here...">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Facebook</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-brands fa-facebook" style="font-size: 180%"></i></span>
-                                <input type="text" class="form-control" value="{{ auth()->user()->facebook ?? '' }}" placeholder="Enter your facebook account/URL link here...">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Instagram</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-brands fa-instagram" style="font-size: 180%"></i></span>
-                                <input type="text" class="form-control" value="{{ auth()->user()->instagram ?? '' }}" placeholder="Enter your instagram account/URL link here...">
-                            </div>
-                        </div>
-
-                        {{-- <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                          </div>
-                          <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                              <option selected>Choose...</option>
-                              <option>...</option>
-                            </select>
-                          </div>
-                          <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                          </div>
-                        </div> --}}
-
+                        @include('layouts.website.profile_management.editMyProfileForm')
                         <button type="submit" class="btn btn-primary">Confirm</button>
                         <div class="form-group mt-1">
                             Click <a href="javascript:void(0);" style="text-decoration:underline;">here</a> if you want to change your password.

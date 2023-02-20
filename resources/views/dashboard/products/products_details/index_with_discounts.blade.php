@@ -88,7 +88,7 @@
 
                         {{-- <td class="fw-bold text-primary">{{ $product->product_id }}</td> --}}
 
-                        <td>{{ $product->name }}</td>
+                        <td>{{ ucfirst($product->name) }}</td>
 
                         <td class="text-center w-25">
                             {{-- <span class="fw-bold text-light bg-dark p-1 rounded">
@@ -107,36 +107,36 @@
                         </td>
 
                         <td>
-                            {{ ucfirst($product->subCategory->Category->name) ?? 'N/A' }}
+                            {{ ucfirst($product->subCategory->Category->name) ?? '—' }}
                         </td>
 
                         <td>
-                            {{ ucfirst($product->subCategory->name) ?? 'N/A' }}
+                            {{ ucfirst($product->subCategory->name) ?? '—' }}
                         </td>
 
                         <td>{{ $product->brand_name }}</td>
                         
-                        <td>{{ $product->user_supplier->name ?? 'N/A' }}</td>
+                        <td>{{ $product->user_supplier->name ?? '—' }}</td>
 
                         <td>{{ $product->created_at->format('(D) d-M-Y — h:m A') }}</td>
 
                         <td>
-                            {{ isset($product->updated_at) ? $product->updated_at->format('(D) d-M-Y — h:m A') : 'N/A' }}
+                            {{ isset($product->updated_at) ? $product->updated_at->format('(D) d-M-Y — h:m A') : '—' }}
                         </td>
 
                         <td>
                             @if(isset($product->create_user->name) == null)
-                                {{ $product->create_user->username ?? 'N/A' }}
+                                {{ $product->create_user->username ?? '—' }}
                             @else
-                                {{ $product->create_user->name ?? 'N/A' }}
+                                {{ $product->create_user->name ?? '—' }}
                             @endif
                         </td>
 
                         <td>
                             @if(isset($product->update_user->name) == null)
-                                {{ $product->update_user->username ?? 'N/A' }}
+                                {{ $product->update_user->username ?? '—' }}
                             @else
-                                {{ $product->update_user->name ?? 'N/A' }}
+                                {{ $product->update_user->name ?? '—' }}
                             @endif
                         </td>
 

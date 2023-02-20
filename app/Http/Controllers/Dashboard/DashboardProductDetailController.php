@@ -102,6 +102,15 @@ class DashboardProductDetailController extends Controller
         $product_details->sub_cat_id  = $request->sub_cat_id;
         $product_details->brand_name  = $request->brand_name;
 
+        //------------------------------- Without input (request) for supplier -------------------------------//
+        // if(auth()->user()->user_type == "supplier"){
+        //     $product_details->supplier_id = auth()->user()->id;
+        // }
+        // else{
+        //     $product_details->supplier_id = $request->supplier_id;
+        // }
+
+        //------------------------------- With input (request) for supplier - method (1) -------------------------------//
         // if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator" || (auth()->user()->user_type == "supplier" && $request->supplier_id == auth()->user()->id)){
         //     $product_details->supplier_id = $request->supplier_id;
         // }
@@ -109,6 +118,7 @@ class DashboardProductDetailController extends Controller
         //     return redirect()->back()->with(['auth_user_supplier_not_matching_id' => "Your data is not matching the (Supplier *) field!"]);
         // }
 
+        //------------------------------- With input (request) for supplier - method (2) -------------------------------//
         if(auth()->user()->user_type == "supplier"){
             if($request->supplier_id == auth()->user()->id){
                 $product_details->supplier_id = $request->supplier_id;

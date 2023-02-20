@@ -1,47 +1,96 @@
+@if($errors->any())
+<div class="alert alert-danger">
+    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+    <h4>Whoops! Something went wrong.</h4>
+    <span class="text-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </span>
+</div>
+@endif
+
 <div class="form-group">
-    <label for="exampleInputName1">Name</label>
-    <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+    <label>Product <span class="text-danger">*</span></label>
+    <select name="product_id" class="form-control select mb-2" value="{{Request::old('product_id') ? Request::old('product_id') : $FinalProduct_model->product_id}}">
+        <option value="" selected> ---------- Please select a product ---------- </option>  
+        @forelse($product_details as $product_detail)
+            <option value="{{ $product_detail->id }}" {{ $product_detail->id == $FinalProduct_model->product_id ? 'selected' : '' }}>
+                {{ ucfirst($product_detail->name) }}
+            </option>
+            @empty
+        @endforelse
+    </select>
+</div>
+
+{{-- <div class="form-group @if(Route::is('products.create')) d-none @endif">
+    <label>Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" value="{{ $FinalProduct_model->productDetail->name ?? ''}}" disabled>
+</div> --}}
+
+<div class="form-group">
+    <label>Image <span class="text-danger">*</span></label>
+    <input name="image" type="file" class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="exampleInputEmail3">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-</div>
-
-<div class="form-group">
-    <label for="exampleInputPassword4">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-</div>
-
-<div class="form-group">
-    <label for="exampleSelectGender">Gender</label>
-    <select class="form-control" id="exampleSelectGender">
-        <option>Male</option>
-        <option>Female</option>
+    <label>Size <span class="text-danger">*</span></label>
+    <select name="size" class="form-control select" value="{{Request::old('size') ? Request::old('size') : $FinalProduct_model->size}}">
+        <option value="" disabled selected>---------- Please select a size ----------</option>
+        <option value="XS" {{ $FinalProduct_model->size == "XS" ? 'selected' : '' }}>XS</option>
+        <option value="S" {{ $FinalProduct_model->size == "S" ? 'selected' : '' }}>S</option>
+        <option value="M" {{ $FinalProduct_model->size == "M" ? 'selected' : '' }}>M</option>
+        <option value="L" {{ $FinalProduct_model->size == "L" ? 'selected' : '' }}>L</option>
+        <option value="XL" {{ $FinalProduct_model->size == "XL" ? 'selected' : '' }}>XL</option>
+        <option value="2XL" {{ $FinalProduct_model->size == "2XL" ? 'selected' : '' }}>2XL</option>
+        <option value="3XL" {{ $FinalProduct_model->size == "3XL" ? 'selected' : '' }}>3XL</option>
+        <option value="4XL" {{ $FinalProduct_model->size == "4XL" ? 'selected' : '' }}>4XL</option>
     </select>
 </div>
 
 <div class="form-group">
-    <label>File upload</label>
-    <input type="file" name="img[]" class="file-upload-default">
-    <div class="input-group col-xs-12">
-        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-        <span class="input-group-append">
-            <button class="file-upload-browse btn btn-primary text-light" type="button">Upload</button>
-        </span>
+    <label>Color <span class="text-danger">*</span></label>
+    <select name="color" class="form-control select" value="{{Request::old('color') ? Request::old('color') : $FinalProduct_model->color}}">
+        <option value="" disabled selected>---------- Please select a color ----------</option>
+        <option value="red" {{ $FinalProduct_model->color == 'red' ? 'selected' : '' }}>Red</option>
+        <option value="blue" {{ $FinalProduct_model->color == 'blue' ? 'selected' : '' }}>Blue</option>
+        <option value="darkcyan" {{ $FinalProduct_model->color == 'darkcyan' ? 'selected' : '' }}>Dark Cyan</option>
+        <option value="cyan" {{ $FinalProduct_model->color == 'cyan' ? 'selected' : '' }}>Cyan</option>
+        <option value="yellow" {{ $FinalProduct_model->color == 'yellow' ? 'selected' : '' }}>Yellow</option>
+        <option value="gold" {{ $FinalProduct_model->color == 'gold' ? 'selected' : '' }}>Gold</option>
+        <option value="rgb(241, 148, 47)" {{ $FinalProduct_model->color == 'rgb(241, 148, 47)' ? 'selected' : '' }}>Orange</option>
+        <option value="rgb(126, 57, 57)" {{ $FinalProduct_model->color == 'rgb(126, 57, 57)' ? 'selected' : '' }}>Brown</option>
+        <option value="grey" {{ $FinalProduct_model->color == 'grey' ? 'selected' : '' }}>Grey</option>
+        <option value="rgb(217, 128, 128)" {{ $FinalProduct_model->color == 'rgb(217, 128, 128)' ? 'selected' : '' }}>Light Red</option>
+        <option value="beige" {{ $FinalProduct_model->color == 'beige' ? 'selected' : '' }}>Beige</option>
+        <option value="olive" {{ $FinalProduct_model->color == 'olive' ? 'selected' : '' }}>Olive</option>
+        <option value="white" {{ $FinalProduct_model->color == 'white' ? 'selected' : '' }}>White</option>
+        <option value="rgb(145, 57, 124)" {{ $FinalProduct_model->color == 'rgb(145, 57, 124)' ? 'selected' : '' }}>Light Purple</option>
+        <option value="green" {{ $FinalProduct_model->color == 'green' ? 'selected' : '' }}>Green</option>
+        <option value="rgb(50, 177, 164)" {{ $FinalProduct_model->color == 'rgb(50, 177, 164)' ? 'selected' : '' }}>Greenish Blue</option>
+        <option value="rgb(207, 84, 137)" {{ $FinalProduct_model->color == 'rgb(207, 84, 137)' ? 'selected' : '' }}>Light Pinkish Red</option>
+    </select>
+    <div class="d-flex @if(Route::is('products.edit')) d-block @else d-none @endif">
+        Live:&nbsp;
+        <div class="color-div text-center w-100 mt-1 border border-dark" style="background-color: {{ $FinalProduct_model->color }};"></div>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="exampleInputCity1">City</label>
-    <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+    <label>Available Quantity <span class="text-danger">*</span></label>
+    <input name="available_quantity" type="number" class="form-control" value="{{Request::old('available_quantity') ? Request::old('available_quantity') : $FinalProduct_model->available_quantity}}" placeholder="Enter the available quantity here..">
 </div>
 
-<div class="form-group">
-    <label for="exampleTextarea1">Textarea</label>
-    <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+<div class="form-group @if(auth()->user()->user_type == "supplier") d-none @endif">
+    <label>Supplier <span class="text-danger">*</span></label>
+    @inject('user', 'App\Models\User')
+    {!! Form::select('supplier_id', $user->type('supplier')->pluck('name','id'), Request::old('supplier_id') ? Request::old('supplier_id') : $FinalProduct_model->supplier_id,[
+        'placeholder' => '---------- Please select a supplier ----------',
+        'class'       => 'form-control select'.( $errors->has('supplier_id') ? ' is-invalid' : '' ),
+        ( $FinalProduct_model->supplier_id == $user->id ? 'selected'  : '' ),
+        // 'required',
+    ]) !!} 
 </div>
-
-{{-- <button type="submit" class="btn btn-primary me-2">Submit</button>
-<button class="btn btn-light">Cancel</button> --}}
         
