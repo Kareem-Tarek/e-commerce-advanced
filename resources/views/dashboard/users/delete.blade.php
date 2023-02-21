@@ -138,11 +138,11 @@
                         @if(auth()->user()->user_type == "admin")
                             <td class="text-center">
                                 {!! Form::open([
-                                    'route' => ['users.destroy',$user->id],
+                                    'route' => ['users.forceDelete',$user->id],
                                     'method' => 'delete'
                                 ])!!}
-                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Edit '."- ($user->name)"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Edit</a>
-                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $user->name }}?');" type="submit" title="{{'Delete '."- ($user->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete</button>
+                                <a href="{{route('users.restore', $user->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Restore '."- ($user->name)"}}"><i class="mdi mdi-backup-restore dashboard-admin-icon-action"></i> Restore</a>
+                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to permanent delete - {{ $user->name }}?');" type="submit" title="{{'Permanent Delete '."- ($user->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete</button>
                                 {!! Form::close() !!}
                             </td>
                         @endif

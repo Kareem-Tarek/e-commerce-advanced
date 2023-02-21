@@ -33,7 +33,7 @@
 <div class="form-group {{ $errors->has('cat_id') ? 'has-error' : ''}}">
     <label for="exampleInputEmail3">Category <span class="text-danger">*</span></label>
     <select name="cat_id" class="form-control select mb-2" value="{{Request::old('cat_id') ? Request::old('cat_id') : $SubCategory_model->cat_id}}">
-        <option value="" selected> ---------- Select a category ---------- </option>  
+        <option value="" selected> ---------- Please select a category ---------- </option>  
         @forelse($category as $cat)
             <option value="{{ $cat->id }}" {{ $cat->id == $SubCategory_model->cat_id ? 'selected' : '' }}>
                 {{ $cat->name }}

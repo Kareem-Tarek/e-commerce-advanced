@@ -51,26 +51,20 @@
                 </p>
             </div>
             @if(session()->has('added_user_message'))
-                <div class="alert alert-success text-center">
-                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                  {{ session()->get('added_user_message') }}
-                </div>
-            @elseif(session()->has('updated_same_user_message'))
-                <div class="alert alert-warning text-center">
-                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                  {{ session()->get('updated_same_user_message') }}
-                </div>
+              <div class="alert alert-success text-center">
+                <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                {{ session()->get('added_user_message') }}
+              </div>
             @elseif(session()->has('updated_user_message'))
-                <div class="alert alert-success text-center">
-                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                  {{ session()->get('updated_user_message') }}
-                </div>
-            @elseif(session()->has('deleted_user_message'))
-                <div class="alert alert-success text-center">
-                  <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                  {{ session()->get('deleted_user_message') }} 
-                  and moved to <a href="{{ route('users.delete') }}" class="text-primary text-decoration-none">Trash</a>.
-                </div>
+              <div class="alert alert-success text-center">
+                <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                {{ session()->get('updated_user_message') }}
+              </div>
+            @elseif(session()->has('unauthorized_action'))
+              <div class="alert alert-danger text-center">
+                <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                {{ session()->get('unauthorized_action') }}
+              </div>
             @endif
           {{-- Add class <code>.table-striped</code> --}}
             <span class="bg-secondary px-2 py-1 text-light rounded">

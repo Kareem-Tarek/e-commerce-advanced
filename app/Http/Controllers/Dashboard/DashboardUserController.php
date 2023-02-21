@@ -150,23 +150,23 @@ class DashboardUserController extends Controller
         // ]);
 
         $users            = new User;
-        $users->username  = $request->username;
         $users->name      = $request->name;
+        $users->username  = $request->username;
         $users->email     = $request->email;
-        $users->password  = bcrypt($request->password);
-        // if($request->confirm_password == ""){
-        //     return redirect()->back()->with('confirm_password_empty','Please confirm your password!');
-        // }
         if($request->confirm_password != $request->password){
-            return redirect()->back()->with('confirm_password_not_matching','Password did not match confirmation. Please try again!');
+            return redirect()->back()->with('confirm_password_not_matching','"Password *" did not match "Confirm Password *". Please try again!');
+        }
+        else{
+            $users->password  = bcrypt($request->password);
         }
         $users->user_type = $request->user_type;
         $users->phone     = $request->phone;
         $users->gender    = $request->gender;
+        $users->status    = $request->status;
         $users->save();
 
         return redirect()->route('users.index')
-            ->with(['message' => "($users->username / $users->email) - Added successfully!"]);
+            ->with(['added_user_message' => "($users->username / $users->email) - Added successfully!"]);
     }
 
     /**
@@ -190,36 +190,45 @@ class DashboardUserController extends Controller
     {
         //NOTE: in the users "form.blade.php" file admin could update his/her own email but not any other user, and if it happened the app will throw an error in the admin's face (unauthorized action)!
 
-        $User_model = User::findOrFail($id);
+        $User_model = User::find($id);
 
-        // if(auth()->user()->user_type == "admin" && $User_model->id == auth()->user()->id){ //the signed in admin could update his/her own info
-        //     return view('dashboard.users.edit',compact('User_model'));
-        // }
-        // elseif(auth()->user()->user_type == "admin" && $User_model->user_type == "admin"){ //the signed in admin couldn't update the other admin(s) info, so take the signed in admin to the users index page
-        //     return redirect('/dashboard/users');
-        // }
-        // elseif(auth()->user()->user_type == "admin" && $User_model->user_type != "admin"){ //the signed in admin could update any other users' info except the other admin(s)
-        //     return view('dashboard.users.edit',compact('User_model'));
-        // }
-        // elseif(auth()->user()->user_type == "moderator" && $User_model->id == auth()->user()->id){ //the signed in moderator could only edit her/his own data only!
-        //     return view('dashboard.users.edit',compact('User_model'));
-        // }
-        // elseif(auth()->user()->user_type == "moderator" && $User_model->id != auth()->user()->id){ //when for any other user (not the moderator her/himself!), the moderators are not allowed to do anything else more than "adding" & "showing", so take them to the users index page
-        //     return redirect('/dashboard/users');
-        // }
-        // elseif(auth()->user()->user_type == "supplier" && $User_model->id == auth()->user()->id){ //the signed in suppliers could only edit their own data only! + they could access only the products they own (from the front-end & back-end)!
-        //     return view('dashboard.users.edit',compact('User_model'));
-        // }
-        // elseif(auth()->user()->user_type == "supplier" && $User_model->id != auth()->user()->id){ //when for any other user (not the suppliers their selves!), the suppliers are not allowed to do anything else that is related to users & profiles
-        //     return redirect('/dashboard');
-        // }
-
-
-        if($User_model->id == auth()->user()->id || (auth()->user()->user_type == "admin" && $User_model->user_type != "admin")){
-            return view('dashboard.users.edit', compact('User_model'));
+        if($User_model == null){
+            if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"){
+                return view('errors.template-customized-error.dashboard.404');
+            }
+            else/*if(auth()->user()->user_type == "supplier")*/{
+                return redirect()->route('dashboard');
+            }
         }
         else{
-            return redirect()->back();
+            // if(auth()->user()->user_type == "admin" && $User_model->id == auth()->user()->id){ //the signed in admin could update his/her own info
+            //     return view('dashboard.users.edit',compact('User_model'));
+            // }
+            // elseif(auth()->user()->user_type == "admin" && $User_model->user_type == "admin"){ //the signed in admin couldn't update the other admin(s) info, so take the signed in admin to the users index page
+            //     return redirect('/dashboard/users');
+            // }
+            // elseif(auth()->user()->user_type == "admin" && $User_model->user_type != "admin"){ //the signed in admin could update any other users' info except the other admin(s)
+            //     return view('dashboard.users.edit',compact('User_model'));
+            // }
+            // elseif(auth()->user()->user_type == "moderator" && $User_model->id == auth()->user()->id){ //the signed in moderator could only edit her/his own data only!
+            //     return view('dashboard.users.edit',compact('User_model'));
+            // }
+            // elseif(auth()->user()->user_type == "moderator" && $User_model->id != auth()->user()->id){ //when for any other user (not the moderator her/himself!), the moderators are not allowed to do anything else more than "adding" & "showing", so take them to the users index page
+            //     return redirect('/dashboard/users');
+            // }
+            // elseif(auth()->user()->user_type == "supplier" && $User_model->id == auth()->user()->id){ //the signed in suppliers could only edit their own data only! + they could access only the products they own (from the front-end & back-end)!
+            //     return view('dashboard.users.edit',compact('User_model'));
+            // }
+            // elseif(auth()->user()->user_type == "supplier" && $User_model->id != auth()->user()->id){ //when for any other user (not the suppliers their selves!), the suppliers are not allowed to do anything else that is related to users & profiles
+            //     return redirect('/dashboard');
+            // }
+
+            if($User_model->id == auth()->user()->id || (auth()->user()->user_type == "admin" && $User_model->user_type != "admin")){
+                return view('dashboard.users.edit', compact('User_model'));
+            }
+            else{
+                return redirect()->route('dashboard');
+            }
         }
     }
 
@@ -232,23 +241,33 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $users_old        = User::findOrFail($id);
+
         $users            = User::findOrFail($id);
-        $users->username  = $request->username;
-        $users->name      = $request->name;
-        if($users->id == auth()->user()->id /* && auth()->user()->user_type == "admin" */){
-            $users->email = $request->email;
+        if($users->id == auth()->user()->id){
+            $users->name      = $request->name;
+            $users->username  = $request->username;
+            if($users->id == auth()->user()->id /* && auth()->user()->user_type == "admin" */){
+                $users->email = $request->email;
+            }
+            else{ // elseif($user->id != auth()->user()->id) -> which means the retrieved data doesn't match the signed in (auth()->user()) admin, which also means all the other users except the signed in admin him/her self
+                // $users->email != $request->email;
+                return redirect()->route('users.index')->with('unauthorized_action', 'Sorry you are not allowed to do this action!');
+            }
+            $users->user_type = $request->user_type;
+            $users->phone     = $request->phone;
+            $users->gender    = $request->gender;
+            $users->status    = $request->status;
         }
-        else{ // elseif($user->id != auth()->user()->id) -> which means the retrieved data doesn't match the signed in (auth()->user()) admin, which also means all the other users except the signed in admin him/her self
-            // $users->email != $request->email;
-            return redirect()->route('users.index')->with('unauthorized_action', 'Sorry you are not allowed to do this action!');
+        else{
+            $users->user_type = $request->user_type;
+            $users->status    = $request->status;
         }
-        $users->user_type = $request->user_type;
-        $users->phone     = $request->phone;
-        $users->gender    = $request->gender;
+
         $users->save();
 
         return redirect()->route('users.index')
-            ->with(['message' => "($users->username) - Edited successfully!"]);
+            ->with(['updated_user_message' => "($users->username / $users->email) - Edited successfully!"]);
     }
 
     /**
@@ -263,7 +282,7 @@ class DashboardUserController extends Controller
         $users->delete();
 
         return redirect()->route('users.index')
-            ->with(['message' => "($users->username) - Deleted successfully!"]);
+            ->with(['deleted_user_message' => "($users->username / $users->email) - Deleted successfully!"]);
     }
 
     public function delete()
@@ -284,14 +303,14 @@ class DashboardUserController extends Controller
         User::withTrashed()->find($id)->restore();
         $users = User::findOrFail($id);
         return redirect()->route('users.delete')
-            ->with(['message' => "($users->username) - Restored successfully!"]);
+            ->with(['restored_user_message' => "($users->username / $users->email) - Restored successfully!"]);
     }
 
     public function forceDelete($id)
     {
         User::where('id', $id)->forceDelete();
         return redirect()->route('users.delete')
-            ->with(['message' => 'Permanently deleted successfully!']);
+            ->with(['permanent_deleted_user_message' => 'Permanently deleted successfully!']);
     }
 
     public function importExportViewUsers(){

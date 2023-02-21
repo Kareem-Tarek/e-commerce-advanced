@@ -118,8 +118,8 @@
                                     'route' => ['categories.forceDelete',$category->id],
                                     'method' => 'delete'
                                 ])!!}
-                                <a href="{{route('categories.restore', $category->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Edit '."- ($category->name)"}}"><i class="mdi mdi-backup-restore dashboard-admin-icon-action"></i> Restore</a>
-                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $category->name }}?');" type="submit" title="{{'Delete '."- ($category->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete </button>
+                                <a href="{{route('categories.restore', $category->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Restore '."- ($category->name)"}}"><i class="mdi mdi-backup-restore dashboard-admin-icon-action"></i> Restore</a>
+                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to permanent delete - {{ $category->name }}?');" type="submit" title="{{'Permanent Delete '."- ($category->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete </button>
                                 {!! Form::close() !!}
                             </td>
                         @endif

@@ -186,8 +186,8 @@
                                     'method' => 'delete'
                                 ])!!}
                                 @php $product_name = $product->productDetail->name @endphp
-                                <a href="{{route('products.restore', $product->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Edit '."- $product_name [$product->id]"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Restore</a>
-                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $product_name }}?');" type="submit" title="{{'Delete '."- $product_name [$product->id]"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete</button>
+                                <a href="{{route('products.restore', $product->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Restore '."- $product_name [$product->id]"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Restore</a>
+                                <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to permanent delete - {{ $product_name }}?');" type="submit" title="{{'Permanent Delete '."- $product_name [$product->id]"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete</button>
                                 {!! Form::close() !!}
                             </td>
                         @endif

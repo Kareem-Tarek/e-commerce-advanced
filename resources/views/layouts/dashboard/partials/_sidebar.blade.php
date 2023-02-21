@@ -62,7 +62,7 @@
               </a>
               <div class="collapse" id="ui-basic-users">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create User</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('users.create') }}">Create User</a></li>
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
                       All Users 
