@@ -10,7 +10,11 @@
       <div class="card-body">
             <h4 class="card-title">Users</h4>
             <p class="card-description">
-                Edit User (<span class="fw-bold">{{ $User_model->name ?? $User_model->username }}</span>)
+                @if(auth()->user()->id == $User_model->id)
+                    Edit your data
+                @else
+                    Edit User (<span class="fw-bold">{{ $User_model->name ?? $User_model->username }}</span>)
+                @endif 
             </p>
             <div class="col-sm-12 col-xl-12 xl-100">
                 {{-- <div class="card-header pb-0">

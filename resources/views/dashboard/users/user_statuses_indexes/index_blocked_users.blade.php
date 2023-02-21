@@ -18,6 +18,11 @@
             <i class="fa-solid fa-plus"></i>
             <span>Add User</span>
           </a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="{{ route('users.edit', auth()->user()->id) }}" class="btn btn-warning text-dark">
+            <i class="fas fa-edit"></i>
+            <span>Edit your data</span>
+          </a>
         </div>
       </div>
     </div>
