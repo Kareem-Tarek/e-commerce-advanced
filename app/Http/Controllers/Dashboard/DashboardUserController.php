@@ -207,9 +207,13 @@ class DashboardUserController extends Controller
         // elseif(auth()->user()->user_type == "moderator" && $User_model->id != auth()->user()->id){ //when for any other user (not the moderator her/himself!), the moderators are not allowed to do anything else more than "adding" & "showing", so take them to the users index page
         //     return redirect('/dashboard/users');
         // }
-        // elseif(auth()->user()->user_type == "supplier"){ //the suppliers are allowed to access the dashboard but only for the products they own (from the front-end & back-end)!
+        // elseif(auth()->user()->user_type == "supplier" && $User_model->id == auth()->user()->id){ //the signed in suppliers could only edit their own data only! + they could access only the products they own (from the front-end & back-end)!
+        //     return view('dashboard.users.edit',compact('User_model'));
+        // }
+        // elseif(auth()->user()->user_type == "supplier" && $User_model->id != auth()->user()->id){ //when for any other user (not the suppliers their selves!), the suppliers are not allowed to do anything else that is related to users & profiles
         //     return redirect('/dashboard');
         // }
+
 
         if($User_model->id == auth()->user()->id || (auth()->user()->user_type == "admin" && $User_model->user_type != "admin")){
             return view('dashboard.users.edit', compact('User_model'));
