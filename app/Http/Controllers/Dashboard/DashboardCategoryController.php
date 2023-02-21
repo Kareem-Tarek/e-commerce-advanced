@@ -286,7 +286,8 @@ class DashboardCategoryController extends Controller
             $request->file('importing_input')->store('files')
         );
 
-        return redirect()->back()->with(['imported_file_successfully' => 'Your file has been imported to "Categories" successfully!']);
+        return redirect()->back()
+            ->with(['imported_file_successfully' => 'Your file has been imported to "Categories" successfully!']);
     }
  
     public function exportCategories(){

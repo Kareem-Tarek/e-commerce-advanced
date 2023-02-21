@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardSubCategoryController;
 use App\Http\Controllers\Dashboard\DashboardProductDetailController;
 use App\Http\Controllers\Dashboard\DashboardFinalProductController;
+use App\Http\Controllers\Dashboard\AjaxController;
 //End Dashboard Controllers
 
 //Start Website Controllers
