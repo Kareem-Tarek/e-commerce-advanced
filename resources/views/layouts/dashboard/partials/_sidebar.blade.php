@@ -44,7 +44,7 @@
               </a>
               <div class="collapse" id="ui-basic-excel">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Users</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-users') }}">Users</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Carts</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Contact Us Info</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-categories') }}">Categories</a></li>
@@ -63,15 +63,61 @@
               <div class="collapse" id="ui-basic-users">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Create User</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">All Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Admins</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Moderators</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Suppliers</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Customers</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Active Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Inactive Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Blocked Users</a></li>
-                  {{-- <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Deleted Users</a></li> --}}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                      All Users 
+                      ({{ \App\Models\User::all()->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexAdmins') }}">
+                      Admins 
+                      ({{ \App\Models\User::type('admin')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexModerators') }}">
+                      Moderators 
+                      ({{ \App\Models\User::type('moderator')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexSuppliers') }}">
+                      Suppliers 
+                      ({{ \App\Models\User::type('supplier')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexCustomers') }}">
+                      Customers 
+                      ({{ \App\Models\User::type('customer')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexActiveUsers') }}">
+                      Active Users 
+                      ({{ \App\Models\User::where('status', 'active')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexInactiveUsers') }}">
+                      Inactive Users 
+                      ({{ \App\Models\User::where('status', 'inactive')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.indexBlockedUsers') }}">
+                      Blocked Users 
+                      ({{ \App\Models\User::where('status', 'blocked')->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);">
+                      Deleted Users 
+                      ({{ \App\Models\User::onlyTrashed()->count() }})
+                    </a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-users') }}"><i class="fas fa-file-excel"></i>&nbsp;Excel (Import/Export)</a></li>
                 </ul>
               </div>
             </li>

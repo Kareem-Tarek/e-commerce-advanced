@@ -7,7 +7,6 @@ use App\Http\Controllers\Dashboard\DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardSubCategoryController;
 use App\Http\Controllers\Dashboard\DashboardProductDetailController;
 use App\Http\Controllers\Dashboard\DashboardFinalProductController;
-use App\Http\Controllers\Dashboard\AjaxController;
 //End Dashboard Controllers
 
 //Start Website Controllers
@@ -95,6 +94,10 @@ Route::group([
             Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard');
         });
 
+        /********************** Start settings routes. **********************/
+        Route::resource('/settings', DashboardSettingController::class);
+        /********************** End settings routes. **********************/
+
         /********************** Start products routes. **********************/
         Route::resource('/all-products', DashboardProductDetailController::class);
         Route::get('/all-products-with-discounts', [DashboardProductDetailController::class, 'index_with_discounts'])->name('all-products.index-with-discounts');//index of products (with discounts)
@@ -138,9 +141,24 @@ Route::group([
         /***** End excel routes for sub-categories (view, import & export functionalities) *****/
         /********************** End sub-categories routes. **********************/
 
-        /********************** Start settings routes. **********************/
-        Route::resource('/settings', DashboardSettingController::class);
-        /********************** End settings routes. **********************/
+        /********************** Start users routes. **********************/
+        Route::resource('/users', DashboardUserController::class);
+        Route::get('/user/admins', [DashboardUserController::class, 'indexAdmins'])->name('users.indexAdmins');
+        Route::get('/user/moderators', [DashboardUserController::class, 'indexModerators'])->name('users.indexModerators');
+        Route::get('/user/suppliers', [DashboardUserController::class, 'indexSuppliers'])->name('users.indexSuppliers');
+        Route::get('/user/customers', [DashboardUserController::class, 'indexCustomers'])->name('users.indexCustomers');
+        Route::get('/user/active-users', [DashboardUserController::class, 'indexActiveUsers'])->name('users.indexActiveUsers');
+        Route::get('/user/inactive-users', [DashboardUserController::class, 'indexInactiveUsers'])->name('users.indexInactiveUsers');
+        Route::get('/user/blocked-users', [DashboardUserController::class, 'indexBlockedUsers'])->name('users.indexBlockedUsers');
+        Route::get('/user/delete', [DashboardUserController::class, 'delete'])->name('users.delete');
+        Route::get('/user/restore/{id}/', [DashboardUserController::class, 'restore'])->name('users.restore');
+        Route::delete('/user/forceDelete/{id}/', [DashboardUserController::class, 'forceDelete'])->name('users.forceDelete');
+        /***** Start excel routes for users (view, import & export functionalities) *****/
+        Route::get('/user/excel-import-export', [DashboardUserController::class,'importExportViewUsers'])->name('import-export-view-users');
+        Route::post('/user/import', [DashboardUserController::class,'importUsers'])->name('import-users');
+        Route::get('/user/export', [DashboardUserController::class,'exportUsers'])->name('export-users');
+        /***** End excel routes for users (view, import & export functionalities) *****/
+        /********************** End users routes. **********************/
     });
 });
 //-------------------------------------- END Dashboard Routes --------------------------------------//

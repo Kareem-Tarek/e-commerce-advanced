@@ -289,7 +289,7 @@ class DashboardCategoryController extends Controller
         return redirect()->back()
             ->with(['imported_file_successfully' => 'Your file has been imported to "Categories" successfully!']);
     }
- 
+
     public function exportCategories(){
         return Excel::download(new ExportCategory, Carbon::now()->format('dmys').'_'.'categories.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
