@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
         ]);
 
         $user = User::create([ //ID = 2 (moderator)
+            'avatar'     => '/assets/images/avatars/moderator.jpg',
             'name'       => "Maximus Franklin",
             'username'   => "M.Franklin",
             'email'      => 'moderator@gmail.com',
@@ -52,8 +53,9 @@ class UserSeeder extends Seeder
         ]);
 
         $user = User::create([ //ID = 4 (supplier)
-            'name'       => "Raymond",
-            'username'   => "Raymond",
+            'avatar'     => '/assets/images/avatars/supplier_buddha_fashion_house.jpg',
+            'name'       => "BUDDHA",
+            'username'   => "BUDDHA FASHION HOUSE",
             'email'      => 'supplier@gmail.com',
             'password'   => bcrypt('123456789'),
             'user_type'  => 'supplier',
@@ -63,6 +65,7 @@ class UserSeeder extends Seeder
         ]);
 
         $user = User::create([ //ID = 5 (supplier)
+            'avatar'     => '/assets/images/avatars/supplier_fashionholic.png',
             'name'       => "Fashionholic",
             'username'   => "Fashionholic",
             'email'      => 'supplier2@gmail.com',
@@ -74,8 +77,9 @@ class UserSeeder extends Seeder
         ]);
 
         $user = User::create([ //ID = 6 (supplier)
-            'name'       => "Aesthetics",
-            'username'   => "Aesthetics",
+            'avatar'     => '/assets/images/avatars/supplier_mimu_maxi.jpg',
+            'name'       => "Mimu Maxi",
+            'username'   => "Mimu Maxi",
             'email'      => 'supplier3@gmail.com',
             'password'   => bcrypt('123456789'),
             'user_type'  => 'supplier',

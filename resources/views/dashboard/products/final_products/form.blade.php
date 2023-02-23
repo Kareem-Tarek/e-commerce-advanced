@@ -1,4 +1,4 @@
-@if($errors->any())
+{{-- @if($errors->any())
 <div class="alert alert-danger">
     <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
     <h4>Whoops! Something went wrong.</h4>
@@ -10,11 +10,11 @@
         </ul>
     </span>
 </div>
-@endif
+@endif --}}
 
 <div class="form-group">
     <label>Product <span class="text-danger">*</span></label>
-    <select name="product_id" class="form-control select mb-2" value="{{Request::old('product_id') ? Request::old('product_id') : $FinalProduct_model->product_id}}">
+    <select name="product_id" class="form-control select mb-2 @error('product_id') is-invalid @enderror" value="{{Request::old('product_id') ? Request::old('product_id') : $FinalProduct_model->product_id}}">
         <option value="" selected> ---------- Please select a product ---------- </option>  
         @forelse($product_details as $product_detail)
             <option value="{{ $product_detail->id }}" {{ $product_detail->id == $FinalProduct_model->product_id ? 'selected' : '' }}>
@@ -23,6 +23,11 @@
             @empty
         @endforelse
     </select>
+    @error('product_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror 
 </div>
 
 {{-- <div class="form-group @if(Route::is('products.create')) d-none @endif">
@@ -32,12 +37,17 @@
 
 <div class="form-group">
     <label>Image <span class="text-danger">*</span></label>
-    <input name="image" type="file" class="form-control">
+    <input name="image" type="file" class="form-control @error('image') is-invalid @enderror">
+    @error('image')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror 
 </div>
 
 <div class="form-group">
     <label>Size <span class="text-danger">*</span></label>
-    <select name="size" class="form-control select" value="{{Request::old('size') ? Request::old('size') : $FinalProduct_model->size}}">
+    <select name="size" class="form-control select @error('size') is-invalid @enderror" value="{{Request::old('size') ? Request::old('size') : $FinalProduct_model->size}}">
         <option value="" selected>---------- Please select a size ----------</option>
         <option value="XS" {{ $FinalProduct_model->size == "XS" ? 'selected' : '' }}>XS</option>
         <option value="S" {{ $FinalProduct_model->size == "S" ? 'selected' : '' }}>S</option>
@@ -48,11 +58,16 @@
         <option value="3XL" {{ $FinalProduct_model->size == "3XL" ? 'selected' : '' }}>3XL</option>
         <option value="4XL" {{ $FinalProduct_model->size == "4XL" ? 'selected' : '' }}>4XL</option>
     </select>
+    @error('size')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror 
 </div>
 
 <div class="form-group">
     <label>Color <span class="text-danger">*</span></label>
-    <select name="color" class="form-control select" value="{{Request::old('color') ? Request::old('color') : $FinalProduct_model->color}}">
+    <select name="color" class="form-control select @error('color') is-invalid @enderror" value="{{Request::old('color') ? Request::old('color') : $FinalProduct_model->color}}">
         <option value="" selected>---------- Please select a color ----------</option>
         <option value="#800000" class="text-white" style="background-color: #800000;" {{ $FinalProduct_model->color == '#800000' ? 'selected' : '' }}>Dark Red</option>
         <option value="red" class="text-white" style="background-color: red;" {{ $FinalProduct_model->color == 'red' ? 'selected' : '' }}>Red</option>
@@ -78,11 +93,21 @@
         Live:&nbsp;
         <div class="color-div text-center w-100 mt-1 border border-dark" style="background-color: {{ $FinalProduct_model->color }};"></div>
     </div>
+    @error('color')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror 
 </div>
 
 <div class="form-group">
     <label>Available Quantity <span class="text-danger">*</span></label>
-    <input name="available_quantity" type="number" class="form-control" value="{{Request::old('available_quantity') ? Request::old('available_quantity') : $FinalProduct_model->available_quantity}}" placeholder="Enter the available quantity here..">
+    <input name="available_quantity" type="number" class="form-control @error('available_quantity') is-invalid @enderror" value="{{Request::old('available_quantity') ? Request::old('available_quantity') : $FinalProduct_model->available_quantity}}" placeholder="Enter the available quantity here..">
+    @error('available_quantity')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror 
 </div>
 
 <div class="form-group @if(auth()->user()->user_type == "supplier") d-none @endif">
@@ -93,6 +118,11 @@
         'class'       => 'form-control select'.( $errors->has('supplier_id') ? ' is-invalid' : '' ),
         ( $FinalProduct_model->supplier_id == $user->id ? 'selected'  : '' ),
         // 'required',
-    ]) !!} 
+    ]) !!}
+    @error('supplier_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror 
 </div>
         

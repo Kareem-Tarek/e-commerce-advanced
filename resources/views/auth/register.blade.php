@@ -72,6 +72,9 @@
                             </form>
                             <div class="form-choice">
                                 <p class="text-center">or sign in with</p>
+                                <div class="row d-flex justify-content-center mb-2">
+                                    <img src="/assets/images/three_down_arrows_thin_blue.png" width="150">
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <a href="#" class="btn btn-login">
@@ -146,11 +149,16 @@
 
                                 <div class="form-group">
                                     <label>User Type <span class="text-danger">*</span></label>
-                                    <select name="user_type" class="form-control" required>
+                                    <select name="user_type" class="form-control select @error('user_type') is-invalid @enderror" required>
                                         <option value="" selected disabled>Please choose a user type</option>
                                         <option value="supplier" {{ old('user_type') == "supplier" ? 'selected' : '' }}>Supplier</option>
                                         <option value="customer" {{ old('user_type') == "customer" ? 'selected' : '' }}>Customer</option>
                                     </select>
+                                    @error('user_type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div><!-- End .form-group -->
 
                                 <div class="form-group">
@@ -187,6 +195,9 @@
                             </form>
                             <div class="form-choice">
                                 <p class="text-center">or sign in with</p>
+                                <div class="row d-flex justify-content-center mb-2">
+                                    <img src="/assets/images/three_down_arrows_thin_blue.png" width="150">
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <a href="#" class="btn btn-login">

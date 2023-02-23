@@ -5,14 +5,16 @@ namespace App\Exports;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ExportUser implements FromCollection
+class UserAllExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
+
     public function collection()
     {
         return User::select(
+            'id', 
             // 'name', 
             'username', 
             'email', 
@@ -22,4 +24,5 @@ class ExportUser implements FromCollection
             'address',
         )->get();
     }
+
 }

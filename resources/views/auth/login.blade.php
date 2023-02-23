@@ -72,6 +72,9 @@
                             </form>
                             <div class="form-choice">
                                 <p class="text-center">or sign in with</p>
+                                <div class="row d-flex justify-content-center mb-2">
+                                    <img src="/assets/images/three_down_arrows_thin_blue.png" width="150">
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <a href="#" class="btn btn-login">
@@ -187,6 +190,9 @@
                             </form>
                             <div class="form-choice">
                                 <p class="text-center">or sign in with</p>
+                                <div class="row d-flex justify-content-center mb-2">
+                                    <img src="/assets/images/three_down_arrows_thin_blue.png" width="150">
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <a href="#" class="btn btn-login">

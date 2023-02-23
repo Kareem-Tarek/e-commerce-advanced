@@ -100,35 +100,45 @@
                     <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account-multiple-outline icon-lg me-3 text-primary"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">All Users</small>
+                        <a href="{{ route('users.index') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">All Users</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::all()->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account-key me-3 icon-lg text-dark"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Admins</small>
+                        <a href="{{ route('users.indexAdmins') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Admins</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('admin')->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account-star me-3 icon-lg text-success"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Moderators</small>
+                        <a href="{{ route('users.indexModerators') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Moderators</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('moderator')->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account me-3 icon-lg text-info"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Customers</small>
+                        <a href="{{ route('users.indexCustomers') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Customers</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('customer')->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account-card-details me-3 icon-lg text-secondary"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Suppliers</small>
+                        <a href="{{ route('users.indexSuppliers') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Suppliers</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::type('supplier')->count() }})</h5>
                       </div>
                     </div>
@@ -137,21 +147,27 @@
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account me-3 icon-lg text-success"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Active Users</small>
+                        <a href="{{ route('users.indexActiveUsers') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Active Users</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::where('status', 'active')->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account me-3 icon-lg text-warning"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Inactive Users</small>
+                        <a href="{{ route('users.indexInactiveUsers') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Inactive Users</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::where('status', 'inactive')->count() }})</h5>
                       </div>
                     </div>
                     <div class="d-flex border-md-right flex-grow-2 align-items-center justify-content-center p-3 item">
                       <i class="mdi mdi-account me-3 icon-lg text-danger"></i>
                       <div class="d-flex flex-column justify-content-around">
-                        <small class="mb-1 text-muted">Blocked Users</small>
+                        <a href="{{ route('users.indexBlockedUsers') }}" class="ancor-underline-color">
+                          <small class="mb-1 text-muted">Blocked Users</small>
+                        </a>
                         <h5 class="me-2 mb-0">({{ \App\Models\User::where('status', 'blocked')->count() }})</h5>
                       </div>
                     </div>

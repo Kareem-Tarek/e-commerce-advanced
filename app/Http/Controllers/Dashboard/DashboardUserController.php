@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
-use App\Exports\ExportUser;
+use App\Exports\UserAllExport;
 
 class DashboardUserController extends Controller
 {
@@ -324,7 +324,7 @@ class DashboardUserController extends Controller
 
         $messages = [
             'importing_input.required' => "You didn't upload an Excel file! Please try again.",
-            'importing_input.mimes'    => "The file's extension you uploaded isn't allowed to be chosen! Please try again.",
+            'importing_input.mimes'    => "The extension of the file you uploaded isn't allowed to be chosen! Please try again.",
         ];
 
         $this->validate($request, $rules, $messages);
@@ -339,7 +339,7 @@ class DashboardUserController extends Controller
     }
 
     public function exportUsers(){
-        return Excel::download(new ExportUser, Carbon::now()->format('dmys').'_'.'users.xlsx');
+        return Excel::download(new UserAllExport, Carbon::now()->format('dmys').'_'.'users.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 }

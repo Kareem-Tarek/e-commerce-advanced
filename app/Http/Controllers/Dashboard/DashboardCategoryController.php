@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportCategory;
-use App\Exports\ExportCategory;
+use App\Exports\CategoryAllExport;
 
 class DashboardCategoryController extends Controller
 {
@@ -276,7 +277,7 @@ class DashboardCategoryController extends Controller
 
         $messages = [
             'importing_input.required' => "You didn't upload an Excel file! Please try again.",
-            'importing_input.mimes'    => "The file's extension you uploaded isn't allowed to be chosen! Please try again.",
+            'importing_input.mimes'    => "The extension of the file you uploaded isn't allowed to be chosen! Please try again.",
         ];
 
         $this->validate($request, $rules, $messages);
@@ -291,7 +292,7 @@ class DashboardCategoryController extends Controller
     }
 
     public function exportCategories(){
-        return Excel::download(new ExportCategory, Carbon::now()->format('dmys').'_'.'categories.xlsx');
+        return Excel::download(new CategoryAllExport, Carbon::now()->format('dmys').'_'.'categories.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 

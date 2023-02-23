@@ -47,7 +47,8 @@
                         {{ session()->get('exported_file_successfully') }}
                       </div> --}}
                     @endif
-                    @if($errors->any())
+
+                    {{-- @if($errors->any())
                       <div class="alert alert-danger mt-1">
                           <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                           <h4>Whoops! Something went wrong.</h4>
@@ -59,13 +60,31 @@
                               </ul>
                           </span>
                       </div>
-                    @endif
+                    @endif --}}
+
                     <div class="card-body">
                         <form action="{{ route('import-categories') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="importing_input" class="form-control mb-4">
-                            <button type="submit" class="btn btn-success text-white"><i class="mdi mdi-upload"></i> Import Categories Data</button>
-                            <a class="btn btn-warning" href="{{ route('export-categories') }}"><i class="mdi mdi-download"></i> Export Categories Data</a>
+                            <input type="file" name="importing_input" class="form-control @error('importing_input') is-invalid @enderror">
+                            @error('importing_input')
+                                <span class="invalid-feedback mb-4" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror 
+
+                            {{-- <div class="valid-feedback">Okay!</div>
+                            <div class="invalid-feedback">Wrong!</div> --}}
+
+                            {{-- @if($errors->has('importing_input'))
+                                <div class="invalid-feedback">{{ $errors->first('importing_input') }}</div>
+                            @else
+                              <div class="valid-feedback">Okay!</div>
+                            @endif --}}
+
+                            <div class="mt-4">
+                              <button type="submit" class="btn btn-success text-white"><i class="mdi mdi-upload"></i> Import Categories Data</button>
+                              <a class="btn btn-warning" href="{{ route('export-categories') }}"><i class="mdi mdi-download"></i> Export Categories Data</a>
+                            </div>
                         </form>
                     </div>
               </div>

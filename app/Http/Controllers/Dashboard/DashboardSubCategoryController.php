@@ -10,7 +10,7 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportSubCategory;
-use App\Exports\ExportSubCategory;
+use App\Exports\SubCategoryAllExport;
 
 class DashboardSubCategoryController extends Controller
 {
@@ -268,7 +268,7 @@ class DashboardSubCategoryController extends Controller
 
         $messages = [
             'importing_input.required' => "You didn't upload an Excel file! Please try again.",
-            'importing_input.mimes'    => "The file's extension you uploaded isn't allowed to be chosen! Please try again.",
+            'importing_input.mimes'    => "The extension of the file you uploaded isn't allowed to be chosen! Please try again.",
         ];
 
         $this->validate($request, $rules, $messages);
@@ -282,7 +282,7 @@ class DashboardSubCategoryController extends Controller
     }
  
     public function exportSubCategories(){
-        return Excel::download(new ExportSubCategory, Carbon::now()->format('dmys').'_'.'subcategories.xlsx');
+        return Excel::download(new SubCategoryAllExport, Carbon::now()->format('dmys').'_'.'subcategories.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 
