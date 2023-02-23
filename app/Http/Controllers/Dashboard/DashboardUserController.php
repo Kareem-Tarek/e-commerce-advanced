@@ -342,4 +342,9 @@ class DashboardUserController extends Controller
         return Excel::download(new UserAllExport, Carbon::now()->format('dmys').'_'.'users.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
+        
 }
+
+
+
+

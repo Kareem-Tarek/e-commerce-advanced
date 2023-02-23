@@ -36,9 +36,12 @@
                     </a>
                 @else
                     <a href="{{ 'javascript:void(0);' }}" 
+                        class="position-absolute btn btn-secondary btn-sm fw-bold" style="bottom: 8px; right: 170px; z-index: 100;">
+                        <i class="mdi mdi-pencil" style="font-size: 1rem;"></i> Edit your cover
+                    </a>
+                    <a href="{{ 'javascript:void(0);' }}" 
                         class="position-absolute btn btn-secondary btn-sm fw-bold" style="bottom: 8px; right: 8px; z-index: 100;">
-                        <i class="mdi mdi-delete" style="font-size: 1rem;"></i> Edit your cover
-                        <i class="mdi mdi-remove" style="font-size: 1rem;"></i> Delete your cover
+                        <i class="mdi mdi-delete" style="font-size: 1rem;"></i> Delete your cover
                     </a>
                 @endif
               <img src="{{ $User_model->cover == null ? '/assets/images/avatars/no-avatar.png' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
