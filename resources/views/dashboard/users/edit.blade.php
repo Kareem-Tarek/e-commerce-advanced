@@ -1,7 +1,11 @@
 @extends('layouts.dashboard.master')
 
 @section('title')
-    Edit User ({{ $User_model->name ?? $User_model->username }})
+    @if($User_model->id == auth()->user()->id)
+        Edit your data
+    @else
+        Edit User ({{ $User_model->name ?? $User_model->username }})
+    @endif 
 @endsection
 
 @section('content')
@@ -10,7 +14,7 @@
       <div class="card-body">
             <h4 class="card-title">Users</h4>
             <p class="card-description">
-                @if(auth()->user()->id == $User_model->id)
+                @if($User_model->id == auth()->user()->id)
                     Edit your data
                 @else
                     Edit User (<span class="fw-bold">{{ $User_model->name ?? $User_model->username }}</span>)

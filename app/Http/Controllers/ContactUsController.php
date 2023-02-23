@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\ContactUs;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ContactUsCustomersExport;
 
 class ContactUsController extends Controller
 {
@@ -124,5 +126,18 @@ class ContactUsController extends Controller
         $contact_us->delete();
         return redirect()->route('contact-us.index')
             ->with(['deleted_contact_us_message' => "Contact info number [$contact_us->info_number] which belongs to ($contact_us->name / $contact_us->email) has been deleted successfully!"]);
+    }
+
+    // public function importExportViewSubContactUs(){
+    //     return view('dashboard.sub_categories.excel_imports_exports.import_export_file');
+    // }
+
+    public function ExportViewContactUsCustomers(){
+        return view('dashboard.contact_us.excel_exports.customers_export_file');
+    }
+ 
+    public function exportContactUsCustomers(){
+        return Excel::download(new ContactUsCustomersExport, Carbon::now()->format('dmys').'_'.'contact_us_customers.xlsx');
+            // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 }

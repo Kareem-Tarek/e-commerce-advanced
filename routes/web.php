@@ -66,6 +66,10 @@ Route::group([
         Route::get('/contact-us/suppliers', [ContactUsController::class, 'suppliers_contact_us_info'])->name('suppliers-contact-us-info');   //suppliers contact us info page - for dashboard
         Route::get('/contact-us/unregistered-users', [ContactUsController::class, 'unregistered_users_contact_us_info'])->name('unregistered-users-contact-us-info');   //unregistered users contact us info page - for dashboard
         Route::delete('/contact-us/delete/{id}', [ContactUsController::class, 'destroy'])->name('contact-us.destroy');   //contact us info delete functionality "destroy" for dashboard (without softDelete!)
+        /***** Start excel routes for contact us "customers" (view & export functionality) *****/
+        Route::get('/contact-us/customers/excel-export', [ContactUsController::class, 'ExportViewContactUsCustomers'])->name('export-view-contact-us-customers');
+        Route::get('/contact-us/customers/export', [ContactUsController::class, 'exportContactUsCustomers'])->name('export-contact-us-customers');
+        /***** End excel routes for contact us "customers" (view & export functionality) *****/
     });
 });
 
