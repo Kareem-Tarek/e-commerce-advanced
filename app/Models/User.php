@@ -40,6 +40,16 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
+    public function create_user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->BelongsTo(User::class);
+    }
+
+    public function update_user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->BelongsTo(User::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

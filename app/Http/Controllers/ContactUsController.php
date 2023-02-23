@@ -128,10 +128,6 @@ class ContactUsController extends Controller
             ->with(['deleted_contact_us_message' => "Contact info number [$contact_us->info_number] which belongs to ($contact_us->name / $contact_us->email) has been deleted successfully!"]);
     }
 
-    // public function importExportViewSubContactUs(){
-    //     return view('dashboard.sub_categories.excel_imports_exports.import_export_file');
-    // }
-
     public function ExportViewContactUsCustomers(){
         return view('dashboard.contact_us.excel_exports.customers_export_file');
     }

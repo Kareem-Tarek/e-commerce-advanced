@@ -20,9 +20,60 @@
         </div>
     @endif
 
+    @if(Route::is('users.edit') && $User_model->id == auth()->user()->id)
+        {{-- <div class="position-relative mb-5" style="background-color: ; 
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ $User_model->cover }});
+        background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;">
+            <img src="{{ $User_model->avatar }}" width="210" style="object-position: center center;" class="position-absolute mb-5 border border-dark rounded-circle" alt="">
+        </div> --}}
+
+        <div class="d-flex card position-relative" style="margin-bottom: 12%;">
+            <div class="upper bg-black rounded" style="height: 300px; max-height: 300px;">
+                @if($User_model->cover == null)
+                    <a href="{{ 'javascript:void(0);' }}" 
+                        class="position-absolute btn btn-secondary btn-sm fw-bold" style="bottom: 8px; right: 8px; z-index: 100;">
+                        <i class="fa-solid fa-plus" style="font-size: 1rem;"></i> Add a cover
+                    </a>
+                @else
+                    <a href="{{ 'javascript:void(0);' }}" 
+                        class="position-absolute btn btn-secondary btn-sm fw-bold" style="bottom: 8px; right: 8px; z-index: 100;">
+                        <i class="mdi mdi-delete" style="font-size: 1rem;"></i> Edit your cover
+                        <i class="mdi mdi-remove" style="font-size: 1rem;"></i> Delete your cover
+                    </a>
+                @endif
+              <img src="{{ $User_model->cover == null ? '/assets/images/avatars/no-avatar.png' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
+            </div>
+        
+            <div class="user text-center w-25 position-absolute" style="top:80%;">
+              <div class="profile">
+                <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" width="180">
+              </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Avatar</label>
+                <div class="col-sm-9">
+                <input type="file" name="avatar" class="form-control"/>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Cover</label>
+                <div class="col-sm-9">
+                <input type="file" name="cover" class="form-control"/>
+                </div>
+            </div>
+            </div>
+        </div>
+    @endif
+
     <div class="form-group">
         <label>Name</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"" placeholder="Enter user name here.."
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter user name here.."
         value="{{Request::old('name') ? Request::old('name') : $User_model->name}}">
         @error('name')
             <span class="invalid-feedback" role="alert">
@@ -58,7 +109,7 @@
         @enderror
     </div>
 
-    @if(Route::is('users.create'))
+    @if(Route::is('users.create') || $User_model->id == auth()->user()->id)
         <div class="form-group">
             <label>Password <span class="text-danger">*</span></label>
             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter user password here..">
@@ -134,6 +185,16 @@
     </div>
 
     <div class="form-group">
+        <label>Date Of Birth</label>
+        <input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" value="{{Request::old('dob') ? Request::old('dob') : $User_model->dob}}">
+        @error('dob')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group">
         <label>Gender</label>
         <div class="d-flex col-md-6 justify-content-between p-2 rounded" style="background-color: rgb(235, 235, 235);">
             <div class="radio radio-success">
@@ -198,6 +259,17 @@
                                     for the admins because he/she could updates on any other user type - except an 
                                     admin like him/her and this was handled in the "DashboardUsercontroller" in 
                                     the (edit) function -->
+    <div class="d-flex card position-relative" style="margin-bottom: 12%;">
+        <div class="upper bg-black rounded" style="height: 300px; max-height: 300px;">
+            <img src="{{ $User_model->cover == null ? '/assets/images/avatars/no-avatar.png' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
+        </div>
+        <div class="user text-center w-25 position-absolute" style="top:80%;">
+            <div class="profile">
+            <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" width="180">
+            </div>
+        </div>
+    </div>
+
     <div class="form-group">
         <label>User Type <span class="text-danger">*</span></label>
         <select disabled name="user_type" id="user_type_select" class="form-control select @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">

@@ -69,7 +69,7 @@
                 <div class="alert alert-success text-center">
                   <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                   {{ session()->get('deleted_user_message') }} 
-                  and moved to <a href="{{ route('admins.delete') }}" class="text-primary text-decoration-none">Trash</a>.
+                  and moved to <a href="{{ route('users.delete') }}" class="text-primary text-decoration-none">Trash</a>.
                 </div>
             @endif
           {{-- Add class <code>.table-striped</code> --}}

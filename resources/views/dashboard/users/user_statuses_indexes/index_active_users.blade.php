@@ -164,7 +164,7 @@
                               {{-- <button style="display: none;" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure that you want to delete - {{ $active_user->name }}?');" type="submit" title="{{'Delete'." ($active_user->name)"}}"><i class="fa-solid fa-trash"></i> Delete </button> --}}
                             @else
                               <a href="{{route('users.edit', $active_user->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Edit '."- ($active_user->name)"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Edit</a>
-                              <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $active_user->name }}?');" type="submit" title="{{'Delete '."- ($active_user->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
+                              <button class="btn btn-danger btn-md @if(auth()->user()->user_type == "admin" && $active_user->id == auth()->user()->id) d-none @endif p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $active_user->name }}?');" type="submit" title="{{'Delete '."- ($active_user->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
                             @endif
                             {!! Form::close() !!}
                           </td>

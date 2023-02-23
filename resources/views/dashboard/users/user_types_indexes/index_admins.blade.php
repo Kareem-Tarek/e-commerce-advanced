@@ -69,7 +69,7 @@
                 <div class="alert alert-success text-center">
                   <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                   {{ session()->get('deleted_user_message') }} 
-                  and moved to <a href="{{ route('admins.delete') }}" class="text-primary text-decoration-none">Trash</a>.
+                  and moved to <a href="{{ route('users.delete') }}" class="text-primary text-decoration-none">Trash</a>.
                 </div>
             @endif
           {{-- Add class <code>.table-striped</code> --}}
@@ -164,7 +164,7 @@
                               {{-- <button style="display: none;" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure that you want to delete - {{ $admin->name }}?');" type="submit" title="{{'Delete'." ($admin->name)"}}"><i class="fa-solid fa-trash"></i> Delete </button> --}}
                             @else
                               <a href="{{route('users.edit', $admin->id)}}" class="btn btn-primary btn-md p-1 text-white" type="button" title="{{'Edit '."- ($admin->name)"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Edit</a>
-                              <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $admin->name }}?');" type="submit" title="{{'Delete '."- ($admin->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
+                              <button class="btn btn-danger btn-md @if(auth()->user()->user_type == "admin" && $admin->id == auth()->user()->id) d-none @endif p-1 text-white" onclick="return confirm('Are you sure that you want to delete - {{ $admin->name }}?');" type="submit" title="{{'Delete '."- ($admin->name)"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Delete </button>
                             @endif
                             {!! Form::close() !!}
                           </td>
