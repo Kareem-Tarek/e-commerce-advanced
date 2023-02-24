@@ -115,7 +115,8 @@
     @if(Route::is('users.create') || $User_model->id == auth()->user()->id)
         <div class="form-group">
             <label>Password <span class="text-danger">*</span></label>
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter user password here..">
+            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
+            placeholder="Enter {{ Route::is('users.edit', auth()->user()->id) ? 'your' : 'user' }} password here..">
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -125,7 +126,8 @@
 
         <div class="form-group">
             <label>Confirm Password <span class="text-danger">*</span></label>
-            <input type="password" name="confirm_password" class="form-control" placeholder="Enter user password again here..">
+            <input type="password" name="confirm_password" class="form-control" 
+            placeholder="Enter {{ Route::is('users.edit', auth()->user()->id) ? 'your' : 'user' }} password again here..">
         </div>
     @endif
 
