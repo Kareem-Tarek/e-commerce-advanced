@@ -44,7 +44,7 @@
                         <i class="mdi mdi-delete" style="font-size: 1rem;"></i> Delete your cover
                     </a>
                 @endif
-              <img src="{{ $User_model->cover == null ? '/assets/images/avatars/no-avatar.png' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
+              <img src="{{ $User_model->cover == null ? '/assets/images/covers/no-cover.jpg' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
             </div>
         
             <div class="user text-center w-25 position-absolute" style="top:80%;">
@@ -264,7 +264,7 @@
                                     the (edit) function -->
     <div class="d-flex card position-relative" style="margin-bottom: 12%;">
         <div class="upper bg-black rounded" style="height: 300px; max-height: 300px;">
-            <img src="{{ $User_model->cover == null ? '/assets/images/avatars/no-avatar.png' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
+            <img src="{{ $User_model->cover == null ? '/assets/images/covers/no-cover.jpg' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
         </div>
         <div class="user text-center w-25 position-absolute" style="top:80%;">
             <div class="profile">
