@@ -36,7 +36,7 @@ class DashboardProductDetailController extends Controller
         }
         else{
             //for the current functionality -> show the product details data (the general products page for admins & moderators)//
-            $products_details       = ProductDetail::orderBy('created_at','asc')->paginate(30);
+            $products_details       = ProductDetail::orderBy('supplier_id','asc')->paginate(30);
             $products_details_count = $products_details->count();
 
             //only for counting the final products number (for admins & moderators)//
@@ -54,7 +54,7 @@ class DashboardProductDetailController extends Controller
             $products_details_count = $products_details->count();
         }
         else{
-            $products_details       = ProductDetail::where('discount', '>', 0)->orderBy('created_at','asc')->paginate(30);
+            $products_details       = ProductDetail::where('discount', '>', 0)->orderBy('supplier_id','asc')->paginate(30);
             $products_details_count = $products_details->count();
         }
 
@@ -68,7 +68,7 @@ class DashboardProductDetailController extends Controller
             $products_details_count = $products_details->count();
         }
         else{
-            $products_details       = ProductDetail::where('discount', '=', 0)->orderBy('created_at','asc')->paginate(30);
+            $products_details       = ProductDetail::where('discount', '=', 0)->orderBy('supplier_id','asc')->paginate(30);
             $products_details_count = $products_details->count();
         }
 
@@ -233,7 +233,7 @@ class DashboardProductDetailController extends Controller
             $products_details_count = $products_details->count();
         }
         else{
-            $products_details       = ProductDetail::orderBy('created_at','asc')->onlyTrashed()->paginate(5);
+            $products_details       = ProductDetail::orderBy('supplier_id','asc')->onlyTrashed()->paginate(5);
             $products_details_count = $products_details->count();
         }
         

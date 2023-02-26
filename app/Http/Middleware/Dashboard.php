@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Dashboard
 {
@@ -16,7 +17,7 @@ class Dashboard
     public function handle($request, Closure $next)
     {
         if (auth()->guest() && Auth::guest() && !auth()->user()){ // all three conditions means the same thing which is if user is "guest"
-            return redirect('/register');
+            return redirect('/dashboard/login');;
         }
 
         if (auth()->user()->user_type != "admin" && 

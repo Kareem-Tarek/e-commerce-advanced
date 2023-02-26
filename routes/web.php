@@ -1,5 +1,6 @@
 <?php
 //Start Dashboard Controllers
+use App\Http\Controllers\Auth\DashboardLoginController;
 use App\Http\Controllers\Dashboard\DashboardUserController;
 use App\Http\Controllers\Dashboard\DashboardSettingController;
 use App\Http\Controllers\Dashboard\DashboardHomeController;
@@ -35,6 +36,9 @@ use App\Http\Controllers\UserProfileController;
 // });
 
 Auth::routes();
+
+Route::get('/dashboard/login', [DashboardLoginController::class, 'index'])->name('dashboard.login');
+
 
 //-------------------------------------- START Website Routes --------------------------------------//
 Route::group([], function () {

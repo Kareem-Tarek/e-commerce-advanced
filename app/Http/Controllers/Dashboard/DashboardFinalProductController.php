@@ -26,7 +26,7 @@ class DashboardFinalProductController extends Controller
                 $final_products_count = $final_products->count();
             }
             else{
-                $final_products       = FinalProduct::where('product_id', $product_detail->id)->orderBy('created_at','asc')->paginate(7);
+                $final_products       = FinalProduct::where('product_id', $product_detail->id)->orderBy('supplier_id','asc')->paginate(7);
                 $final_products_count = $final_products->count();
             }
             return view('dashboard.products.final_products.index', compact('final_products', 'final_products_count', 'product_detail'));
@@ -172,7 +172,7 @@ class DashboardFinalProductController extends Controller
             $final_products_count = $final_products->count();
         }
         else{
-            $final_products     = FinalProduct::orderBy('created_at','asc')->onlyTrashed()->paginate(5);
+            $final_products     = FinalProduct::orderBy('supplier_id','asc')->onlyTrashed()->paginate(5);
             $final_products_count = $final_products->count();
         }
 

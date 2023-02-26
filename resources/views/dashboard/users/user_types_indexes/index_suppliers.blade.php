@@ -121,7 +121,7 @@
 
                         <td>{{ ucfirst($supplier->user_type) }}</td>
 
-                        <td>
+                        <td class="text-center">
                           @if($supplier->status == "active")
                             <span class="bg-success text-white px-2 py-1 rounded">{{ ucfirst($supplier->status) }}</span>
                           @elseif($supplier->status == "inactive")

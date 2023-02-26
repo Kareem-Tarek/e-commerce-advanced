@@ -65,7 +65,7 @@
     <label>Price (EGP) <span class="text-danger">*</span></label>
     <input class="form-control @error('price') is-invalid @enderror"
             value="{{Request::old('price') ? Request::old('price') : $ProductDetail_model->price}}" 
-            type="text" name="price" placeholder="Enter price here.." 
+            type="number" name="price" placeholder="Enter price here.." 
             onkeyup="$('#gain_value').val($(this).val() - ( $(this).val() * $('#discount').val() ) ); 
                      $('.gain_value').val($(this).val() - ( $(this).val() * $('.discount').val() ) );" autocomplete="off">
         {{-- <input class="form-control"

@@ -16,6 +16,10 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="/assets/dashboard/css/style.css">
   <link rel="stylesheet" href="/assets/dashboard/css/custom_style.css">
+  @if(Route::is('dashboard.login'))
+    <link rel="stylesheet" href="/assets/dashboard/css/login_dashboard_style.css"/>
+  @endif
+  @yield('styles')
   <!-- endinject -->
   <!-- icon in the title -->
   <link rel="icon" href="/assets/images/logos/Anywhere-Anytime(1).png" type="image/x-icon">
@@ -32,9 +36,10 @@
   {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
 </head>
 <body>
+@auth
   <div class="container-scroller">
 
-    <div class="row p-0 m-0 proBanner" id="proBanner">
+    <div class="row p-0 m-0 proBanner @if(Route::is('dashboard.login')) d-none @endif" id="proBanner">
       <div class="col-md-12 p-0 m-0">
         <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
           <div class="ps-lg-1">
@@ -73,7 +78,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-            @yield('content')
+          @yield('content')
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.blade.php -->
@@ -85,7 +90,7 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+@endauth
   <!-- plugins:js -->
   <script src="/assets/dashboard/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->

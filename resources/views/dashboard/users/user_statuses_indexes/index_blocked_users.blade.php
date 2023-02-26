@@ -122,7 +122,7 @@
 
                         <td>{{ ucfirst($blocked_user->user_type) }}</td>
 
-                        <td>
+                        <td class="text-center">
                           @if($blocked_user->status == "active")
                             <span class="bg-success text-white px-2 py-1 rounded">{{ ucfirst($blocked_user->status) }}</span>
                           @elseif($blocked_user->status == "inactive")

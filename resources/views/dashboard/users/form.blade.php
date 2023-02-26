@@ -49,9 +49,38 @@
         
             <div class="user text-center w-25 position-absolute" style="top:80%;">
               <div class="profile">
-                <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" width="180">
+                <a href="javscript:void(0);" class="avatar-link" onclick="">
+                    <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="auth-user-avatar rounded-circle bg-transparent border border-5 border-white" style="width: 50%; max-width: 50%;">
+                </a>
+                <div class="overlay"><a href="{{ 'javascript:void(0);' }}" class="text-decoration-none text-dark"><i class="mdi mdi-pencil" style="font-size: 1rem;"></i> Edit Avatar</a></div>
               </div>
             </div>
+            <style>
+                .profile{
+                    position: relative;
+                    display:inline-block;
+                }
+                .avatar-link:hover{
+                    opacity: 0.7;
+                }
+                .overlay {
+                    display: none;
+                }  
+                .avatar-link:hover + .overlay {
+                    display: block;
+                    color: black;
+                    z-index: 500;
+                }
+            </style>
+
+            <script>
+                function load() {
+                    $("#foo").tigger('click');
+                }
+                function burn() {
+                    $(this).css("color", "red");
+                }
+            </script>
         </div>
 
         <div class="row">
@@ -59,7 +88,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Avatar</label>
                 <div class="col-sm-9">
-                <input type="file" name="avatar" class="form-control"/>
+                    <input type="file" id="avatar-input" name="avatar" class="form-control"/>
                 </div>
             </div>
             </div>
@@ -67,7 +96,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Cover</label>
                 <div class="col-sm-9">
-                <input type="file" name="cover" class="form-control"/>
+                <input type="file" id="cover-input" name="cover" class="form-control"/>
                 </div>
             </div>
             </div>
@@ -268,9 +297,9 @@
         <div class="upper bg-black rounded" style="height: 300px; max-height: 300px;">
             <img src="{{ $User_model->cover == null ? '/assets/images/covers/no-cover.jpg' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
         </div>
-        <div class="user text-center w-25 position-absolute" style="top:80%;">
+        <div class="user text-center w-25 position-absolute" style="top: 80%;">
             <div class="profile">
-            <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" width="180">
+            <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" style="width: 50%; max-width: 50%;">
             </div>
         </div>
     </div>

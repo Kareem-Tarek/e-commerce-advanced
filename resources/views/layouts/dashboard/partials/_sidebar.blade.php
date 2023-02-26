@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas @if(Route::is('dashboard.login')) d-none @endif" id="sidebar">
         <ul class="nav">
 
           <li class="nav-item text-center">
