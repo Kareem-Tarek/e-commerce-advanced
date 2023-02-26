@@ -5,13 +5,28 @@ namespace App\Exports;
 use App\Models\ContactUs;
 // use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-
-class ContactUsSuppliersExport implements FromArray
+class ContactUsSuppliersExport implements FromArray, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
+
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'Info Number',
+            'Name', 
+            'Phone',
+            'Email',
+            'Subject',
+            'Message',
+            'Name (if registered)',
+            'User Type',
+        ];
+    }
 
     // public function collection()
     // {

@@ -52,7 +52,7 @@ class LoginController extends Controller
         if(is_numeric($request->get('email'))){
             return ['phone' => $request->email, 'password' => $request->password];
         }
-        elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)){
+        elseif(filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)){
             return ['email' => $request->email, 'password' => $request->password];
         }
         else{
@@ -62,14 +62,14 @@ class LoginController extends Controller
     /*********************** for login by email, username or phone (currently in use) ***********************/
 
     function authenticated(Request $request, $user){ // used for login at (datetime) and the ip of the computer that was logged in with
-        $user->update([
-            'last_login_at' => Carbon::now()->toDateTimeString(),
-            'last_login_ip' => $request->getClientIp()
-        ]);
-        
         // $user->last_login_at = Carbon::now()->toDateTimeString();
         // $user->last_login_ip = $request->getClientIp();
         // $user->save();
+
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(), 
+            'last_login_ip' => $request->getClientIp()
+        ]);
     }
 
 }

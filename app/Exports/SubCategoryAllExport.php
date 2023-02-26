@@ -5,13 +5,24 @@ namespace App\Exports;
 use App\Models\SubCategory;
 // use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 
-class SubCategoryAllExport implements FromArray
+class SubCategoryAllExport implements FromArray, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
+
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'Name (Sub-category)',
+            'Description', 
+            'Category (Sub-category of)',
+        ];
+    }
 
     // public function collection()
     // {
