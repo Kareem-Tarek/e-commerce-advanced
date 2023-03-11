@@ -272,9 +272,9 @@ class DashboardCategoryController extends Controller
  
     public function importCategories(Request $request){
         $rules = [
-            'importing_input'          => 'required|mimes:xlsx,xlx,xls',
+            'importing_input'          => 'required|file|mimes:xls,xlsx,xlsm,xltx,xltm,xla,xlt,csv|max:16000',
         ];
-
+        
         $messages = [
             'importing_input.required' => "You didn't upload an Excel file! Please try again.",
             'importing_input.mimes'    => "The extension of the file you uploaded isn't allowed to be chosen! Please try again.",
@@ -292,7 +292,7 @@ class DashboardCategoryController extends Controller
     }
 
     public function exportCategories(){
-        return Excel::download(new CategoryAllExport, Carbon::now()->format('dmys').'_'.'categories.xlsx');
+        return Excel::download(new CategoryAllExport, 'AA'.Carbon::now()->format('dmys').'_'.'categories.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 

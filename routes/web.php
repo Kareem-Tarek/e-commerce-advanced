@@ -18,6 +18,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ComingSoonController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ProductController;
 //End Website Controllers
 
 /*
@@ -50,14 +51,14 @@ Route::get('/error-404', [ErrorsController::class, 'index'])->name('error-404');
 
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
-/********************** Start users routes. **********************/
+/********************** Start users' (auth()->user()) profile routes. **********************/
 Route::group([
     'middleware' => ['auth']
 ], function () {
     Route::get('/my-profile', [UserProfileController::class, 'edit_my_profile'])->name('profile-management');
     Route::patch('/my-profile/update', [UserProfileController::class, 'update_my_profile'])->name('update-my-profile');
 });
-/********************** End users routes. **********************/
+/********************** End users' (auth()->user()) profile routes. **********************/
 
 /********************** Start contact us routes. **********************/
 Route::group([
@@ -87,6 +88,10 @@ Route::group([
 /********************** Start contact us routes. **********************/
 
 Route::get('/coming-soon', [ComingSoonController::class, 'index'])->name('coming-soon');
+
+/********************** Start products routes. **********************/
+Route::get('/search', [ProductController::class, 'website_search'])->name('website-search-query');
+/********************** End products routes. **********************/
 //-------------------------------------- END Website Routes --------------------------------------//
 
 
@@ -151,6 +156,8 @@ Route::group([
 
         /********************** Start users routes. **********************/
         Route::resource('/users', DashboardUserController::class);
+        Route::get('/user/change-password-view/{id}/{name?}', [DashboardUserController::class, 'changePasswordView'])->name('users.changePasswordView');
+        Route::patch('/user/change-password/{id}', [DashboardUserController::class, 'changePassword'])->name('users.changePassword');
         Route::get('/user/admins', [DashboardUserController::class, 'indexAdmins'])->name('users.indexAdmins');
         Route::get('/user/moderators', [DashboardUserController::class, 'indexModerators'])->name('users.indexModerators');
         Route::get('/user/suppliers', [DashboardUserController::class, 'indexSuppliers'])->name('users.indexSuppliers');

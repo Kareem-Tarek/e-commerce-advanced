@@ -72,15 +72,6 @@
                     z-index: 500;
                 }
             </style>
-
-            <script>
-                function load() {
-                    $("#foo").tigger('click');
-                }
-                function burn() {
-                    $(this).css("color", "red");
-                }
-            </script>
         </div>
 
         <div class="row">
@@ -141,7 +132,7 @@
         @enderror
     </div>
 
-    @if(Route::is('users.create') || $User_model->id == auth()->user()->id)
+    @if(Route::is('users.create'))
         <div class="form-group">
             <label>Password <span class="text-danger">*</span></label>
             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
@@ -167,7 +158,7 @@
                 <option value="" selected>---------- Please select a user type ----------</option>
                 <option value="customer" {{ $User_model->user_type == "customer" ? 'selected' : '' }}>Customer</option>
                 <option value="supplier" {{ $User_model->user_type == "supplier" ? 'selected' : '' }}>Supplier</option>
-                <option value="admin" {{ $User_model->user_type == "admin" ? 'selected' : '' }}>Admin</option>
+                <option value="admin" class="@if(auth()->user()->user_type == "moderator") d-none @endif" {{ $User_model->user_type == "admin" ? 'selected' : '' }}>Admin</option>
                 <option value="moderator" {{ $User_model->user_type == "moderator" ? 'selected' : '' }}>Moderator</option>
             </select>
             <div class="mt-1">
@@ -202,7 +193,7 @@
         </div>
     @elseif(Route::is('users.edit') && $User_model->id == auth()->user()->id  && (auth()->user()->user_type == "moderator" || auth()->user()->user_type == "supplier"))
         <div class="form-group">
-            <label>User Type <span class="text-danger">*</span></label>
+            <label class="bg-primary text-white px-2 rounded">User Type <span class="text-danger">*</span></label>
             <input disabled type="text" class="form-control" value="{{ ucfirst($User_model->user_type) }}">
         </div>
     @endif
@@ -285,7 +276,7 @@
         </div>
     @elseif(Route::is('users.edit') && $User_model->id == auth()->user()->id  && (auth()->user()->user_type == "moderator" || auth()->user()->user_type == "supplier"))
         <div class="form-group">
-            <label>Status <span class="text-danger">*</span></label>
+            <label class="bg-primary text-white px-2 rounded">Status <span class="text-danger">*</span></label>
             <input disabled type="text" class="form-control" value="{{ ucfirst($User_model->status) }}">
         </div>
     @endif

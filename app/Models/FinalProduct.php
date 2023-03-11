@@ -11,11 +11,13 @@ class FinalProduct extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'final_products';
+
     protected $guarded = [];
 
     public function productDetail()
     {
-        return $this->BelongsTo(productDetail::class, 'product_id', 'id');
+        return $this->BelongsTo(ProductDetail::class, 'product_id', 'id');
     }
 
     public function comparison()

@@ -24,13 +24,8 @@ class SubCategoryAllExport implements FromArray, WithHeadings
         ];
     }
 
-    // public function collection()
-    // {
-    //     return SubCategory::all();
-    // }
-
     public function array():array
-     {
+    {
         $array = [];
         $sub_categories = SubCategory::all();
         foreach($sub_categories as $sub_category){

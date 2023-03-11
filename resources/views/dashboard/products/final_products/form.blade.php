@@ -95,7 +95,7 @@
         <option value="rgb(50, 177, 164)" class="text-white" style="background-color: rgb(50, 177, 164);" {{ $FinalProduct_model->color == 'rgb(50, 177, 164)' ? 'selected' : '' }}>Greenish Blue</option>
         <option value="cyan" class="text-dark" style="background-color: cyan;" {{ $FinalProduct_model->color == 'cyan' ? 'selected' : '' }}>Cyan</option>
         <option value="green" class="text-white" style="background-color: green;" {{ $FinalProduct_model->color == 'green' ? 'selected' : '' }}>Green</option>
-        <option value="green" class="text-white" style="background-color: rgb(39, 183, 39);" {{ $FinalProduct_model->color == 'green' ? 'selected' : '' }}>Green (success)</option>
+        <option value="rgb(39, 183, 39)" class="text-white" style="background-color: rgb(39, 183, 39);" {{ $FinalProduct_model->color == 'rgb(39, 183, 39)' ? 'selected' : '' }}>Green (success)</option>
         <option value="#82ff59" class="text-dark" style="background-color: #82ff59;" {{ $FinalProduct_model->color == '#82ff59' ? 'selected' : '' }}>Baby Green (1)</option>
         <option value="#b6ff87" class="text-dark" style="background-color: #b6ff87;" {{ $FinalProduct_model->color == '#b6ff87' ? 'selected' : '' }}>Baby Green (2)</option>
         <option value="#cdff5a" class="text-dark" style="background-color: #cdff5a;" {{ $FinalProduct_model->color == '#cdff5a' ? 'selected' : '' }}>Baby Green (3) - Lime</option>        

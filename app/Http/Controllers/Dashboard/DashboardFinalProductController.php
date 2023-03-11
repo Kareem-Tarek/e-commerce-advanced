@@ -53,6 +53,7 @@ class DashboardFinalProductController extends Controller
     public function store(Request $request)
     {
         $final_product                     = new FinalProduct;
+        $final_product->name               = $request->name;
         $final_product->size               = $request->size;
         $final_product->color              = $request->color;
         $final_product->available_quantity = $request->available_quantity;

@@ -32,6 +32,9 @@
                             @include('dashboard.users.form')
                             <input type="submit" value="Update" class="btn btn-primary border-info text-light me-2">
                             <a href="{{ route('users.index') }}" class="btn btn-secondary text-light me-2">Cancel</a>
+                            @if(auth()->user()->id == $User_model->id)
+                                <a href="{{ route('users.changePasswordView', [$User_model->id, $User_model->username]) }}">Want to change your password?</a>
+                            @endif
                         </form>
                     </div>
                 </div>

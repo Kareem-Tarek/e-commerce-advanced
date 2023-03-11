@@ -22,7 +22,7 @@ class ProductDetail extends Model
 
     public function finalProduct()
     {
-        return $this->hasMany(finalProduct::class);
+        return $this->hasMany(FinalProduct::class);
     }
 
     public function feedback()

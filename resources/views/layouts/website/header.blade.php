@@ -120,26 +120,17 @@ style="
                             <a href="javascript:void(0);" class="sf-with-ul">Company</a>
                             @if(!auth()->user())
                                 <ul>
-                                    <li>
-                                        <a href="{{ route('about-us') }}">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('contact-us') }}">Contact Us</a>
-                                    </li>
+                                    <li><a href="{{ route('about-us') }}">About Us</a></li>
+                                    <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
                                     <li><a href="faq.html">FAQs</a></li>
-                                    {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
                                     <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
                                 </ul>
                             @endif
                             @auth
                                 @if(auth()->user()->user_type == "customer" || auth()->user()->user_type == "supplier")
                                     <ul>
-                                        <li>
-                                            <a href="{{ route('about-us') }}">About Us</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('contact-us') }}">Contact Us</a>
-                                        </li>
+                                        <li><a href="{{ route('about-us') }}">About Us</a></li>
+                                        <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
                                         <li><a href="faq.html">FAQs</a></li>
                                         {{-- <li><a href="{{ route('error-404') }}">Error 404</a></li> --}}
                                         <li><a href="{{ route('coming-soon') }}">Coming Soon</a></li>
@@ -345,10 +336,10 @@ style="
 
                 <div class="header-search header-search-extended header-search-visible">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                    <form action="#" method="GET">
+                    <form action="{{ route('website-search-query') }}" method="GET">
                         <div class="header-search-wrapper">
-                            <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search for items or brands...">
+                            <label for="website_search_query" class="sr-only">Search</label>
+                            <input type="search" class="form-control" name="website_search_query" id="website_search_query" placeholder="Search for items or brands...">
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                         </div><!-- End .header-search-wrapper -->
                     </form>

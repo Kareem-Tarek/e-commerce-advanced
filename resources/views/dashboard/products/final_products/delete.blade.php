@@ -102,7 +102,7 @@
 
                         <td class="fw-bold">{{ $product->id }}</td>
 
-                        <td>{{ $product->productDetail->name }}</td>
+                        <td>{{ $product->productDetail->name ?? '' }}</td>
 
                         <td class="py-1"><img src="{{ $product->image }}" alt="No img!"/></td>
 
@@ -116,26 +116,30 @@
                         </td>
 
                         <td class="text-center w-25">
-                            @if($product->productDetail->discount == 0)
-                                —
-                            @else
-                                <span class="fw-bold text-light bg-dark p-1 rounded">
-                                    {{ $product->productDetail->discount * 100}}%
-                                </span>
-                                {{-- <span class="fw-bold">{{ $product->productDetail->discount * 100 }}%</span>
-                                <div class="progress mt-2">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->productDetail->discount * 100 }}%" aria-valuenow="{{ $product->productDetail->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div> --}}
+                            @if(isset($product->productDetail->discount))
+                                @if($product->productDetail->discount == 0)
+                                    —
+                                @else
+                                    <span class="fw-bold text-light bg-dark p-1 rounded">
+                                        {{ $product->productDetail->discount * 100}}%
+                                    </span>
+                                    {{-- <span class="fw-bold">{{ $product->productDetail->discount * 100 }}%</span>
+                                    <div class="progress mt-2">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $product->productDetail->discount * 100 }}%" aria-valuenow="{{ $product->productDetail->discount * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div> --}}
+                                @endif
                             @endif
                         </td>
 
                         <td>
-                            @if($product->productDetail->discount > 0)
-                                <del class="text-danger">{{ $product->productDetail->price }}</del>
-                                &RightArrow;
-                                <span class="text-success fw-bold">{{ $product->productDetail->price - ($product->productDetail->price * $product->productDetail->discount) }}</span>
-                            @else($product->productDetail->discount == 0)
-                                <span class="text-dark">{{ $product->productDetail->price }}</span>
+                            @if(isset($product->productDetail->discount))
+                                @if($product->productDetail->discount > 0)
+                                    <del class="text-danger">{{ $product->productDetail->price }}</del>
+                                    &RightArrow;
+                                    <span class="text-success fw-bold">{{ $product->productDetail->price - ($product->productDetail->price * $product->productDetail->discount) }}</span>
+                                @else($product->productDetail->discount == 0)
+                                    <span class="text-dark">{{ $product->productDetail->price }}</span>
+                                @endif
                             @endif
                         </td>
 
@@ -160,16 +164,28 @@
                         </td>
 
                         <td>
-                            {{ ucfirst($product->productDetail->subCategory->Category->name) ?? 'N/A' }}
+                            @if(isset($product->productDetail->subCategory->Category->name))
+                                {{ ucfirst($product->productDetail->subCategory->Category->name) ?? 'N/A' }}
+                            @endif
                         </td>
 
                         <td>
-                            {{ ucfirst($product->productDetail->subCategory->name) ?? 'N/A'}}
+                            @if(isset($product->productDetail->subCategory->name))
+                                {{ ucfirst($product->productDetail->subCategory->name) ?? 'N/A' }}
+                            @endif
                         </td>
 
-                        <td>{{ $product->productDetail->brand_name }}</td>
+                        <td>
+                            @if(isset($product->productDetail->brand_name))
+                                {{ ucfirst($product->productDetail->brand_name) ?? 'N/A' }}
+                            @endif
+                        </td>
                         
-                        <td>{{ $product->productDetail->user_supplier->name }}</td>
+                        <td>
+                            @if(isset($product->productDetail->user_supplier->name))
+                                {{ ucfirst($product->productDetail->user_supplier->name) ?? 'N/A' }}
+                            @endif
+                        </td>
                         
                         <td>{{ $product->deleted_at->format('(D) d-M-Y — h:m A') }}</td>
 
@@ -185,7 +201,7 @@
                                     'route' => ['products.forceDelete',$product->id],
                                     'method' => 'delete'
                                 ])!!}
-                                @php $product_name = $product->productDetail->name @endphp
+                                @php $product_name = isset($product->productDetail->name) @endphp
                                 <a href="{{route('products.restore', $product->id)}}" class="btn btn-success btn-md p-1 text-white" type="button" title="{{'Restore '."- $product_name [$product->id]"}}"><i class="fas fa-edit dashboard-admin-icon-action"></i> Restore</a>
                                 <button class="btn btn-danger btn-md p-1 text-white" onclick="return confirm('Are you sure that you want to permanent delete - {{ $product_name }}?');" type="submit" title="{{'Permanent Delete '."- $product_name [$product->id]"}}"><i class="fa-solid fa-trash dashboard-admin-icon-action"></i> Permanent Delete</button>
                                 {!! Form::close() !!}

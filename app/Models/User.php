@@ -18,12 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $guarded = [];
-
-    protected $fillable = [
-        'last_login_at', 
-        'last_login_ip', 
-    ];
+    protected $guarded = [];
 
     public function productDetail()
     {

@@ -39,7 +39,7 @@
 @auth
   <div class="container-scroller">
 
-    <div class="row p-0 m-0 proBanner @if(Route::is('dashboard.login')) d-none @endif" id="proBanner">
+    <div id="proBanner" class="row p-0 m-0 proBanner @if(Route::is('dashboard.login')) d-none @endif">
       <div class="col-md-12 p-0 m-0">
         <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
           <div class="ps-lg-1">

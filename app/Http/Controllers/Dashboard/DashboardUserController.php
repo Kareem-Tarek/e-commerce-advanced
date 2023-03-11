@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
@@ -241,16 +242,14 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $users_old        = User::findOrFail($id);
-
-        $users            = User::findOrFail($id);
+        $users = User::findOrFail($id);
         if($users->id == auth()->user()->id){
             $users->name      = $request->name;
             $users->username  = $request->username;
-            if($users->id == auth()->user()->id /* && auth()->user()->user_type == "admin" */){
+            if($users->id == auth()->user()->id/* || auth()->user()->user_type == "admin" */){
                 $users->email = $request->email;
             }
-            else{ // elseif($user->id != auth()->user()->id) -> which means the retrieved data doesn't match the signed in (auth()->user()) admin, which also means all the other users except the signed in admin him/her self
+            else{ // elseif($users->id != auth()->user()->id) -> which means the retrieved data doesn't match the signed in (auth()->user()) admin, which also means all the other users except the signed in admin him/her self
                 // $users->email != $request->email;
                 return redirect()->route('users.index')->with('unauthorized_action', 'Sorry you are not allowed to do this action!');
             }
@@ -263,11 +262,42 @@ class DashboardUserController extends Controller
             $users->user_type = $request->user_type;
             $users->status    = $request->status;
         }
-
         $users->save();
 
         return redirect()->route('users.index')
             ->with(['updated_user_message' => "($users->username / $users->email) - Edited successfully!"]);
+    }
+
+    public function changePasswordView($id)
+    {
+        $User_model = User::find($id);
+        if($User_model != null && $User_model->id == auth()->user()->id){
+            return view('dashboard.users.changePassword', compact('User_model'));
+        }
+        else{
+            // return redirect()->back();
+            return redirect()->route('users.changePasswordView', auth()->user()->id);
+        }
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = auth()->user();
+
+        if(!Hash::check($request->old_password, $user->password)) {
+            return redirect()->back()->with('old_req_not_matching_db', 'Old password did not match "the Current Password". Please try again!');
+        }
+        elseif($request->confirm_new_password != $request->new_password) {
+            return redirect()->back()->with('confirm_not_matching_new', 'New Password did not match "Confirm Password". Please try again!');
+        }
+        elseif(Hash::check($request->new_password, $user->password)) {
+            return redirect()->back()->with('new_is_matching_old', 'New Password must be different than the old password');
+        }
+        elseif(Hash::check($request->old_password, $user->password) && $request->old_password != "" && $request->new_password != "") {
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+            return redirect()->back()->with('password_changed_successfully', 'Your password has been updated successfully!');
+        }
     }
 
     /**
@@ -319,7 +349,7 @@ class DashboardUserController extends Controller
  
     public function importUsers(Request $request){
         $rules = [
-            'importing_input'          => 'required|mimes:xlsx,xlx,xls',
+            'importing_input'          => 'required|file|mimes:xls,xlsx,xlsm,xltx,xltm,xla,xlt,csv|max:16000',
         ];
 
         $messages = [
@@ -339,7 +369,7 @@ class DashboardUserController extends Controller
     }
 
     public function exportUsers(){
-        return Excel::download(new UserAllExport, Carbon::now()->format('dmys').'_'.'users.xlsx');
+        return Excel::download(new UserAllExport, 'AA'.Carbon::now()->format('dmys').'_'.'users.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
         

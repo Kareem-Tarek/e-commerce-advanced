@@ -263,7 +263,7 @@ class DashboardSubCategoryController extends Controller
  
     public function importSubCategories(Request $request){
         $rules = [
-            'importing_input'          => 'required|mimes:xlsx,xlx,xls',
+            'importing_input'          => 'required|file|mimes:xls,xlsx,xlsm,xltx,xltm,xla,xlt,csv|max:16000',
         ];
 
         $messages = [
@@ -282,7 +282,7 @@ class DashboardSubCategoryController extends Controller
     }
  
     public function exportSubCategories(){
-        return Excel::download(new SubCategoryAllExport, Carbon::now()->format('dmys').'_'.'subcategories.xlsx');
+        return Excel::download(new SubCategoryAllExport, 'AA'.Carbon::now()->format('dmys').'_'.'subcategories.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 

@@ -68,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $avatar = $data['avatar'];
+        $avatar    = $data['avatar'];
 
         if($avatar == null){
             $avatar = null;

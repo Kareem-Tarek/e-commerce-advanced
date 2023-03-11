@@ -133,7 +133,7 @@ class ContactUsController extends Controller
     }
  
     public function exportContactUsCustomers(){
-        return Excel::download(new ContactUsCustomersExport, Carbon::now()->format('dmys').'_'.'contact_us_customers.xlsx');
+        return Excel::download(new ContactUsCustomersExport, 'AA'.Carbon::now()->format('dmys').'_'.'contact_us_customers.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
 }

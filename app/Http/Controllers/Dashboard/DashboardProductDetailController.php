@@ -131,6 +131,7 @@ class DashboardProductDetailController extends Controller
             $product_details->supplier_id = $request->supplier_id;
         }
         $product_details->create_user_id = auth()->user()->id;
+        $product_details->updated_at = null;
         $product_details->save();
 
         return redirect()->route('all-products.index')
