@@ -74,46 +74,59 @@
             </style>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Avatar</label>
-                <div class="col-sm-9">
-                    <input type="file" id="avatar-input" name="avatar" class="form-control"/>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-2">Avatar</label>
+                    <div class="col-sm-9">
+                        <input type="file" id="avatar-input" name="avatar" class="form-control"/>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <div class="col-md-6">
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Cover</label>
-                <div class="col-sm-9">
-                <input type="file" id="cover-input" name="cover" class="form-control"/>
                 </div>
-            </div>
+                <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-2">Cover</label>
+                    <div class="col-sm-9">
+                    <input type="file" id="cover-input" name="cover" class="form-control"/>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     @endif
 
     <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter user name here.."
-        value="{{Request::old('name') ? Request::old('name') : $User_model->name}}">
-        @error('name')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-
-    <div class="form-group">
-        <label>Username <span class="text-danger @error('username') is-invalid @enderror">*</span></label>
-        <input type="text" name="username" class="form-control" placeholder="Enter user username here.."
-        value="{{Request::old('username') ? Request::old('username') : $User_model->username}}">
-        @error('username')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-2">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter user name here.."
+                            value="{{Request::old('name') ? Request::old('name') : $User_model->name}}">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-2">Username <span class="text-danger">*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Enter user username here.."
+                            value="{{Request::old('username') ? Request::old('username') : $User_model->username}}">
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
@@ -209,33 +222,44 @@
         @enderror
     </div>
 
-    <div class="form-group">
-        <label>Date Of Birth</label>
-        <input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" value="{{Request::old('dob') ? Request::old('dob') : $User_model->dob}}">
-        @error('dob')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-
-    <div class="form-group">
-        <label>Gender</label>
-        <div class="d-flex col-md-6 justify-content-between p-2 rounded" style="background-color: rgb(235, 235, 235);">
-            <div class="radio radio-success">
-                <input type="radio" class="@error('gender') is-invalid @enderror" name="gender" value="male" {{ $User_model->gender == "male" ? 'checked'  : '' }}>
-                <label class="mb-0">Male</label>
+    <div class="form-group @if(auth()->user()->user_type == "supplier") d-none @endif">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-4">Date Of Birth</label>
+                    <div class="col-sm-9">
+                        <input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" value="{{Request::old('dob') ? Request::old('dob') : $User_model->dob}}">
+                        @error('dob')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
             </div>
-            <div class="radio radio-primary">
-                <input type="radio" class="@error('gender') is-invalid @enderror" name="gender" value="female" {{ $User_model->gender == "female" ? 'checked'  : '' }}>
-                <label class="mb-0">Female</label>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-4">Gender</label>
+                    <div class="col-sm-9">
+                        <div class="d-flex col-md-8 justify-content-between p-2 rounded" style="background-color: rgb(235, 235, 235);">
+                            <div class="radio radio-success">
+                                <input type="radio" class="@error('gender') is-invalid @enderror" name="gender" value="male" {{ $User_model->gender == "male" ? 'checked'  : '' }}>
+                                <label class="mb-0">Male</label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <input type="radio" class="@error('gender') is-invalid @enderror" name="gender" value="female" {{ $User_model->gender == "female" ? 'checked'  : '' }}>
+                                <label class="mb-0">Female</label>
+                            </div>
+                        </div>
+                        @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
-        @error('gender')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
     </div>
 
     @if(Route::is('users.create'))
