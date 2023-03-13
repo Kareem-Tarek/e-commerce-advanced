@@ -74,7 +74,7 @@
             </style>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top: 15%;">
             <div class="row">
                 <div class="col-md-6">
                 <div class="form-group row">
@@ -308,7 +308,7 @@
                                     for the admins because he/she could updates on any other user type - except an 
                                     admin like him/her and this was handled in the "DashboardUsercontroller" in 
                                     the (edit) function -->
-    <div class="d-flex card position-relative" style="margin-bottom: 12%;">
+    <div class="d-flex card position-relative" style="margin-bottom: 15%;">
         <div class="upper bg-black rounded" style="height: 300px; max-height: 300px;">
             <img src="{{ $User_model->cover == null ? '/assets/images/covers/no-cover.jpg' : $User_model->cover }}" alt="" class="img-fluid bg-cover  w-100 h-100 rounded">
         </div>

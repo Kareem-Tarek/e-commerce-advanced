@@ -158,6 +158,8 @@ Route::group([
         Route::resource('/users', DashboardUserController::class);
         Route::get('/user/change-password-view/{id}/{name?}', [DashboardUserController::class, 'changePasswordView'])->name('users.changePasswordView');
         Route::patch('/user/change-password/{id}', [DashboardUserController::class, 'changePassword'])->name('users.changePassword');
+        Route::get('/user/delete-account-view/{id}/{name?}', [DashboardUserController::class, 'deleteAccountView'])->name('users.deleteAccountView');
+        Route::delete('/user/delete-account/{id}', [DashboardUserController::class, 'deleteAccount'])->name('users.deleteAccount');
         Route::get('/user/admins', [DashboardUserController::class, 'indexAdmins'])->name('users.indexAdmins');
         Route::get('/user/moderators', [DashboardUserController::class, 'indexModerators'])->name('users.indexModerators');
         Route::get('/user/suppliers', [DashboardUserController::class, 'indexSuppliers'])->name('users.indexSuppliers');

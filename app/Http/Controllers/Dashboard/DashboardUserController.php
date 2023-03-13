@@ -343,6 +343,27 @@ class DashboardUserController extends Controller
             ->with(['permanent_deleted_user_message' => 'Permanently deleted successfully!']);
     }
 
+    public function deleteAccountView($id)
+    {
+        $User_model = User::find($id);
+        if($User_model != null && $User_model->id == auth()->user()->id){
+            return view('dashboard.users.deleteAccount', compact('User_model'));
+        }
+        else{
+            // return redirect()->back();
+            return redirect()->route('users.deleteAccountView', auth()->user()->id);
+        }
+    }
+
+    public function deleteAccount()
+    {
+        $user = auth()->user();
+        $user->forceDelete();
+
+        return redirect()->back();
+            // ->with(['account_deleted_successfully' => 'Accounted deleted successfully!']);
+    }
+
     public function importExportViewUsers(){
         return view('dashboard.users.excel_imports_exports.import_export_file');
     }

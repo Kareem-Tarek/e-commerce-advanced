@@ -13,12 +13,12 @@
 @endif --}}
 
 <div class="form-group">
-    <label>Product <span class="text-danger">*</span></label>
+    <label>Product (ID- Name) <span class="text-danger">*</span></label>
     <select name="product_id" class="form-control select border-1 border-dark mb-2 @error('product_id') is-invalid @enderror" value="{{Request::old('product_id') ? Request::old('product_id') : $FinalProduct_model->product_id}}">
         <option value="" selected> ---------- Please select a product ---------- </option>  
         @forelse($product_details as $product_detail)
             <option value="{{ $product_detail->id }}" {{ $product_detail->id == $FinalProduct_model->product_id ? 'selected' : '' }}>
-                {{ ucfirst($product_detail->name) }}
+                {{ $product_detail->id.'- '.ucfirst($product_detail->name) }}
             </option>
             @empty
         @endforelse
@@ -30,14 +30,14 @@
     @enderror 
 </div>
 
-<div class="form-group ">
+<div class="form-group d-none">
     <label>Product Name <span class="text-danger">*</span></label>
-    <input type="text" class="form-control border-1 border-dark" name="name" value="{{ $FinalProduct_model->productDetail->name }}" disabled>
+    <input type="text" class="form-control border-1 border-dark" name="name" value="{{ $FinalProduct_model->productDetail->name ?? '' }}" disabled>
 </div>
 
-<div class="form-group ">
+<div class="form-group d-none">
     <label>Brand Name <span class="text-danger">*</span></label>
-    <input type="text" class="form-control border-1 border-dark" name="brand_name" value="{{ $FinalProduct_model->productDetail->brand_name }}" disabled>
+    <input type="text" class="form-control border-1 border-dark" name="brand_name" value="{{ $FinalProduct_model->productDetail->brand_name ?? '' }}" disabled>
 </div>
 
 <div class="form-group">

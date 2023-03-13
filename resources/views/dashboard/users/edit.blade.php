@@ -33,7 +33,10 @@
                             <input type="submit" value="Update" class="btn btn-primary border-info text-light me-2">
                             <a href="{{ route('users.index') }}" class="btn btn-secondary text-light me-2">Cancel</a>
                             @if(auth()->user()->id == $User_model->id)
-                                <a href="{{ route('users.changePasswordView', [$User_model->id, $User_model->username]) }}">Want to change your password?</a>
+                                <div class="d-flex justify-content-start mt-4">
+                                    <a href="{{ route('users.changePasswordView', [$User_model->id, $User_model->username]) }}">Want to change your password?</a>
+                                    &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deleteAccountView', [$User_model->id, $User_model->username]) }}" class="text-white text-decoration-none bg-danger px-2 fw-bold rounded">Delete your account?</a>
+                                </div>
                             @endif
                         </form>
                     </div>
