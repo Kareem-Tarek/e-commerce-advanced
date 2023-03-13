@@ -30,10 +30,15 @@
     @enderror 
 </div>
 
-{{-- <div class="form-group @if(Route::is('products.create')) d-none @endif">
-    <label>Name <span class="text-danger">*</span></label>
-    <input type="text" class="form-control" value="{{ $FinalProduct_model->productDetail->name ?? ''}}" disabled>
-</div> --}}
+<div class="form-group ">
+    <label>Product Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control border-1 border-dark" name="name" value="{{ $FinalProduct_model->productDetail->name }}" disabled>
+</div>
+
+<div class="form-group ">
+    <label>Brand Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control border-1 border-dark" name="brand_name" value="{{ $FinalProduct_model->productDetail->brand_name }}" disabled>
+</div>
 
 <div class="form-group">
     <label>Image <span class="text-danger">*</span></label>

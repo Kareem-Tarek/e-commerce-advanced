@@ -54,6 +54,7 @@ class DashboardFinalProductController extends Controller
     {
         $final_product                     = new FinalProduct;
         $final_product->name               = $request->name;
+        $final_product->brand_name         = $request->brand_name;
         $final_product->size               = $request->size;
         $final_product->color              = $request->color;
         $final_product->available_quantity = $request->available_quantity;

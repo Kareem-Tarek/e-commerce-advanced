@@ -18,6 +18,8 @@ class FinalProductSeeder extends Seeder
     {
         //---------------------------------------- Start of product_id (1) ----------------------------------------//
         $final_product = FinalProduct::create([
+            'name'               => 'Sweat-shirt',
+            'brand_name'         => 'Fashionholic',
             'size'               => "XL",
             'color'              => "grey",
             'available_quantity' => 7,
@@ -29,6 +31,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Sweat-shirt',
+            'brand_name'         => 'Fashionholic',
             'size'               => "3XL",
             'color'              => "yellow",
             'available_quantity' => 9,
@@ -40,6 +44,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Full suite',
+            'brand_name'         => 'Fashionholic',
             'size'               => "L",
             'color'              => "grey",
             'available_quantity' => 5,
@@ -51,6 +57,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Sweat-shirt',
+            'brand_name'         => 'Fashionholic',
             'size'               => "M",
             'color'              => "grey",
             'available_quantity' => 10,
@@ -62,6 +70,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Sweat-shirt',
+            'brand_name'         => 'Fashionholic',
             'size'               => "XL",
             'color'              => "yellow",
             'available_quantity' => 5,
@@ -73,6 +83,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Long Dress',
+            'brand_name'         => 'Fashionholic',
             'size'               => "4XL",
             'color'              => "yellow",
             'available_quantity' => 5,
@@ -84,6 +96,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Sweat-shirt',
+            'brand_name'         => 'Fashionholic',
             'size'               => "L",
             'color'              => "darkcyan",
             'available_quantity' => 5,
@@ -95,6 +109,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Sweat-shirt',
+            'brand_name'         => 'Fashionholic',
             'size'               => "M",
             'color'              => "olive",
             'available_quantity' => 12,
@@ -109,6 +125,8 @@ class FinalProductSeeder extends Seeder
 
         //---------------------------------------- Start of product_id (2) ----------------------------------------//
         $final_product = FinalProduct::create([
+            'name'               => 'Long Dress',
+            'brand_name'         => 'BUDDHA',
             'size'               => "M",
             'color'              => "red",
             'available_quantity' => 8,
@@ -120,6 +138,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Long Dress',
+            'brand_name'         => 'BUDDHA',
             'size'               => "L",
             'color'              => "gold",
             'available_quantity' => 6,
@@ -131,6 +151,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Long Dress',
+            'brand_name'         => 'BUDDHA',
             'size'               => "XL",
             'color'              => "white",
             'available_quantity' => 5,
@@ -142,6 +164,8 @@ class FinalProductSeeder extends Seeder
         ]);
 
         $final_product = FinalProduct::create([
+            'name'               => 'Long Dress',
+            'brand_name'         => 'BUDDHA',
             'size'               => "2XL",
             'color'              => "green",
             'available_quantity' => 3,

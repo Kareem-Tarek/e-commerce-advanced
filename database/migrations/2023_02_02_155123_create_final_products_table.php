@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('final_products', function (Blueprint $table) {
             //$table->id();
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('brand_name');
             $table->string('image');
             $table->enum('size' , ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL']);
             $table->string('color');

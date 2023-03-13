@@ -59,21 +59,24 @@
                         @endauth --}}
                     @endif
                     @forelse ($website_products_result as $item)
-                        <div class="col-lg-3 mb-3 mb-lg-0 mt-3">
-                            <a href="javascript:void(0);"><p class="h6"><img src="/assets/images/avatars/kareemdev.png" class="border border-dark" width="200" alt="{{ $item->name.'.img' }}"></p></a>
-                            <a href="javascript:void(0);"><p>{{ $item->name }}</p></a>
+                        <div class="col-lg-3 mb-3 mb-lg-0">
+                            <p class="h6"><img src="/assets/images/avatars/kareemdev.png" width="200" alt="{{ $item->name.'.img' }}"></p>
+                            <p>
+                                <span class="font-weight-bold">{{ $item->name }}</span>
+                                <p>
+                                    (Total Products <span class="font-weight-bold text-info">{{ \App\Models\FinalProduct::where('product_id', $item->id)->count() }}</span>)
+                                </p>
+                            </p>
                             <span>
-                                @if($item->productDetail->discount > 0)
-                                    <del class="text-danger">{{ round($item->productDetail->price) }}</del>
-                                    <span class="font-weight-bold text-primary">{{ round($item->productDetail->price - ($item->productDetail->price * $item->productDetail->discount)) }}</span> EGP
-                                    (<span class="font-weight-bold">{{ $item->productDetail->discount * 100 }}% OFF</span>)
+                                @if($item->discount > 0)
+                                    <del class="text-danger">{{ round($item->price) }}</del>
+                                    <span class="font-weight-bold text-primary">{{ round($item->price - ($item->price * $item->discount)) }}</span> EGP
+                                    (<span class="font-weight-bold">{{ $item->discount * 100 }}% OFF</span>)
                                 @else
-                                    {{ round($item->productDetail->price) }} EGP
+                                    {{ round($item->price) }} EGP
                                 @endif
                             </span>
-                            <p>Size: <b>{{ $item->size }}</b> &nbsp;|&nbsp; Color: <b>{{ $item->color }}&nbsp;<span class="border border-dark px-4" style="background-color: {{ $item->color }}; color: {{ $item->color }};"></span></b></p>
-                            <p>Brand: <b>{{ $item->brand_name }}</b></p>
-                            <p>by <b>{{ $item->productDetail->user_supplier->name ?? $item->productDetail->user_supplier->username }}</b></p>
+                            <p>by {{ $item->user_supplier->name ?? $item->user_supplier->username }}</p>
                         </div><!-- End .col-lg-3 -->
                     @empty
                         <div class="alert alert-danger text-center w-100">
