@@ -14,7 +14,7 @@
 
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <label for="exampleInputName1">Name <span class="text-danger">*</span></label>
-    <input type="text" name="name" class="form-control mb-2 @error('name') is-invalid @enderror" id="exampleInputName1" placeholder="Enter category name here.."
+    <input type="text" name="name" class="form-control border-1 border-dark mb-2 @error('name') is-invalid @enderror" id="exampleInputName1" placeholder="Enter category name here.."
     value="{{Request::old('name') ? Request::old('name') : $SubCategory_model->name}}">
     
     {{-- {!! $errors->first('name', '<p class="help-block alert alert-danger px-0 py-1 text-center text-danger rounded">:message</p>') !!} --}}
@@ -34,7 +34,7 @@
 
 <div class="form-group">
     <label for="exampleInputEmail3">Description</label>
-    <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputEmail3" placeholder="Enter category description name here.."
+    <input type="text" name="description" class="form-control border-1 border-dark @error('description') is-invalid @enderror" id="exampleInputEmail3" placeholder="Enter category description name here.."
     value="{{Request::old('description') ? Request::old('description') : $SubCategory_model->description}}">
     @error('description')
         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
 
 <div class="form-group {{ $errors->has('cat_id') ? 'has-error' : ''}}">
     <label for="exampleInputEmail3">Category <span class="text-danger">*</span></label>
-    <select name="cat_id" class="form-control select mb-2 @error('cat_id') is-invalid @enderror" value="{{Request::old('cat_id') ? Request::old('cat_id') : $SubCategory_model->cat_id}}">
+    <select name="cat_id" class="form-control select border-1 border-dark mb-2 @error('cat_id') is-invalid @enderror" value="{{Request::old('cat_id') ? Request::old('cat_id') : $SubCategory_model->cat_id}}">
         <option value="" selected> ---------- Please select a category ---------- </option>  
         @forelse($category as $cat)
             <option value="{{ $cat->id }}" {{ $cat->id == $SubCategory_model->cat_id ? 'selected' : '' }}>

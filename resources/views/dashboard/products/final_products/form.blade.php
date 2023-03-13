@@ -14,7 +14,7 @@
 
 <div class="form-group">
     <label>Product <span class="text-danger">*</span></label>
-    <select name="product_id" class="form-control select mb-2 @error('product_id') is-invalid @enderror" value="{{Request::old('product_id') ? Request::old('product_id') : $FinalProduct_model->product_id}}">
+    <select name="product_id" class="form-control select border-1 border-dark mb-2 @error('product_id') is-invalid @enderror" value="{{Request::old('product_id') ? Request::old('product_id') : $FinalProduct_model->product_id}}">
         <option value="" selected> ---------- Please select a product ---------- </option>  
         @forelse($product_details as $product_detail)
             <option value="{{ $product_detail->id }}" {{ $product_detail->id == $FinalProduct_model->product_id ? 'selected' : '' }}>
@@ -37,7 +37,7 @@
 
 <div class="form-group">
     <label>Image <span class="text-danger">*</span></label>
-    <input name="image" type="file" class="form-control @error('image') is-invalid @enderror">
+    <input name="image" type="file" class="form-control border-1 border-dark @error('image') is-invalid @enderror">
     @error('image')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -117,7 +117,7 @@
         <div class="form-group row">
             <label class="col-sm-2">Size <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-                <select name="size" class="form-control select @error('size') is-invalid @enderror" value="{{Request::old('size') ? Request::old('size') : $FinalProduct_model->size}}">
+                <select name="size" class="form-control select border-1 border-dark @error('size') is-invalid @enderror" value="{{Request::old('size') ? Request::old('size') : $FinalProduct_model->size}}">
                     <option value="" selected>---------- Please select a size ----------</option>
                     <option value="XS" {{ $FinalProduct_model->size == "XS" ? 'selected' : '' }}>XS</option>
                     <option value="S" {{ $FinalProduct_model->size == "S" ? 'selected' : '' }}>S</option>
@@ -140,7 +140,7 @@
         <div class="form-group row">
             <label class="col-sm-2">Color <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-                <select name="color" class="form-control select @error('color') is-invalid @enderror" value="{{Request::old('color') ? Request::old('color') : $FinalProduct_model->color}}">
+                <select name="color" class="form-control select border-1 border-dark @error('color') is-invalid @enderror" value="{{Request::old('color') ? Request::old('color') : $FinalProduct_model->color}}">
                     <option value="" selected>---------- Please select a color ----------</option>
                     <option value="#000000" class="text-white" style="background-color: #000000;" {{ $FinalProduct_model->color == '#000000' ? 'selected' : '' }}>Vanta Black</option>
                     <option value="#202020" class="text-white" style="background-color: #202020;" {{ $FinalProduct_model->color == '#202020' ? 'selected' : '' }}>Black</option>
@@ -190,7 +190,7 @@
 
 <div class="form-group">
     <label>Available Quantity <span class="text-danger">*</span></label>
-    <input name="available_quantity" type="number" min="1" class="form-control @error('available_quantity') is-invalid @enderror" value="{{Request::old('available_quantity') ? Request::old('available_quantity') : $FinalProduct_model->available_quantity}}" placeholder="Enter the available quantity here..">
+    <input name="available_quantity" type="number" min="1" class="form-control border-1 border-dark @error('available_quantity') is-invalid @enderror" value="{{Request::old('available_quantity') ? Request::old('available_quantity') : $FinalProduct_model->available_quantity}}" placeholder="Enter the available quantity here..">
     @error('available_quantity')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -203,7 +203,7 @@
     @inject('user', 'App\Models\User')
     {!! Form::select('supplier_id', $user->type('supplier')->pluck('name','id'), Request::old('supplier_id') ? Request::old('supplier_id') : $FinalProduct_model->supplier_id,[
         'placeholder' => '---------- Please select a supplier ----------',
-        'class'       => 'form-control select'.( $errors->has('supplier_id') ? ' is-invalid' : '' ),
+        'class'       => 'form-control select border-1 border-dark'.( $errors->has('supplier_id') ? ' is-invalid' : '' ),
         ( $FinalProduct_model->supplier_id == $user->id ? 'selected'  : '' ),
         // 'required',
     ]) !!}

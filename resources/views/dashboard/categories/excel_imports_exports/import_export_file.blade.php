@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <form action="{{ route('import-categories') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="importing_input" class="form-control @error('importing_input') is-invalid @enderror">
+                            <input type="file" name="importing_input" class="form-control border-1 border-dark @error('importing_input') is-invalid @enderror">
                             @error('importing_input')
                                 <span class="invalid-feedback mb-4" role="alert">
                                     <strong>{{ $message }}</strong>

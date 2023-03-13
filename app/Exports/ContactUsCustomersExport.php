@@ -43,19 +43,19 @@ class ContactUsCustomersExport implements FromArray, WithHeadings
                 $contact_us_datum->phone = 'N/A';
             }
             else{
-                $contact_us_datum->phone;
+                $contact_us_datum->phone = $contact_us_datum->phone;
             }
             if($contact_us_datum->subject == null){
                 $contact_us_datum->subject = 'N/A';
             }
             else{
-                $contact_us_datum->subject;
+                $contact_us_datum->subject = $contact_us_datum->subject;
             }
             if($contact_us_datum->user->name == null){
-                $contact_us_datum->user->username;
+                $contact_us_datum->user->name = $contact_us_datum->user->username;
             }
             else{
-                $contact_us_datum->user->name;
+                $contact_us_datum->user->name = $contact_us_datum->user->name;
             }
 
             $array[] = [

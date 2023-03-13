@@ -35,7 +35,7 @@
                         <i class="fa-solid fa-plus" style="font-size: 1rem;"></i> Add a cover
                     </a>
                 @else
-                    <a href="{{ 'javascript:void(0);' }}" 
+                    <a href="{{ 'javascript:void(0);' }}" border-1 border-dark
                         class="position-absolute btn btn-secondary btn-sm fw-bold" style="bottom: 8px; right: 170px; z-index: 100;">
                         <i class="mdi mdi-pencil" style="font-size: 1rem;"></i> Edit your cover
                     </a>
@@ -80,7 +80,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Avatar</label>
                     <div class="col-sm-9">
-                        <input type="file" id="avatar-input" name="avatar" class="form-control"/>
+                        <input type="file" id="avatar-input" name="avatar" class="form-control border-1 border-dark"/>
                     </div>
                 </div>
                 </div>
@@ -88,7 +88,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Cover</label>
                     <div class="col-sm-9">
-                    <input type="file" id="cover-input" name="cover" class="form-control"/>
+                    <input type="file" id="cover-input" name="cover" class="form-control border-1 border-dark"/>
                     </div>
                 </div>
                 </div>
@@ -102,7 +102,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Name</label>
                     <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter user name here.."
+                        <input type="text" name="name" class="form-control border-1 border-dark @error('name') is-invalid @enderror" placeholder="Enter user name here.."
                             value="{{Request::old('name') ? Request::old('name') : $User_model->name}}">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -116,7 +116,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2">Username <span class="text-danger">*</span></label>
                     <div class="col-sm-9">
-                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Enter user username here.."
+                        <input type="text" name="username" class="form-control border-1 border-dark @error('username') is-invalid @enderror" placeholder="Enter user username here.."
                             value="{{Request::old('username') ? Request::old('username') : $User_model->username}}">
                         @error('username')
                             <span class="invalid-feedback" role="alert">
@@ -132,11 +132,11 @@
     <div class="form-group">
         <label>Email <span class="text-danger">*</span></label>
         @if(Route::is('users.create'))
-            <input class="form-control @error('email') is-invalid @enderror" value="{{Request::old('email') ? Request::old('email') : $User_model->email}}" type="text" name="email" placeholder="Enter user email here..">
+            <input class="form-control border-1 border-dark @error('email') is-invalid @enderror" value="{{Request::old('email') ? Request::old('email') : $User_model->email}}" type="text" name="email" placeholder="Enter user email here..">
         @elseif(Route::is('users.edit') && $User_model->email == auth()->user()->email)
-            <input class="form-control @error('email') is-invalid @enderror" value="{{Request::old('email') ? Request::old('email') : $User_model->email}}" type="text" name="email" placeholder="Enter your email here..">
+            <input class="form-control border-1 border-dark @error('email') is-invalid @enderror" value="{{Request::old('email') ? Request::old('email') : $User_model->email}}" type="text" name="email" placeholder="Enter your email here..">
         @else(Route::is('users.edit'))
-            <input disabled class="form-control @error('email') is-invalid @enderror" value="{{Request::old('email') ? Request::old('email') : $User_model->email}}" type="text" name="email" placeholder="Enter user email here..">
+            <input disabled class="form-control border-1 border-dark @error('email') is-invalid @enderror" value="{{Request::old('email') ? Request::old('email') : $User_model->email}}" type="text" name="email" placeholder="Enter user email here..">
         @endif
         @error('email')
             <span class="invalid-feedback" role="alert">
@@ -148,7 +148,7 @@
     @if(Route::is('users.create'))
         <div class="form-group">
             <label>Password <span class="text-danger">*</span></label>
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
+            <input type="password" name="password" class="form-control border-1 border-dark @error('password') is-invalid @enderror" 
             placeholder="Enter {{ Route::is('users.edit', auth()->user()->id) ? 'your' : 'user' }} password here..">
             @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -159,7 +159,7 @@
 
         <div class="form-group">
             <label>Confirm Password <span class="text-danger">*</span></label>
-            <input type="password" name="confirm_password" class="form-control" 
+            <input type="password" name="confirm_password" class="form-control border-1 border-dark" 
             placeholder="Enter {{ Route::is('users.edit', auth()->user()->id) ? 'your' : 'user' }} password again here..">
         </div>
     @endif
@@ -167,7 +167,7 @@
     @if(Route::is('users.create'))
         <div class="form-group">
             <label>User Type <span class="text-danger">*</span></label>
-            <select disabled id="user_type_select" name="user_type" class="form-control select @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
+            <select disabled id="user_type_select" name="user_type" class="form-control select border-1 border-dark @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
                 <option value="" selected>---------- Please select a user type ----------</option>
                 <option value="customer" {{ $User_model->user_type == "customer" ? 'selected' : '' }}>Customer</option>
                 <option value="supplier" {{ $User_model->user_type == "supplier" ? 'selected' : '' }}>Supplier</option>
@@ -187,7 +187,7 @@
     @elseif(Route::is('users.edit') && $User_model->id == auth()->user()->id && auth()->user()->user_type == "admin")
         <div class="form-group d-none">
             <label>User Type <span class="text-danger">*</span></label>
-            <select id="user_type_select" name="user_type" class="form-control select @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
+            <select id="user_type_select" name="user_type" class="form-control select border-1 border-dark @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
                 <option value="" selected>---------- Please select a user type ----------</option>
                 <option value="customer" {{ $User_model->user_type == "customer" ? 'selected' : '' }}>Customer</option>
                 <option value="supplier" {{ $User_model->user_type == "supplier" ? 'selected' : '' }}>Supplier</option>
@@ -207,13 +207,13 @@
     @elseif(Route::is('users.edit') && $User_model->id == auth()->user()->id  && (auth()->user()->user_type == "moderator" || auth()->user()->user_type == "supplier"))
         <div class="form-group">
             <label class="bg-primary text-white px-2 rounded">User Type <span class="text-danger">*</span></label>
-            <input disabled type="text" class="form-control" value="{{ ucfirst($User_model->user_type) }}">
+            <input disabled type="text" class="form-control border-1 border-dark" value="{{ ucfirst($User_model->user_type) }}">
         </div>
     @endif
 
     <div class="form-group">
         <label>Phone</label>
-        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Enter user phone number here.."
+        <input type="text" name="phone" class="form-control border-1 border-dark @error('phone') is-invalid @enderror" placeholder="Enter user phone number here.."
         value="{{Request::old('phone') ? Request::old('phone') : $User_model->phone}}">
         @error('phone')
             <span class="invalid-feedback" role="alert">
@@ -228,7 +228,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4">Date Of Birth</label>
                     <div class="col-sm-9">
-                        <input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" value="{{Request::old('dob') ? Request::old('dob') : $User_model->dob}}">
+                        <input type="date" name="dob" class="form-control border-1 border-dark @error('dob') is-invalid @enderror" value="{{Request::old('dob') ? Request::old('dob') : $User_model->dob}}">
                         @error('dob')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -241,7 +241,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4">Gender</label>
                     <div class="col-sm-9">
-                        <div class="d-flex col-md-8 justify-content-between p-2 rounded" style="background-color: rgb(235, 235, 235);">
+                        <div class="d-flex col-md-8 justify-content-between p-2 rounded" style="background-color: rgb(235, 235, 235); border: 1px solid black;">
                             <div class="radio radio-success">
                                 <input type="radio" class="@error('gender') is-invalid @enderror" name="gender" value="male" {{ $User_model->gender == "male" ? 'checked'  : '' }}>
                                 <label class="mb-0">Male</label>
@@ -265,7 +265,7 @@
     @if(Route::is('users.create'))
         <div class="form-group">
             <label>Status <span class="text-danger">*</span></label>
-            <select disabled name="status" id="user_status_select" class="form-control select @error('status') is-invalid @enderror" value="{{Request::old('status') ? Request::old('status') : $User_model->status}}">
+            <select disabled name="status" id="user_status_select" class="form-control select border-1 border-dark @error('status') is-invalid @enderror" value="{{Request::old('status') ? Request::old('status') : $User_model->status}}">
                 <option value="active" {{ $User_model->status == "active" ? 'selected' : '' }} selected>Active</option>
                 <option value="inactive" {{ $User_model->status == "inactive" ? 'selected' : '' }}>Inactive</option>
                 <option value="blocked" {{ $User_model->status == "blocked" ? 'selected' : '' }}>Blocked</option>
@@ -283,7 +283,7 @@
     @elseif(Route::is('users.edit') && $User_model->id == auth()->user()->id && auth()->user()->user_type == "admin")
         <div class="form-group d-none">
             <label>Status <span class="text-danger">*</span></label>
-            <select name="status" id="user_status_select" class="form-control select @error('status') is-invalid @enderror" value="{{Request::old('status') ? Request::old('status') : $User_model->status}}">
+            <select name="status" id="user_status_select" class="form-control select border-1 border-dark @error('status') is-invalid @enderror" value="{{Request::old('status') ? Request::old('status') : $User_model->status}}">
                 <option value="active" {{ $User_model->status == "active" ? 'selected' : '' }} selected>Active</option>
                 <option value="inactive" {{ $User_model->status == "inactive" ? 'selected' : '' }}>Inactive</option>
                 <option value="blocked" {{ $User_model->status == "blocked" ? 'selected' : '' }}>Blocked</option>
@@ -301,7 +301,7 @@
     @elseif(Route::is('users.edit') && $User_model->id == auth()->user()->id  && (auth()->user()->user_type == "moderator" || auth()->user()->user_type == "supplier"))
         <div class="form-group">
             <label class="bg-primary text-white px-2 rounded">Status <span class="text-danger">*</span></label>
-            <input disabled type="text" class="form-control" value="{{ ucfirst($User_model->status) }}">
+            <input disabled type="text" class="form-control border-1 border-dark" value="{{ ucfirst($User_model->status) }}">
         </div>
     @endif
 @else(Route::is('users.edit'))  <!-- users edit route in genral without any other condition which is available only 
@@ -314,14 +314,14 @@
         </div>
         <div class="user text-center w-25 position-absolute" style="top: 80%;">
             <div class="profile">
-            <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" style="width: 50%; max-width: 50%;">
+                <img src="{{ $User_model->avatar == null ? '/assets/images/avatars/no-avatar.jpg' : $User_model->avatar }}" alt="" class="rounded-circle bg-transparent border border-5 border-white" style="width: 50%; max-width: 50%;">
             </div>
         </div>
     </div>
 
     <div class="form-group">
         <label>User Type <span class="text-danger">*</span></label>
-        <select disabled name="user_type" id="user_type_select" class="form-control select @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
+        <select disabled name="user_type" id="user_type_select" class="form-control select border-1 border-dark @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
             <option value="" selected>---------- Please select a user type ----------</option>
             <option value="customer" {{ $User_model->user_type == "customer" ? 'selected' : '' }}>Customer</option>
             <option value="supplier" {{ $User_model->user_type == "supplier" ? 'selected' : '' }}>Supplier</option>
@@ -341,7 +341,7 @@
 
     <div class="form-group">
         <label>Status <span class="text-danger">*</span></label>
-        <select disabled name="status" id="user_status_select" class="form-control select @error('status') is-invalid @enderror" value="{{Request::old('status') ? Request::old('status') : $User_model->status}}">
+        <select disabled name="status" id="user_status_select" class="form-control select border-1 border-dark @error('status') is-invalid @enderror" value="{{Request::old('status') ? Request::old('status') : $User_model->status}}">
             <option value="active" {{ $User_model->status == "active" ? 'selected' : '' }} selected>Active</option>
             <option value="inactive" {{ $User_model->status == "inactive" ? 'selected' : '' }}>Inactive</option>
             <option value="blocked" {{ $User_model->status == "blocked" ? 'selected' : '' }}>Blocked</option>

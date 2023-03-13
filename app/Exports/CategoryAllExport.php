@@ -33,7 +33,7 @@ class CategoryAllExport implements FromArray, WithHeadings
                 $category->description = 'N/A';
             }
             else{
-                $category->description;
+                $category->description = $category->description;
             }
 
             $array[] = [
