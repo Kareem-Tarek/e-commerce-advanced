@@ -345,6 +345,51 @@ class DashboardUserController extends Controller
             ->with(['permanent_deleted_user_message' => 'Permanently deleted successfully!']);
     }
 
+    public function deactivateAccountView($id)
+    {
+        $User_model = User::find($id);
+        if($User_model != null && $User_model->id == auth()->user()->id){
+            return view('dashboard.users.deactivateAccount', compact('User_model'));
+        }
+        else{
+            // return redirect()->back();
+            return redirect()->route('users.deactivateAccountView', auth()->user()->id);
+        }
+    }
+
+    public function deactivateAccount(Request $request, $id)
+    {
+        $user = auth()->user();
+        if($user->user_type == "admin" && $user->email == "admin@gmail.com"){
+            return redirect()->route('users.edit', auth()->user()->id)
+            ->with(['super_admin_not_allowed_to_do_account_deactivate_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Deactivate your account)!']);
+        }
+        else{
+            $User_model_status_old = User::find($id)->status;
+
+            $User_model = User::find($id);
+            if($User_model->id == $user->id){
+                $user_status = $user->status == "active";
+                if($user_status){   //if true => (active)
+                    $User_model->status = $request->status;
+                    $User_model->save();
+                }
+                else{
+                    // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
+                    $status_old = ucfirst($User_model_status_old);
+                    return redirect()->route('users.edit', auth()->user()->id)
+                    ->with(['account_status_remained_the_same_successfully' => "Your accounted status ($status_old) remained the same with no change."]);
+                }
+            }
+            // else{
+            //     return 'N/A';
+            // }
+        }
+
+        return redirect()->route('users.edit', auth()->user()->id)
+            ->with(['account_deactivated_successfully' => 'Accounted deactivated successfully!']);
+    }
+
     public function deleteAccountView($id)
     {
         $User_model = User::find($id);
@@ -377,7 +422,11 @@ class DashboardUserController extends Controller
         //         $user->forceDelete();
         //     }
         // }
-        // else{   //all the other user types in the system (which are "admin", "moderator" & "customer")
+        // elseif($user->user_type == "admin" && $user->email == "admin@gmail.com"){   //the super admin/master of the system
+        //     return redirect()->route('users.edit', auth()->user()->id)
+        //     ->with(['super_admin_not_allowed_to_do_this_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Delete your account)!']);
+        // }
+        // else{   //all the other user types in the system (which are "moderator" & "customer")
         //     $user->forceDelete();
         // }
 
@@ -392,6 +441,10 @@ class DashboardUserController extends Controller
                 $final_product->forceDelete();
             }
             $user->forceDelete();
+        }
+        elseif($user->user_type == "admin" && $user->email == "admin@gmail.com"){
+            return redirect()->route('users.edit', auth()->user()->id)
+            ->with(['super_admin_not_allowed_to_do_account_delete_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Delete your account)!']);
         }
         else{
             $user->forceDelete();

@@ -66,10 +66,22 @@ class LoginController extends Controller
         // $user->last_login_ip = $request->getClientIp();
         // $user->save();
 
-        $user->update([
-            'last_login_at' => Carbon::now()->toDateTimeString(), 
-            'last_login_ip' => $request->getClientIp()
-        ]);
+        if($user->status == "inactive"){
+            $user->update([
+                'status' => 'active', 
+                'last_login_at' => Carbon::now()->toDateTimeString(), 
+                'last_login_ip' => $request->getClientIp()
+            ]);
+
+            return redirect()->route('home')
+            ->with(['account_status_is_reactivated' => "Your accounted status has been reactivated again!"]);
+        }
+        else{
+            $user->update([
+                'last_login_at' => Carbon::now()->toDateTimeString(), 
+                'last_login_ip' => $request->getClientIp()
+            ]);
+        }
     }
 
 }

@@ -156,10 +156,18 @@ Route::group([
 
         /********************** Start users routes. **********************/
         Route::resource('/users', DashboardUserController::class);
+        //***** Start change account password *****//
         Route::get('/user/change-password-view/{id}/{name?}', [DashboardUserController::class, 'changePasswordView'])->name('users.changePasswordView');
         Route::patch('/user/change-password/{id}', [DashboardUserController::class, 'changePassword'])->name('users.changePassword');
+        //***** End change account password *****//
+        //***** Start account deletion *****//
         Route::get('/user/delete-account-view/{id}/{name?}', [DashboardUserController::class, 'deleteAccountView'])->name('users.deleteAccountView');
         Route::delete('/user/delete-account/{id}', [DashboardUserController::class, 'deleteAccount'])->name('users.deleteAccount');
+        //***** End account deletion *****//
+        //***** Start account deactivation *****//
+        Route::get('/user/deactivate-account-view/{id}/{name?}', [DashboardUserController::class, 'deactivateAccountView'])->name('users.deactivateAccountView');
+        Route::patch('/user/deactivate-account/{id}', [DashboardUserController::class, 'deactivateAccount'])->name('users.deactivateAccount');
+        // End account deactivation //
         Route::get('/user/admins', [DashboardUserController::class, 'indexAdmins'])->name('users.indexAdmins');
         Route::get('/user/moderators', [DashboardUserController::class, 'indexModerators'])->name('users.indexModerators');
         Route::get('/user/suppliers', [DashboardUserController::class, 'indexSuppliers'])->name('users.indexSuppliers');

@@ -35,7 +35,12 @@
                             @if(auth()->user()->id == $User_model->id)
                                 <div class="d-flex justify-content-start mt-4">
                                     <a href="{{ route('users.changePasswordView', [$User_model->id, $User_model->username]) }}">Want to change your password?</a>
-                                    &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deleteAccountView', [$User_model->id, $User_model->username]) }}" class="text-white text-decoration-none bg-danger px-2 py-1 fw-bold rounded">Delete your account?</a>
+                                    @if(auth()->user()->user_type == "admin" && auth()->user()->email == "admin@gmail.com")
+                                        <!-- nothing -->
+                                    @else
+                                        &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deactivateAccountView', [$User_model->id, $User_model->username]) }}" class="text-dark text-decoration-none bg-warning px-2 py-1 fw-bold rounded">Deactivate your account?</a>
+                                        &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deleteAccountView', [$User_model->id, $User_model->username]) }}" class="text-white text-decoration-none bg-danger px-2 py-1 fw-bold rounded">Delete your account?</a>
+                                    @endif
                                 </div>
                             @endif
                         </form>

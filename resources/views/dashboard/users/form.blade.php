@@ -18,6 +18,26 @@
             <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
             {{ session()->get('confirm_password_not_matching') }}
         </div>
+    @elseif(session()->has('account_deactivated_successfully')) 
+        <div class="alert alert-primary text-center"> 
+            <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
+            {{ session()->get('account_deactivated_successfully') }} 
+        </div>  
+    @elseif(session()->has('account_status_remained_the_same_successfully')) 
+        <div class="alert alert-warning text-center"> 
+            <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
+            {{ session()->get('account_status_remained_the_same_successfully') }} 
+        </div>
+    @elseif(session()->has('super_admin_not_allowed_to_do_account_deactivate_action')) 
+        <div class="alert alert-danger text-center"> 
+            <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
+            {{ session()->get('super_admin_not_allowed_to_do_account_deactivate_action') }} 
+        </div>  
+    @elseif(session()->has('super_admin_not_allowed_to_do_account_delete_action')) 
+        <div class="alert alert-danger text-center"> 
+            <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
+            {{ session()->get('super_admin_not_allowed_to_do_account_delete_action') }} 
+        </div>  
     @endif
 
     @if(Route::is('users.edit') && $User_model->id == auth()->user()->id)
