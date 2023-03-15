@@ -378,7 +378,7 @@ class DashboardUserController extends Controller
                     // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
                     $status_old = ucfirst($User_model_status_old);
                     return redirect()->route('users.edit', auth()->user()->id)
-                    ->with(['account_status_remained_the_same_successfully' => "Your accounted status ($status_old) remained the same with no change."]);
+                    ->with(['account_status_remained_the_same_successfully' => "Your account status ($status_old) remained the same with no change."]);
                 }
             }
             // else{
@@ -387,7 +387,7 @@ class DashboardUserController extends Controller
         }
 
         return redirect()->route('users.edit', auth()->user()->id)
-            ->with(['account_deactivated_successfully' => 'Accounted deactivated successfully!']);
+            ->with(['account_deactivated_successfully' => 'Your account has been deactivated successfully!']);
     }
 
     public function deleteAccountView($id)
@@ -452,7 +452,7 @@ class DashboardUserController extends Controller
 
         //any route or redirect won't work because..since deleting account the user becomes guest and will be redirected automatically to login page
         return redirect()->back();
-            // ->with(['account_deleted_successfully' => 'Accounted deleted successfully!']);
+            // ->with(['account_deleted_successfully' => 'Your account has been deleted successfully!']);
     }
 
     public function importExportViewUsers(){

@@ -40,7 +40,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /*********************** for login by email, username or phone (currently in use) ***********************/
+    /************ Start login by email, username or phone (data that is currently in use (in DB) for the user) ************/
     public function credentials(Request $request)
     {
         /*
@@ -59,22 +59,23 @@ class LoginController extends Controller
             return ['username' => $request->email, 'password' => $request->password];
         }
     }
-    /*********************** for login by email, username or phone (currently in use) ***********************/
+    /************ End login by email, username or phone (data that is currently in use (in DB) for the user) ************/
 
-    function authenticated(Request $request, $user){ // used for login at (datetime) and the ip of the computer that was logged in with
+    function authenticated(Request $request, $user){ // used user account reactivation + for login at (datetime) and the ip of the computer that was logged in with
         // $user->last_login_at = Carbon::now()->toDateTimeString();
         // $user->last_login_ip = $request->getClientIp();
         // $user->save();
 
         if($user->status == "inactive"){
+            $last_login_date_time = Carbon::now()->toDateTimeString();
             $user->update([
-                'status' => 'active', 
-                'last_login_at' => Carbon::now()->toDateTimeString(), 
+                'status'        => 'active', 
+                'last_login_at' => $last_login_date_time, 
                 'last_login_ip' => $request->getClientIp()
             ]);
 
             return redirect()->route('home')
-            ->with(['account_status_is_reactivated' => "Your accounted status has been reactivated again!"]);
+            ->with(['account_status_is_reactivated' => "Your account status has been reactivated successfully! (last login date/time: $last_login_date_time)"]);
         }
         else{
             $user->update([
