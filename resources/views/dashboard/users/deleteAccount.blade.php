@@ -9,6 +9,7 @@
     <div class="card">
       <div class="card-body">
             <h4 class="card-title">Delete your account?</h4>
+            <p class="h6 fw-bold" style="font-family:Verdana, Geneva, Tahoma, sans-serif;">Very Important!</p>
             <div class="col-sm-12 col-xl-12 xl-100">
                 <div class="card-body">
                     <div class="tab-content" id="pills-tabContent">

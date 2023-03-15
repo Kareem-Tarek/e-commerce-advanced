@@ -54,8 +54,8 @@ class UserSeeder extends Seeder
 
         $user = User::create([ //ID = 4 (supplier)
             'avatar'     => '/assets/images/avatars/supplier_buddha_fashion_house.jpg',
-            'name'       => "BUDDHA",
-            'username'   => "BUDDHA FASHION HOUSE",
+            'name'       => "BUDDHA FASHION HOUSE",
+            'username'   => "BUDDHA",
             'email'      => 'supplier@gmail.com',
             'password'   => bcrypt('123456789'),
             'user_type'  => 'supplier',

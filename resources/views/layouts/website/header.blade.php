@@ -213,7 +213,7 @@ style="
                         <li>
                             @if(auth()->user())
                                 <a href="javascript:void(0);" style="color: rgb(206, 191, 123); display: inline-flex;">
-                                    <img src="{{ auth()->user()->avatar ?? '/assets/images/avatars/no-avatar.png' }}" width="40" style="border-radius: 1px;">
+                                    <img src="{{ auth()->user()->avatar ?? '/assets/images/avatars/no-avatar-2.png' }}" width="40" style="border-radius: 1px;">
                                     <span style="padding: 8px 0px 0px 2px;">{{ auth()->user()->name ?? auth()->user()->username }} ({{ auth()->user()->user_type }})</span>
                                 </a>
                                 <ul>

@@ -10,6 +10,8 @@ use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
 use App\Exports\UserAllExport;
+use App\Models\ProductDetail;
+use App\Models\FinalProduct;
 
 class DashboardUserController extends Controller
 {
@@ -358,7 +360,20 @@ class DashboardUserController extends Controller
     public function deleteAccount()
     {
         $user = auth()->user();
-        $user->forceDelete();
+        if($user->user_type == "supplier"){
+            $product_details = ProductDetail::where('supplier_id', $user->id)->get();
+            foreach($product_details as $product_detail){
+                $product_detail->forceDelete();
+            }
+            $final_products = FinalProduct::where('supplier_id', $user->id)->get();
+            foreach($final_products as $final_product){
+                $final_product->forceDelete();
+            }
+            $user->forceDelete();
+        }
+        else{
+            $user->forceDelete();
+        }
 
         return redirect()->back();
             // ->with(['account_deleted_successfully' => 'Accounted deleted successfully!']);
