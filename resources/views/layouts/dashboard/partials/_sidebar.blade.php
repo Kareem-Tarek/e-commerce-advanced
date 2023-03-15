@@ -45,8 +45,8 @@
               <div class="collapse" id="ui-basic-excel">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-users') }}">All Users</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Carts (Export Only!)</a></li>
-                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Contact Info (Export Only!)</a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Carts&nbsp;<span style="font-size: 70%;" class="fw-bold text-danger">(Export Only!)</span></a></li>
+                  <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Contact Info&nbsp;<span style="font-size: 70%;" class="fw-bold text-danger">(Export Only!)</span></a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-categories') }}">Categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('import-export-view-sub-categories') }}">Sub-categories</a></li>
                   <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Products</a></li>

@@ -58,6 +58,7 @@
                             @endif
                         @endauth --}}
                     @endif
+                    
                     @forelse ($website_products_result as $item)
                         <div class="col-lg-3 mb-3 mb-lg-0 mt-3">
                             <a href="javascript:void(0);"><p class="h6"><img src="/assets/images/avatars/kareemdev.png" class="border border-dark" width="200" alt="{{ $item->name.'.img' }}"></p></a>
