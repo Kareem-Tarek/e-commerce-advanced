@@ -1,6 +1,6 @@
 @if(session()->has('updated_profile_message'))
     <div class="alert alert-success text-center">
-        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
         {{ session()->get('updated_profile_message') }} 
     </div>
 @elseif(session()->has('user_type_unauthorized_action_message'))
@@ -131,7 +131,7 @@
   </div>
 
   <div class="form-group">
-      <label>Whatsapp</label>
+      <label>WhatsApp (whatsapp phone number)</label>
       <div class="input-group">
           <span class="input-group-text"><i class="fa-brands fa-whatsapp" style="font-size: 180%"></i></span>
           <input type="text" name="whatsapp" class="form-control @error('whatsapp') is-invalid @enderror" value="{{ Request::Old('whatsapp') ? Request::Old('whatsapp') : $User_model->whatsapp }}" placeholder="Enter your whatsapp number here...">
@@ -144,7 +144,7 @@
   </div>
 
   <div class="form-group">
-      <label>Facebook</label>
+      <label>Facebook (profile link URL)</label>
       <div class="input-group">
           <span class="input-group-text"><i class="fa-brands fa-facebook" style="font-size: 180%"></i></span>
           <input type="text" name="facebook" class="form-control @error('facebook') is-invalid @enderror" value="{{ Request::Old('facebook') ? Request::Old('facebook') : $User_model->facebook }}" placeholder="Enter your facebook account/URL link here...">
@@ -157,7 +157,7 @@
   </div>
 
   <div class="form-group">
-      <label>Instagram</label>
+      <label>Instagram (Username or profile link URL)</label>
       <div class="input-group">
           <span class="input-group-text"><i class="fa-brands fa-instagram" style="font-size: 180%"></i></span>
           <input type="text" name="instagram" class="form-control @error('instagram') is-invalid @enderror" value="{{ Request::Old('instagram') ? Request::Old('instagram') : $User_model->instagram }}" placeholder="Enter your instagram account/URL link here...">

@@ -44,13 +44,23 @@
                     @endif
                 </div><!-- End .col-lg-12 -->
 
-                <div class="col-lg-12 mb-lg-1 text-center" id="profile-account-status-info">
+                <div class="col-lg-2 mb-lg-2 bg-dark rounded-left" id="profile-account-status-info" style="height: 13vh; border: 3px solid rgb(255, 191, 42);">
+                    <span class="text-left text-warning font-weight-bold"><i class="fa-regular fa-note-sticky"></i>&nbsp;&nbsp;Note!</span>
+                    <div class="form-row text-center">
+                        <div class="form-group col-md-12">
+                            <p><span class="text-danger">*</span><span class="text-white">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;required field</span></p>
+                            <p><span class="text-white">*</span><span class="text-white">&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;optional field</span></p>
+                        </div>
+                      </div>
+                </div><!-- End .col-lg-12 -->
+
+                {{-- <div class="col-lg-12 mb-lg-1 text-center" id="profile-account-status-info">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                           <input disabled type="text" style="width: 20%;" class="form-control bg-dark text-center text-white rounded" value="{{ Request::Old('user_type') ? Request::Old('user_type') : 'User Type: '.ucfirst($User_model->user_type) }}">
                         </div>
                       </div>
-                </div><!-- End .col-lg-12 -->
+                </div><!-- End .col-lg-12 --> --}}
 
                 <div class="col-lg-12 mb-3 mb-lg-0">
                     <form action="{{ route('update-my-profile') }}" method="POST" enctype="multipart/form-data">
@@ -59,7 +69,9 @@
                         @include('layouts.website.profile_management.editMyProfileForm')
                         <button type="submit" class="btn btn-primary">Confirm</button>
                         <div class="form-group mt-1">
-                            Click <a href="javascript:void(0);" style="text-decoration:underline;">here</a> if you want to change your password.
+                            Click <a href="javascript:void(0);" class="font-weight-bold" style="text-decoration:underline;">here</a> if you want to change your password. 
+                            &nbsp;&nbsp;<a href="javascript:void(0);" class="font-weight-bold text-warning" style="text-decoration:underline;">Deactivate Account?</a> 
+                            &nbsp;&nbsp;<a href="javascript:void(0);" class="font-weight-bold text-danger" style="text-decoration:underline;">Delete Account?</a>
                         </div>
                     </form>
                 </div><!-- End .col-lg-12 -->

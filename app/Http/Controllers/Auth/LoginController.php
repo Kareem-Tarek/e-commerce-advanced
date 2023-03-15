@@ -49,6 +49,7 @@ class LoginController extends Controller
                 - $request->get('xyz')
                 - $request->xyz
          */
+        
         if(is_numeric($request->email)){
             return ['phone' => $request->input('email'), 'password' => $request->password];
         }
