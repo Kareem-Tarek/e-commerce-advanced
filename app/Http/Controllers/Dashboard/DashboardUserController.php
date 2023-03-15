@@ -359,6 +359,28 @@ class DashboardUserController extends Controller
 
     public function deleteAccount()
     {
+        // $user = auth()->user();
+        // if($user->user_type == "supplier"){   //any user in the system with user type "supplier"
+        //     $product_details = ProductDetail::where('supplier_id', $user->id);
+        //     $final_products = FinalProduct::where('supplier_id', $user->id);
+        //     if(($product_details->count() >= 1 || $final_products->count() >= 1) ||   //if supplier have products
+        //     ($product_details->count() >= 1 && $final_products->count() >= 1)){
+        //         foreach($product_details as $product_detail){
+        //             $product_detail->forceDelete();
+        //         }
+        //         foreach($final_products as $final_product){
+        //             $final_product->forceDelete();
+        //         }
+        //         $user->forceDelete();
+        //     }
+        //     else{   //if supplier doesn't have products
+        //         $user->forceDelete();
+        //     }
+        // }
+        // else{   //all the other user types in the system (which are "admin", "moderator" & "customer")
+        //     $user->forceDelete();
+        // }
+        
         $user = auth()->user();
         if($user->user_type == "supplier"){
             $product_details = ProductDetail::where('supplier_id', $user->id)->get();
