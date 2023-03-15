@@ -83,7 +83,7 @@
                                 <label>Confirm New Password <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input type="password" name="confirm_new_password" id="confirm_new_password" class="form-control" placeholder="Confirm your new password here..">
-                                    <i onclick="show_hide_confirm_new_password();" id="dot-eye-icon-new-password" class="input-group-text fa-solid fa-eye"></i>
+                                    <i onclick="show_hide_confirm_new_password();" id="dot-eye-icon-confirm-new-password" class="input-group-text fa-solid fa-eye"></i>
                                 </div>
                             </div>
 
@@ -112,7 +112,7 @@
 <script>
     function show_hide_old_password(){
         const old_password_input = document.querySelector("#old_password");
-        const dot_eye        = document.querySelector("#dot-eye-icon-old-password");
+        const dot_eye            = document.querySelector("#dot-eye-icon-old-password");
 
         if(old_password_input.getAttribute('type') === "password"){
             old_password_input.setAttribute('type', 'text'); //also => old_password_input.type = "text"; (but not preferred!)
@@ -134,7 +134,7 @@
 
     function show_hide_new_password(){
         const new_password_input = document.querySelector("#new_password");
-        const dot_eye        = document.querySelector("#dot-eye-icon-new-password");
+        const dot_eye            = document.querySelector("#dot-eye-icon-new-password");
 
         if(new_password_input.getAttribute('type') === "password"){
             new_password_input.setAttribute('type', 'text'); //also => new_password_input.type = "text"; (but not preferred!)
@@ -156,7 +156,7 @@
 
     function show_hide_confirm_new_password(){
         const confirm_new_password_input = document.querySelector("#confirm_new_password");
-        const dot_eye        = document.querySelector("#dot-eye-icon-confirm-new-password");
+        const dot_eye                    = document.querySelector("#dot-eye-icon-confirm-new-password");
 
         if(confirm_new_password_input.getAttribute('type') === "password"){
             confirm_new_password_input.setAttribute('type', 'text'); //also => confirm_new_password_input.type = "text"; (but not preferred!)

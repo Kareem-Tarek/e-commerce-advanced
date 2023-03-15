@@ -68,14 +68,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $avatar    = $data['avatar'];
-
-        if($avatar == null){
-            $avatar = null;
-        }
-        else{
-            $avatar = '/assets/images/avatars/'.$avatar;
-        }
+        $avatar = $data['avatar'];
+        // if($avatar == null){
+        //     $avatar = null;
+        // }
+        // else{
+        //     $avatar = '/assets/images/avatars/'.$avatar;
+        // }
 
         return User::create([
             'name'      => $data['name'],

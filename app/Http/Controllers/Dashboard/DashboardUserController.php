@@ -380,7 +380,7 @@ class DashboardUserController extends Controller
         // else{   //all the other user types in the system (which are "admin", "moderator" & "customer")
         //     $user->forceDelete();
         // }
-        
+
         $user = auth()->user();
         if($user->user_type == "supplier"){
             $product_details = ProductDetail::where('supplier_id', $user->id)->get();
@@ -397,6 +397,7 @@ class DashboardUserController extends Controller
             $user->forceDelete();
         }
 
+        //any route or redirect won't work because..since deleting account the user becomes guest and will be redirected automatically to login page
         return redirect()->back();
             // ->with(['account_deleted_successfully' => 'Accounted deleted successfully!']);
     }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProductDetail;
+// use App\Models\ProductDetail;
 use App\Models\FinalProduct;
 
 class ProductController extends Controller
 {
+    //------------------------------- for product details (single (ONE) product) -------------------------------//
     // public function website_search(Request $request)
     // {
     //     $website_search_input          = $request->website_search_query;
@@ -19,6 +20,7 @@ class ProductController extends Controller
     //         ->with('i' , ($request->input('page', 1) - 1) * 5);
     // }
 
+    //------------------------------- for final products (multiple (MANY) products) -------------------------------//
     public function website_search(Request $request)
     {
         $website_search_input          = $request->website_search_query;
