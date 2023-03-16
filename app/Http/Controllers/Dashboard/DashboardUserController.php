@@ -152,20 +152,21 @@ class DashboardUserController extends Controller
         //     'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
         // ]);
 
-        $users            = new User;
-        $users->name      = $request->name;
-        $users->username  = $request->username;
-        $users->email     = $request->email;
+        $users             = new User;
+        $users->name       = $request->name;
+        $users->username   = $request->username;
+        $users->email      = $request->email;
         if($request->confirm_password != $request->password){
             return redirect()->back()->with('confirm_password_not_matching','"Password *" did not match "Confirm Password *". Please try again!');
         }
         else{
             $users->password  = bcrypt($request->password);
         }
-        $users->user_type = $request->user_type;
-        $users->phone     = $request->phone;
-        $users->gender    = $request->gender;
-        $users->status    = $request->status;
+        $users->user_type  = $request->user_type;
+        $users->phone      = $request->phone;
+        $users->gender     = $request->gender;
+        $users->status     = $request->status;
+        $users->updated_at = null;
         $users->save();
 
         return redirect()->route('users.index')
@@ -195,15 +196,16 @@ class DashboardUserController extends Controller
 
         $User_model = User::find($id);
 
-        if($User_model == null){
-            if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"){
+        if($User_model == null){    //if the data (user's ID) is null, which is not found in the DB
+            if(auth()->user()->user_type == "admin" || auth()->user()->user_type == "moderator"){    //"admin" & "moderator" are responsible for existing data and non existing data
                 return view('errors.template-customized-error.dashboard.404');
             }
-            else/*if(auth()->user()->user_type == "supplier")*/{
-                return redirect()->route('dashboard');
+            else/*if(auth()->user()->user_type == "supplier")*/{    //"supplier" isn't responsible or allowed to access existing data and even the non-existing data
+                // return redirect()->route('dashboard');
+                return redirect()->route('users.edit', auth()->user()->id);
             }
         }
-        else{
+        else{    //if the data (user's ID) is found in the DB
             // if(auth()->user()->user_type == "admin" && $User_model->id == auth()->user()->id){ //the signed in admin could update his/her own info
             //     return view('dashboard.users.edit',compact('User_model'));
             // }
@@ -226,11 +228,12 @@ class DashboardUserController extends Controller
             //     return redirect('/dashboard');
             // }
 
-            if($User_model->id == auth()->user()->id || (auth()->user()->user_type == "admin" && $User_model->user_type != "admin")){
+            if($User_model->id == auth()->user()->id || (auth()->user()->user_type == "admin" && $User_model->user_type != "admin")){    //the user who is logged in could access only his/her edit/profile page. Also the admin could access all the other user types edit/profile pages except the other admin(s) ONLY!
                 return view('dashboard.users.edit', compact('User_model'));
             }
-            else{
-                return redirect()->route('dashboard');
+            else{    //for whoever access te edit/profile page the isn't mentioned in the previous condition (such as "moderator" & "supplier" when they only access the other users' edit/profile page)
+                // return redirect()->route('dashboard');
+                return redirect()->route('users.edit', auth()->user()->id);
             }
         }
     }
@@ -382,7 +385,7 @@ class DashboardUserController extends Controller
                 }
             }
             // else{
-            //     return 'N/A';
+            //     return 'You can't deactivate someone's else account (as an "admin" in the system of course!)';
             // }
         }
 

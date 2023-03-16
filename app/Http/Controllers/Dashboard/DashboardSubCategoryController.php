@@ -69,6 +69,7 @@ class DashboardSubCategoryController extends Controller
         $sub_categories->description    = $request->description;
         $sub_categories->cat_id         = $request->cat_id;
         $sub_categories->create_user_id = auth()->user()->id;
+        $sub_categories->updated_at     = null;
         $sub_categories->save();
 
         return redirect()->route('subcategories.index')

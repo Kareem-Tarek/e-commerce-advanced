@@ -74,6 +74,7 @@ class DashboardCategoryController extends Controller
         $categories->name           = $request->name;
         $categories->description    = $request->description;
         $categories->create_user_id = auth()->user()->id;
+        $categories->updated_at     = null;
         $categories->save();
 
         return redirect()->route('categories.index')

@@ -71,6 +71,7 @@ class DashboardFinalProductController extends Controller
         else{
             $final_product->supplier_id = $request->supplier_id;
         }
+        $final_product->updated_at = null;
         $final_product->save();
 
         // return redirect()->route('final_products.index')

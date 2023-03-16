@@ -28,17 +28,17 @@
             <div class="row">
 
                 <div class="col-lg-12 mb-3 mb-lg-3 text-center" id="profile-account-status-info">
-                    <h2 class="title">Account Status</h2><!-- End .title -->
+                    <h5 class="font-weight-bold">Account Status</h5><!-- End .title -->
                     @if($User_model->status == "active")
-                        <p class="bg-success p-2 mx-auto rounded" style="width: 6%;">
+                        <p class="bg-success p-1 mx-auto rounded-pill" style="width: 6%;">
                             <span class="text-white">{{ ucfirst($User_model->status) ?? '' }}</span>
                         </p>
                     @elseif($User_model->status == "inactive")
-                        <p class="bg-warning p-2 mx-auto rounded" style="width: 6%;">
+                        <p class="bg-warning p-1 mx-auto rounded-pill" style="width: 6%;">
                             <span class="text-white">{{ ucfirst($User_model->status) ?? '' }}</span>
                         </p>
                     @else($User_model->status == "blocked")
-                        <p class="bg-danger p-2 mx-auto rounded" style="width: 6%;">
+                        <p class="bg-danger p-1 mx-auto rounded-pill" style="width: 6%;">
                             <span class="text-white">{{ ucfirst($User_model->status) ?? '' }}</span>
                         </p>
                     @endif
