@@ -381,7 +381,7 @@ class DashboardUserController extends Controller
                     // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
                     $status_old = ucfirst($User_model_status_old);
                     return redirect()->route('users.edit', auth()->user()->id)
-                    ->with(['account_status_remained_the_same_successfully' => "Your account status ($status_old) remained the same with no change."]);
+                    ->with(['account_status_remained_the_same' => "Your account is already ($status_old)!"]);
                 }
             }
             // else{

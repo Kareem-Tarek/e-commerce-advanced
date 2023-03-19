@@ -23,10 +23,10 @@
             <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
             {{ session()->get('account_deactivated_successfully') }} 
         </div>  
-    @elseif(session()->has('account_status_remained_the_same_successfully')) 
+    @elseif(session()->has('account_status_remained_the_same')) 
         <div class="alert alert-warning text-center"> 
             <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
-            {{ session()->get('account_status_remained_the_same_successfully') }} 
+            {{ session()->get('account_status_remained_the_same') }} 
         </div>
     @elseif(session()->has('super_admin_not_allowed_to_do_account_deactivate_action')) 
         <div class="alert alert-danger text-center"> 
@@ -340,6 +340,21 @@
     </div>
 
     <div class="form-group">
+        <label class="bg-primary text-white px-2 rounded">Name</label>
+        <input disabled type="text" class="form-control border-1 border-dark" value="{{ ucfirst($User_model->name) }}">
+    </div>
+
+    <div class="form-group">
+        <label class="bg-primary text-white px-2 rounded">Username <span class="text-danger">*</span></label>
+        <input disabled type="text" class="form-control border-1 border-dark" value="{{ ucfirst($User_model->username) }}">
+    </div>
+
+    <div class="form-group">
+        <label class="bg-primary text-white px-2 rounded">Email <span class="text-danger">*</span></label>
+        <input disabled type="text" class="form-control border-1 border-dark" value="{{ ucfirst($User_model->email) }}">
+    </div>
+
+    <div class="form-group">
         <label>User Type <span class="text-danger">*</span></label>
         <select disabled name="user_type" id="user_type_select" class="form-control select border-1 border-dark @error('user_type') is-invalid @enderror" value="{{Request::old('user_type') ? Request::old('user_type') : $User_model->user_type}}">
             <option value="" selected>---------- Please select a user type ----------</option>
@@ -375,6 +390,16 @@
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
+    </div>
+
+    <div class="form-group">
+        <label class="bg-primary text-white px-2 rounded">Phone</label>
+        <input disabled type="text" class="form-control border-1 border-dark" value="{{ $User_model->phone ?? 'N/A' }}">
+    </div>
+
+    <div class="form-group">
+        <label class="bg-primary text-white px-2 rounded">Gender</label>
+        <input disabled type="text" class="form-control border-1 border-dark" value="{{ $User_model->gender ?? 'N/A' }}">
     </div>
 @endif
 
