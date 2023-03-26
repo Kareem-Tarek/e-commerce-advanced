@@ -28,6 +28,9 @@ class CategoryRequest extends FormRequest
         return [
             'name'        => ['required', 'string', Rule::unique('categories', 'name')->ignore($this->category)],
             'description' => 'nullable|string|max:500',
+            // 'description' => 'nullable|string|max:500',
+            // 'description' => ['nullable'], ['string'], ['max:500'],
+            // 'description' => ['nullable', 'string', 'max:500'],
         ];
     }
 
@@ -45,7 +48,10 @@ class CategoryRequest extends FormRequest
             'description.max' => 'The "Description" field must be 500 characters or less!',
 
             //------------------- NOT customized method for ValidationException error messages! -------------------//
-            // 'required' => 'The category ":attribute" field is required.',
+            'required' => 'The category ":attribute" field is required.',
+            'string'   => 'your_customized_message_here ":attribute"',
+            'unique'   => 'your_customized_message_here ":attribute"',
+            'max'      => 'your_customized_message_here ":attribute"',
         ];
     }
 }

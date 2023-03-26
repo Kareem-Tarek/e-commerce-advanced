@@ -61,10 +61,10 @@ class DashboardCategoryController extends Controller
         //     'description' => 'nullable|string',
         // ]);
 
-        // Validator::make($request->all(), [
-        //     'name' => 'required|string|unique:categories',
-        //     'description' => 'nullable|string',
-        // ]);
+        Validator::make($request->all(), [
+            'name' => 'required|string|unique:categories',
+            'description' => 'nullable|string',
+        ]);
 
 
         //if the request is valid then proceed to insertion for the entity
@@ -298,3 +298,4 @@ class DashboardCategoryController extends Controller
     }
 
 }
+
