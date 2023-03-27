@@ -368,30 +368,72 @@ class DashboardUserController extends Controller
             ->with(['super_admin_not_allowed_to_do_account_deactivate_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Deactivate your account)!']);
         }
         else{
-            $User_model_status_old = User::find($id)->status;
+            if(Hash::check($request->password, $user->password)){
+                $User_model_status_old = User::find($id)->status;
 
-            $User_model = User::find($id);
-            if($User_model->id == $user->id){
-                $user_status = $user->status == "active";
-                if($user_status){   //if true => (active)
-                    $User_model->status = $request->status;
-                    $User_model->save();
+                $User_model = User::find($id);
+                if($User_model->id == $user->id){
+                    $user_status = $user->status == "active";
+                    if($user_status){   //if true => (active)
+                        $User_model->status = $request->status;
+                        $User_model->save();
+                    }
+                    else{
+                        // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
+                        $status_old = ucfirst($User_model_status_old);
+                        return redirect()->route('users.edit', auth()->user()->id)
+                        ->with(['account_status_remained_the_same' => "Your account is already ($status_old)!"]);
+                    }
                 }
-                else{
-                    // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
-                    $status_old = ucfirst($User_model_status_old);
-                    return redirect()->route('users.edit', auth()->user()->id)
-                    ->with(['account_status_remained_the_same' => "Your account is already ($status_old)!"]);
-                }
+                // else{
+                //     return "You can't deactivate someone's else account (as an 'admin' in the system of course!)";
+                // }
+                return redirect()->route('users.edit', auth()->user()->id)
+                 ->with(['account_deactivated_successfully' => 'Your account has been deactivated successfully!']);
             }
-            // else{
-            //     return 'You can't deactivate someone's else account (as an "admin" in the system of course!)';
-            // }
+            elseif($request->password != "" && !Hash::check($request->password, $user->password)){
+                return redirect()->route('users.deactivateAccountView', $user->id)
+                ->with(['incorrect_password_confirmation_for_account_deactivation' => "The password you entered is incorrect! Please try again."]);
+            }
+            elseif($request->password == ""){
+                return redirect()->route('users.deactivateAccountView', $user->id)
+                ->with(['empty_password_confirmation_for_account_deactivation' => "The password field is required in order to complete this action!"]);
+            }
         }
-
-        return redirect()->route('users.edit', auth()->user()->id)
-            ->with(['account_deactivated_successfully' => 'Your account has been deactivated successfully!']);
     }
+
+    // public function deactivateAccount(Request $request, $id)
+    // {
+    //     $user = auth()->user();
+    //     if($user->user_type == "admin" && $user->email == "admin@gmail.com"){
+    //         return redirect()->route('users.edit', auth()->user()->id)
+    //         ->with(['super_admin_not_allowed_to_do_account_deactivate_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Deactivate your account)!']);
+    //     }
+    //     else{
+    //         $User_model_status_old = User::find($id)->status;
+
+    //         $User_model = User::find($id);
+    //         if($User_model->id == $user->id){
+    //             $user_status = $user->status == "active";
+    //             if($user_status){   //if true => (active)
+    //                 $User_model->status = $request->status;
+    //                 $User_model->save();
+    //             }
+    //             else{
+    //                 // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
+    //                 $status_old = ucfirst($User_model_status_old);
+    //                 return redirect()->route('users.edit', auth()->user()->id)
+    //                 ->with(['account_status_remained_the_same' => "Your account is already ($status_old)!"]);
+    //             }
+    //         }
+    //         // else{
+    //         //     return 'You can't deactivate someone's else account (as an "admin" in the system of course!)';
+    //         // }
+    //     }
+
+    //     return redirect()->route('users.edit', auth()->user()->id)
+    //         ->with(['account_deactivated_successfully' => 'Your account has been deactivated successfully!']);
+    // }
 
     public function deleteAccountView($id)
     {
@@ -405,57 +447,81 @@ class DashboardUserController extends Controller
         }
     }
 
-    public function deleteAccount()
+    public function deleteAccount(Request $request)
     {
         // $user = auth()->user();
-        // if($user->user_type == "supplier"){   //any user in the system with user type "supplier"
-        //     $product_details = ProductDetail::where('supplier_id', $user->id);
-        //     $final_products = FinalProduct::where('supplier_id', $user->id);
-        //     if(($product_details->count() >= 1 || $final_products->count() >= 1) ||   //if supplier have products
-        //     ($product_details->count() >= 1 && $final_products->count() >= 1)){
-        //         foreach($product_details as $product_detail){
-        //             $product_detail->forceDelete();
+        // if(Hash::check($request->password, $user->password)){
+        //     if($user->user_type == "supplier"){   //any user in the system with user type "supplier"
+        //         $product_details = ProductDetail::where('supplier_id', $user->id);
+        //         $final_products = FinalProduct::where('supplier_id', $user->id);
+        //         if(($product_details->count() >= 1 || $final_products->count() >= 1) ||   //if supplier have products
+        //         ($product_details->count() >= 1 && $final_products->count() >= 1)){
+        //             foreach($product_details as $product_detail){
+        //                 $product_detail->forceDelete();
+        //             }
+        //             foreach($final_products as $final_product){
+        //                 $final_product->forceDelete();
+        //             }
+        //             $user->forceDelete();
         //         }
-        //         foreach($final_products as $final_product){
-        //             $final_product->forceDelete();
+        //         else{   //if supplier doesn't have products
+        //             $user->forceDelete();
         //         }
-        //         $user->forceDelete();
-        //     }
-        //     else{   //if supplier doesn't have products
-        //         $user->forceDelete();
-        //     }
-        // }
-        // elseif($user->user_type == "admin" && $user->email == "admin@gmail.com"){   //the super admin/master of the system
-        //     return redirect()->route('users.edit', auth()->user()->id)
-        //     ->with(['super_admin_not_allowed_to_do_this_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Delete your account)!']);
-        // }
-        // else{   //all the other user types in the system (which are "moderator" & "customer")
-        //     $user->forceDelete();
-        // }
 
+        //         //any route or redirect won't work because..since deleting account the user becomes guest and will be redirected automatically to login page
+        //         return redirect()->back();
+        //         // ->with(['account_deleted_successfully' => 'Your account has been deleted successfully!']);
+        //     }
+        //     elseif($user->user_type == "admin" && $user->email == "admin@gmail.com"){   //the super admin/master of the system
+        //         return redirect()->route('users.edit', auth()->user()->id)
+        //         ->with(['super_admin_not_allowed_to_do_this_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Delete your account)!']);
+        //     }
+        //     else{   //all the other user types in the system (which are "moderator", "customer" & also the "admin" but not the the super one)
+        //         $user->forceDelete();
+        //     }
+        // }
+        // elseif($request->password != "" && !Hash::check($request->password, $user->password)){
+        //     return redirect()->route('users.deleteAccountView', $user->id)
+        //     ->with(['incorrect_password_confirmation_for_account_deletion' => "The password you entered is incorrect! Please try again."]);
+        // }
+        // elseif($request->password == ""){
+        //     return redirect()->route('users.deleteAccountView', $user->id)
+        //     ->with(['empty_password_confirmation_for_account_deletion' => "The password field is required in order to complete this action!"]);
+        // }
+        
         $user = auth()->user();
-        if($user->user_type == "supplier"){
-            $product_details = ProductDetail::where('supplier_id', $user->id)->get();
-            foreach($product_details as $product_detail){
-                $product_detail->forceDelete();
+        if(Hash::check($request->password, $user->password)){
+            if($user->user_type == "supplier"){
+                $product_details = ProductDetail::where('supplier_id', $user->id)->get();
+                foreach($product_details as $product_detail){
+                    $product_detail->forceDelete();
+                }
+                $final_products = FinalProduct::where('supplier_id', $user->id)->get();
+                foreach($final_products as $final_product){
+                    $final_product->forceDelete();
+                }
+                $user->forceDelete();
             }
-            $final_products = FinalProduct::where('supplier_id', $user->id)->get();
-            foreach($final_products as $final_product){
-                $final_product->forceDelete();
+            elseif($user->user_type == "admin" && $user->email == "admin@gmail.com"){
+                return redirect()->route('users.edit', auth()->user()->id)
+                ->with(['super_admin_not_allowed_to_do_account_delete_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Delete your account)!']);
             }
-            $user->forceDelete();
-        }
-        elseif($user->user_type == "admin" && $user->email == "admin@gmail.com"){
-            return redirect()->route('users.edit', auth()->user()->id)
-            ->with(['super_admin_not_allowed_to_do_account_delete_action' => 'Sorry, you are the master of the system which means that you are not allowed to do this action (Delete your account)!']);
-        }
-        else{
-            $user->forceDelete();
-        }
+            else{   //all the other user types in the system (which are "moderator", "customer" & also the "admin" but not the the super one)
+                $user->forceDelete();
+            }
 
-        //any route or redirect won't work because..since deleting account the user becomes guest and will be redirected automatically to login page
-        return redirect()->back();
+            //any route or redirect won't work because..since deleting account the user becomes guest and will be redirected automatically to login page
+            return redirect()->back();
             // ->with(['account_deleted_successfully' => 'Your account has been deleted successfully!']);
+        }
+        elseif($request->password != "" && !Hash::check($request->password, $user->password)){
+            return redirect()->route('users.deleteAccountView', $user->id)
+            ->with(['incorrect_password_confirmation_for_account_deletion' => "The password you entered is incorrect! Please try again."]);
+        }
+        elseif($request->password == ""){
+            return redirect()->route('users.deleteAccountView', $user->id)
+            ->with(['empty_password_confirmation_for_account_deletion' => "The password field is required in order to complete this action!"]);
+        }
     }
 
     public function importExportViewUsers(){

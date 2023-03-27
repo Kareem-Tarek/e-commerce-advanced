@@ -13,10 +13,10 @@ class ProductController extends Controller
     {
         $website_search_input          = $request->website_search_query;
         $website_products_result       = ProductDetail::where('name','LIKE',"%{$website_search_input}%")
-                                                ->orWhere('brand_name','LIKE',"%{$website_search_input}%")->get();
+                                            ->orWhere('brand_name','LIKE',"%{$website_search_input}%")->get();
         $website_products_result_count = $website_products_result->count();
 
-        return view('website.products.products_search.website_product_search', compact('website_products_result' , 'website_search_input' , 'website_products_result_count'))
+        return view('website.products.products_search.website_product_detail_search', compact('website_products_result' , 'website_search_input' , 'website_products_result_count'))
             ->with('i' , ($request->input('page', 1) - 1) * 5);
     }
 
@@ -25,10 +25,10 @@ class ProductController extends Controller
     // {
     //     $website_search_input          = $request->website_search_query;
     //     $website_products_result       = FinalProduct::where('name','LIKE',"%{$website_search_input}%")
-    //                                             ->orWhere('brand_name','LIKE',"%{$website_search_input}%")->get();
+    //                                         ->orWhere('brand_name','LIKE',"%{$website_search_input}%")->get();
     //     $website_products_result_count = $website_products_result->count();
 
-    //     return view('website.products.products_search.website_product_search', compact('website_products_result' , 'website_search_input' , 'website_products_result_count'))
+    //     return view('website.products.products_search.website_final_product_search', compact('website_products_result' , 'website_search_input' , 'website_products_result_count'))
     //         ->with('i' , ($request->input('page', 1) - 1) * 5);
     // }
 }

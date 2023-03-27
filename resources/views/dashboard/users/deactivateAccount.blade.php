@@ -16,7 +16,19 @@
                         <form action="{{route('users.deactivateAccount', [$User_model->id, $User_model->username])}}" class="forms-sample" method="post" id="alert-form">
                             @csrf
                             {{ method_field('patch') }}
-                            <p class="mb-4">Once your your account is deactivate you won't be able to do some certain stuff (such as using giving a rate or comment, using cart, ..etc.). But You could reactivate it again by logging out and then logging in again.</p>
+                            @if(session()->has('incorrect_password_confirmation_for_account_deactivation'))
+                                <div class="alert alert-danger text-center">
+                                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                                    {{ session()->get('incorrect_password_confirmation_for_account_deactivation') }}
+                                </div>
+                            @elseif(session()->has('empty_password_confirmation_for_account_deactivation'))
+                                <div class="alert alert-danger text-center">
+                                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                                    {{ session()->get('empty_password_confirmation_for_account_deactivation') }}
+                                </div>
+                            @endif
+                            <p class="mb-3">Once your your account is deactivate you won't be able to do some certain stuff (such as using giving a rate or comment, using cart, ..etc.). But You could reactivate it again by logging out and then logging in again.</p>
+                            <input type="password" class="form-control mb-4 border-1 border-dark" name="password" placeholder="Enter your password here..">
                             {{-- <input type="text" class="d-none" value="inactive" name="status"> --}}
                             {{-- <button type="submit" class="btn btn-warning text-dark me-2" onclick="return confirm('Are you sure that you want to deactivate your account?');" title="Deactivate Account">Deactivate Account</button> --}}
                             <button type="submit" value="inactive" name="status" class="btn btn-warning text-dark me-2" onclick="return confirm('Are you sure that you want to deactivate your account?');" title="Deactivate Account">Deactivate Account</button>
