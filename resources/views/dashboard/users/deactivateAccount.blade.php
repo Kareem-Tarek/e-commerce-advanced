@@ -54,7 +54,7 @@
             return false;
         }
         if(e.key == 'F12'){   //"F12" -> for page's inspect element
-            alert("Sorry! You can't inspect element for this page.");
+            // alert("Sorry! You can't inspect element for this page.");
             return false;
         }
         if(e.ctrlKey && e.shiftKey && e.key == 'c' || e.ctrlKey && e.shiftKey && e.key == 'C'){   //"ctrl + shift + c" OR "ctrl + shift + C" -> for page's inspect element
