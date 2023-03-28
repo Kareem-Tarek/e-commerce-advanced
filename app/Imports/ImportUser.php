@@ -5,10 +5,10 @@ namespace App\Imports;
 // use Carbon\Carbon;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
-// use Maatwebsite\Excel\Concerns\WithHeadingRow;
+// use Maatwebsite\Excel\Concerns\WithHeadingRow;  //used in the preferred & more advanecd method!
 
-class ImportUser implements ToModel
-// class ImportUser implements ToModel, WithHeadingRow
+class ImportUser implements ToModel  //for the simple method!
+// class ImportUser implements ToModel, WithHeadingRow  //for the preferred & more advanecd method!
 {
     /**
     * @param array $row
