@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.master')
 
 @section('title') 
-  Users (Excel)
+  All Users (Excel)
 @endsection
 
 @section('content')

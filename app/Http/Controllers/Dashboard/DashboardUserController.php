@@ -488,7 +488,8 @@ class DashboardUserController extends Controller
         //     return redirect()->route('users.deleteAccountView', $user->id)
         //     ->with(['empty_password_confirmation_for_account_deletion' => "The password field is required in order to complete this action!"]);
         // }
-        
+
+
         $user = auth()->user();
         if(Hash::check($request->password, $user->password)){
             if($user->user_type == "supplier"){

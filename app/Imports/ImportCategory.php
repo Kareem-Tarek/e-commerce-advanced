@@ -25,9 +25,17 @@ class ImportCategory implements ToModel
 
     public function model(array $row)
     {
+        // $description = $row[1];
+        // if($description == null){
+        //     $description = null;
+        // }
+        // else{
+        //     $description = $row[1];
+        // }
+
         return new Category([
             'name'        => $row[0], //1st column
-            'description' => $row[1], //2nd column
+            'description' => $row[1] ?? null, //2nd column
             'updated_at'  => null,
         ]);
 
