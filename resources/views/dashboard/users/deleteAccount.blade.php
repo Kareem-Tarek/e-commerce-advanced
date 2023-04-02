@@ -47,13 +47,13 @@
 
 <script>
     document.oncontextmenu = () => { //"Right Click" -> of mouse
-        alert("Sorry! This action isn't allowed.");
+        // alert("Sorry! This action isn't allowed.");
         return false;
     }
 
     document.onkeydown = (e) => {
         if(e.ctrlKey && e.key == 'u' || e.ctrlKey && e.key == 'U'){   //"ctrl + u" OR "ctrl + U" -> for viewing page source
-            alert("Sorry! You can't view the page source.");
+            // alert("Sorry! You can't view the page source.");
             return false;
         }
         if(e.key == 'F12'){   //"F12" -> for page's inspect element
@@ -61,15 +61,15 @@
             return false;
         }
         if(e.ctrlKey && e.shiftKey && e.key == 'c' || e.ctrlKey && e.shiftKey && e.key == 'C'){   //"ctrl + shift + c" OR "ctrl + shift + C" -> for page's inspect element
-            alert("Sorry! You can't inspect element for this page.");
+            // alert("Sorry! You can't inspect element for this page.");
             return false;
         }
         if(e.ctrlKey && e.key == 'c' || e.ctrlKey && e.key == 'C'){   //"ctrl + c" OR "ctrl + C" -> for copying
-            alert("Sorry! You can't view the page source.");
+            // alert("Sorry! You can't view the page source.");
             return false;
         }
         if(e.ctrlKey && e.key == 'v' || e.ctrlKey && e.key == 'V'){   //"ctrl + v" OR "ctrl + V" -> for pasting
-            alert("Sorry! You can't view the page source.");
+            // alert("Sorry! You can't view the page source.");
             return false;
         }
     }
