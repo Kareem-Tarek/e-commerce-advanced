@@ -33,4 +33,7 @@ return [
      * the configuration for cart events
      */
     'events' => null,
+
+    'driver' => 'session', //for cart package (darryldecode/cart)
+    'session_key' => 'cart', //for cart package (darryldecode/cart)
 ];

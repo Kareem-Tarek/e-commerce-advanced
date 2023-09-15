@@ -119,7 +119,7 @@ Route::group([
         Route::get('/all-product/restore/{id}/', [DashboardProductDetailController::class, 'restore'])->name('all-products.restore');
         Route::delete('/all-product/forceDelete/{id}/', [DashboardProductDetailController::class, 'forceDelete'])->name('all-products.forceDelete');
 
-        
+
         Route::resource('/products', DashboardFinalProductController::class)->except(['index']);
         //this route replaces the "index" function from "DashboardFinalProductController"//
         Route::get('/all-products/{id}/{name?}', [DashboardFinalProductController::class, 'index_for_each_product'])->name('final_products.index'); //index of products of products
@@ -161,12 +161,12 @@ Route::group([
         Route::patch('/user/change-password/{id}', [DashboardUserController::class, 'changePassword'])->name('users.changePassword');
         //***** End change account password *****//
         //***** Start account deletion *****//
-        Route::get('/user/delete-account-view/{id}/{name?}', [DashboardUserController::class, 'deleteAccountView'])->name('users.deleteAccountView');
-        Route::delete('/user/delete-account/{id}/{name?}', [DashboardUserController::class, 'deleteAccount'])->name('users.deleteAccount');
+        Route::get('/user/delete-account-view/{id}', [DashboardUserController::class, 'deleteAccountView'])->name('users.deleteAccountView');
+        Route::delete('/user/delete-account/{id}', [DashboardUserController::class, 'deleteAccount'])->name('users.deleteAccount');
         //***** End account deletion *****//
         //***** Start account deactivation *****//
-        Route::get('/user/deactivate-account-view/{id}/{name?}', [DashboardUserController::class, 'deactivateAccountView'])->name('users.deactivateAccountView');
-        Route::patch('/user/deactivate-account/{id}/{name?}', [DashboardUserController::class, 'deactivateAccount'])->name('users.deactivateAccount');
+        Route::get('/user/deactivate-account-view/{id}', [DashboardUserController::class, 'deactivateAccountView'])->name('users.deactivateAccountView');
+        Route::patch('/user/deactivate-account/{id}', [DashboardUserController::class, 'deactivateAccount'])->name('users.deactivateAccount');
         // End account deactivation //
         Route::get('/user/admins', [DashboardUserController::class, 'indexAdmins'])->name('users.indexAdmins');
         Route::get('/user/moderators', [DashboardUserController::class, 'indexModerators'])->name('users.indexModerators');

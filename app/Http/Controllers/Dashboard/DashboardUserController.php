@@ -45,7 +45,7 @@ class DashboardUserController extends Controller
             return redirect()->route('dashboard');
         }
     }
-    
+
     public function indexSuppliers()
     {
         $suppliers       = User::where('user_type','supplier')->orderBy('created_at','asc')->paginate(10);
@@ -379,7 +379,7 @@ class DashboardUserController extends Controller
                         $User_model->save();
                     }
                     else{
-                        // $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
+                        $user_status = $user_status;    //if any thing changed (such as from inspect elements of the page), save it as the old value!
                         $status_old = ucfirst($User_model_status_old);
                         return redirect()->route('users.edit', auth()->user()->id)
                         ->with(['account_status_remained_the_same' => "Your account is already ($status_old)!"]);
@@ -528,7 +528,7 @@ class DashboardUserController extends Controller
     public function importExportViewUsers(){
         return view('dashboard.users.excel_imports_exports.import_export_file');
     }
- 
+
     public function importUsers(Request $request){
         $rules = [
             'importing_input'          => 'required|file|mimes:xls,xlsx,xlsm,xltx,xltm,xla,xlt,csv|max:16000',
@@ -542,7 +542,7 @@ class DashboardUserController extends Controller
         $this->validate($request, $rules, $messages);
 
         Excel::import(
-            new ImportUser, 
+            new ImportUser,
             $request->file('importing_input')->store('files')
         );
 
@@ -554,7 +554,7 @@ class DashboardUserController extends Controller
         return Excel::download(new UserAllExport, 'AA'.Carbon::now()->format('dmys').'_'.'users.xlsx');
             // ->back()->with(['exported_file_successfully' => "Your file has been exported successfully!"]);
     }
-        
+
 }
 
 

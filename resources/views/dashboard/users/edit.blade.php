@@ -5,7 +5,7 @@
         Edit your data
     @else
         Edit User ({{ $User_model->name ?? $User_model->username }})
-    @endif 
+    @endif
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
                     Edit your data
                 @else
                     Edit User (<span class="fw-bold">{{ $User_model->name ?? $User_model->username }}</span>)
-                @endif 
+                @endif
             </p>
             <div class="col-sm-12 col-xl-12 xl-100">
                 {{-- <div class="card-header pb-0">
@@ -38,8 +38,8 @@
                                     @if(auth()->user()->user_type == "admin" && auth()->user()->email == "admin@gmail.com")
                                         <!-- nothing -->
                                     @else
-                                        &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deactivateAccountView', [$User_model->id, $User_model->username]) }}" class="text-dark text-decoration-none bg-warning px-2 py-1 fw-bold rounded">Deactivate your account?</a>
-                                        &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deleteAccountView', [$User_model->id, $User_model->username]) }}" class="text-white text-decoration-none bg-danger px-2 py-1 fw-bold rounded">Delete your account?</a>
+                                        &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deactivateAccountView', [$User_model->id]) }}" class="text-dark text-decoration-none bg-warning px-2 py-1 fw-bold rounded">Deactivate your account?</a>
+                                        &nbsp;&nbsp;&nbsp;<a href="{{ route('users.deleteAccountView', [$User_model->id]) }}" class="text-white text-decoration-none bg-danger px-2 py-1 fw-bold rounded">Delete your account?</a>
                                     @endif
                                 </div>
                             @endif

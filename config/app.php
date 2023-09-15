@@ -181,8 +181,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class,  //provider for -> for cart package
-        Maatwebsite\Excel\ExcelServiceProvider::class,  //provider for -> for excel package
+        Darryldecode\Cart\CartServiceProvider::class,  //provider for -> for cart package (darryldecode/cart)
+        Maatwebsite\Excel\ExcelServiceProvider::class,  //provider for -> for excel package (maatwebsite/excel)
 
         /*
          * Package Service Providers...
@@ -212,8 +212,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Cart'  => Darryldecode\Cart\Facades\CartFacade::class,  //alias for -> cart package
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,  //alias for -> cart package
+        'Cart'  => Darryldecode\Cart\Facades\CartFacade::class,  //alias for -> cart package (darryldecode/cart)
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,  //alias for -> excel package (maatwebsite/excel)
     ])->toArray(),
 
 ];

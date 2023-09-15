@@ -26,11 +26,11 @@
                                     <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                                     {{ session()->get('empty_password_confirmation_for_account_deletion') }}
                                 </div>
-                            {{-- @elseif(session()->has('account_deleted_successfully')) 
-                                <div class="alert alert-success text-center"> 
-                                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a> 
-                                    {{ session()->get('account_deleted_successfully') }} 
-                                </div>   --}}
+                            {{-- @elseif(session()->has('account_deleted_successfully'))
+                                <div class="alert alert-success text-center">
+                                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                                    {{ session()->get('account_deleted_successfully') }}
+                                </div> --}}
                             @endif
                             <p class="mb-3">Once you delete your account, there is no going back. Please be certain.</p>
                             <input type="password" class="form-control mb-4 border-1 border-dark" name="password" placeholder="Enter your password here..">

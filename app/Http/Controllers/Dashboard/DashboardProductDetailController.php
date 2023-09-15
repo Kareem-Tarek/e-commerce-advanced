@@ -237,7 +237,7 @@ class DashboardProductDetailController extends Controller
             $products_details       = ProductDetail::orderBy('supplier_id','asc')->onlyTrashed()->paginate(5);
             $products_details_count = $products_details->count();
         }
-        
+
         return view('dashboard.products.products_details.delete',compact('products_details', 'products_details_count'));
     }
 
